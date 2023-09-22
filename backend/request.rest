@@ -1,0 +1,127 @@
+//------------------------------------------------------------//
+
+### CRUD Admin
+POST http://localhost:5000/admin
+Content-Type: application/json
+
+{
+    "username": "helsa",
+    "password": "helsa4213"
+}
+
+###
+GET http://localhost:5000/admin
+
+//------------------------------------------------------------//
+
+### CRUD Portofolio
+POST http://localhost:5000/add-porto
+Content-Type: application/json
+
+{
+    "id_person": 2,
+    "nama_portofolio": "CRUD Springboot",
+    "file_portofolio": "url/portofolio/springboot.pdf"
+}
+
+### Menampilkan semua portofolio berdasarkan id_person
+GET http://localhost:5000/show-portofolio/2
+
+### Menampilkan satu portofolio yang dipilih
+GET http://localhost:5000/show-portofolio/2/4
+
+### edit portofolio
+PATCH http://localhost:5000/edit-portofolio/4
+Content-Type: application/json
+
+{
+    "nama_portofolio": "Ubah portofolioooww"
+}
+
+###
+DELETE http://localhost:5000/delete-portofolio/4
+
+//------------------------------------------------------------//
+
+### CRUD Pendidikan
+POST http://localhost:5000/add-pendidikan
+Content-Type: application/json
+
+{
+    "id_person": 1,
+    "instansi_pendidikan": "SMAN 2 Ngamprah",
+    "jurusan": "IPS",
+    "tahun_mulai_ajaran": "2017-09-01",
+    "tahun_akhir_ajaran": "2020-06-30"
+}
+
+###
+GET http://localhost:5000/show-pendidikan/1
+
+###
+GET http://localhost:5000/show-pendidikan/1/1
+
+###
+PATCH http://localhost:5000/edit-pendidikan/1
+Content-Type: application/json
+
+{
+    "id_person": 1,
+    "instansi_pendidikan": "SMAN 2 Cijerah",
+    "jurusan": "IPS",
+    "tahun_mulai_ajaran": "2017-09-01",
+    "tahun_akhir_ajaran": "2020-06-30"
+}
+
+###
+DELETE http://localhost:5000/delete-pendidikan/2
+
+//------------------------------------------------------------//
+
+### CRUD DataDiri
+POST http://localhost:5000/add-datadiri
+Content-Type: application/json
+
+{
+    "photo": "image_test.jpg",
+    "nama_depan": "Achmad",
+    "nama_belakang": "Effendi",
+    "tempat_lahir": "Bandung",
+    "tanggal_lahir": "1990-01-15",
+    "usia": 33,
+    "tinggi_badan": 175.5,
+    "berat_badan": 70.2,
+    "alamat": "Jl. Pasir Jambu",
+    "agama": "Islam",
+    "jenis_kelamin": "Laki-laki",
+    "nomor_handphone": "082117676553",
+    "email": "A.effendi@yahoo.com",
+    "status": "Menikah"
+}
+
+###
+GET http://localhost:5000/show-datadiri/1
+
+###
+PATCH http://localhost:5000/edit-datadiri/1
+Content-Type: application/json
+
+{
+    "photo": "image_test.jpg",
+    "nama_depan": "Achmad",
+    "nama_belakang": "Effendi",
+    "tempat_lahir": "Bandung",
+    "tanggal_lahir": "1990-01-15",
+    "usia": 33,
+    "tinggi_badan": 177.5,
+    "berat_badan": 72.2,
+    "alamat": "Jl. Pasir Kaliki",
+    "agama": "Islam",
+    "jenis_kelamin": "Laki-laki",
+    "nomor_handphone": "082117676553",
+    "email": "A.effendi@yahoo.com",
+    "status": "Menikah"
+}
+
+###
+DELETE http://localhost:5000/delete-datadiri/1
