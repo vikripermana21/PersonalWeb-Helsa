@@ -1,3 +1,4 @@
+### CRUD Admin
 POST http://localhost:5000/admin
 Content-Type: application/json
 
@@ -8,3 +9,31 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/admin
+
+
+### CRUD Portofolio
+POST http://localhost:5000/add-porto
+Content-Type: application/json
+
+{
+    "id_person": 2,
+    "nama_portofolio": "CRUD Springboot",
+    "file_portofolio": "url/portofolio/springboot.pdf"
+}
+
+### Menampilkan semua portofolio berdasarkan id_person
+GET http://localhost:5000/show-portofolio/2
+
+### Menampilkan satu portofolio yang dipilih
+GET http://localhost:5000/show-portofolio/2/4
+
+### edit portofolio
+PATCH http://localhost:5000/edit-portofolio/4
+Content-Type: application/json
+
+{
+    "nama_portofolio": "Ubah portofolioooww"
+}
+
+###
+DELETE http://localhost:5000/delete-portofolio/4
