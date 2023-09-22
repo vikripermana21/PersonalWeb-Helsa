@@ -1,6 +1,9 @@
 import express from "express";
 import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
+import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
+import { createDataDiri, showDataDiriById, updateDataDiri, deleteDataDiri } from "../controllers/DataDiriControllers.js";
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -9,11 +12,22 @@ router.get('/', (req, res) => {
 
 router.post('/admin', createAdmin);
 router.get('/admin', getAllAdmin);
+
 router.post('/add-porto', createPorto);
 router.get('/show-portofolio/:id_person', showAllPorto);
 router.get('/show-portofolio/:id_person/:id_portofolio', getPortoById);
 router.patch('/edit-portofolio/:id_portofolio', updatePorto);
 router.delete('/delete-portofolio/:id_portofolio', deletePorto);
 
+router.post('/add-pendidikan', createPendidikan);
+router.get('/show-pendidikan/:id_person', showAllPendidikan);
+router.get('/show-pendidikan/:id_person/:id_pendidikan', getPendidikanById);
+router.patch('/edit-pendidikan/:id_pendidikan', updatePendidikan);
+router.delete('/delete-pendidikan/:id_pendidikan', deletePendidikan);
+
+router.post('/add-datadiri', createDataDiri);
+router.get('/show-datadiri/:id_person', showDataDiriById);
+router.patch('/edit-datadiri/:id_person', updateDataDiri);
+router.delete('/delete-datadiri/:id_person', deleteDataDiri);
 
 export default router;
