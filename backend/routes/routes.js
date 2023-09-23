@@ -3,11 +3,8 @@ import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createDataDiri, showDataDiriById, updateDataDiri, deleteDataDiri } from "../controllers/DataDiriControllers.js";
-<<<<<<< HEAD
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
-=======
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
->>>>>>> 8fd2961923d300215fb7ca33775e74bcbbf74646
 
 const router = express.Router();
 
@@ -35,18 +32,16 @@ router.get('/show-datadiri/:id_person', showDataDiriById);
 router.patch('/edit-datadiri/:id_person', updateDataDiri);
 router.delete('/delete-datadiri/:id_person', deleteDataDiri);
 
-<<<<<<< HEAD
 router.post('/add-organisasi', createOrganisasi);
 router.get('/show-organisasi/:id_person', showAllOrganisasi); //tampilkan semua organisasi berdasarkan id_person
 router.get('/show-organisasi/:id_person/:id_organisasi', getOrganisasiById); //tampilkan berdasarkan id_organisasi (spesifik)
 router.patch('/edit-organisasi/:id_organisasi', updateOrganisasi);
 router.delete('/delete-organisasi/:id_organisasi', deleteOrganisasi);
-=======
+
 router.post('/add-skill', createSkill);
 router.get('/show-skill/:id_person', showAllSkill);
 router.get('/show-skill/:id_person/:id_skill', getSkillById);
 router.patch('/edit-skill/:id_skill', updateSkill);
 router.delete('/delete-skill/:id_skill', deleteSkill);
->>>>>>> 8fd2961923d300215fb7ca33775e74bcbbf74646
 
 export default router;
