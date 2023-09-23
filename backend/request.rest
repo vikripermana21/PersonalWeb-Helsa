@@ -24,9 +24,9 @@ Content-Type: application/json
     "religion" : "Islam",
     "gender" : "Female",
     "phone" : "081572548494",
-    "email_index" : "helsa.alika.tif421@polban.ac.id",
+    "email" : "helsa.alika.tif421@polban.ac.id",
     "status" : "Mahasiswa",
-    "id_portofolio" : 1,
+    "id_portofolio" : 1
 }
 
 ###
