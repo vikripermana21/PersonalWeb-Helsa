@@ -125,3 +125,32 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/delete-datadiri/1
+
+//------------------------------------------------------------//
+
+### CRUD Skill
+POST http://localhost:5000/add-skill
+Content-Type: application/json
+
+{
+    "id_person": 1,
+    "nama_skill": "Bahasa Pemrograman",
+    "capability": "Dapat mengoperasikan berbagai bahasa pemrograman seperti java, python, dll"
+}
+
+### Menampilkan semua portofolio berdasarkan id_person
+GET http://localhost:5000/show-skill/1
+
+### Menampilkan satu portofolio yang dipilih
+GET http://localhost:5000/show-skill/1/1
+
+### edit portofolio
+PATCH http://localhost:5000/edit-skill/1
+Content-Type: application/json
+
+{
+    "capability": "Expert dalam menggunakan bahasa Ruby"
+}
+
+###
+DELETE http://localhost:5000/delete-skill/1
