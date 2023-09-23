@@ -8,9 +8,6 @@ const Portofolio = db.define('portofolio', {
         primaryKey: true,
         autoIncrement: true,
     },
-    id_person: {
-        type: DataTypes.INTEGER,
-    },
     nama_portofolio: {
         type: DataTypes.STRING,
     },
