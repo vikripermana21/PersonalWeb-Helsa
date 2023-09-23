@@ -19,19 +19,19 @@ POST http://localhost:5000/add-porto
 Content-Type: application/json
 
 {
-    "id_person": 2,
+    "id_person": 1,
     "nama_portofolio": "CRUD Springboot",
     "file_portofolio": "url/portofolio/springboot.pdf"
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
-GET http://localhost:5000/show-portofolio/2
+GET http://localhost:5000/show-portofolio/1
 
 ### Menampilkan satu portofolio yang dipilih
-GET http://localhost:5000/show-portofolio/2/4
+GET http://localhost:5000/show-portofolio/2/2
 
 ### edit portofolio
-PATCH http://localhost:5000/edit-portofolio/4
+PATCH http://localhost:5000/edit-portofolio/2
 Content-Type: application/json
 
 {
@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/delete-portofolio/4
+DELETE http://localhost:5000/delete-portofolio/3
 
 //------------------------------------------------------------//
 
@@ -128,12 +128,43 @@ DELETE http://localhost:5000/delete-datadiri/1
 
 //------------------------------------------------------------//
 
+<<<<<<< HEAD
+### CRUD Organisasi
+POST http://localhost:5000/add-organisasi
+=======
 ### CRUD Skill
 POST http://localhost:5000/add-skill
+>>>>>>> 8fd2961923d300215fb7ca33775e74bcbbf74646
 Content-Type: application/json
 
 {
     "id_person": 1,
+<<<<<<< HEAD
+    "nama_organisasi": "BEM Kema Polban",
+    "posisi": "Ketua Departemen Kominfo",
+    "tanggal_mulai_menjabat": "2022-01-25",
+    "tanggal_akhir_menjabat": "2023-12-29"
+}
+
+###
+GET http://localhost:5000/show-organisasi/1
+
+###
+GET http://localhost:5000/show-organisasi/1/1
+
+###
+PATCH http://localhost:5000/edit-organisasi/1
+Content-Type: application/json
+
+{
+    "posisi": "Ketua Departemen Kominfo"
+}
+
+###
+DELETE http://localhost:5000/delete-organisasi/1
+
+//------------------------------------------------------------//
+=======
     "nama_skill": "Bahasa Pemrograman",
     "capability": "Dapat mengoperasikan berbagai bahasa pemrograman seperti java, python, dll"
 }
@@ -154,3 +185,4 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/delete-skill/1
+>>>>>>> 8fd2961923d300215fb7ca33775e74bcbbf74646
