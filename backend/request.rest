@@ -128,12 +128,18 @@ DELETE http://localhost:5000/delete-datadiri/1
 
 //------------------------------------------------------------//
 
+<<<<<<< HEAD
 ### CRUD Organisasi
 POST http://localhost:5000/add-organisasi
+=======
+### CRUD Skill
+POST http://localhost:5000/add-skill
+>>>>>>> 8fd2961923d300215fb7ca33775e74bcbbf74646
 Content-Type: application/json
 
 {
     "id_person": 1,
+<<<<<<< HEAD
     "nama_organisasi": "BEM Kema Polban",
     "posisi": "Ketua Departemen Kominfo",
     "tanggal_mulai_menjabat": "2022-01-25",
@@ -158,3 +164,25 @@ Content-Type: application/json
 DELETE http://localhost:5000/delete-organisasi/1
 
 //------------------------------------------------------------//
+=======
+    "nama_skill": "Bahasa Pemrograman",
+    "capability": "Dapat mengoperasikan berbagai bahasa pemrograman seperti java, python, dll"
+}
+
+### Menampilkan semua portofolio berdasarkan id_person
+GET http://localhost:5000/show-skill/1
+
+### Menampilkan satu portofolio yang dipilih
+GET http://localhost:5000/show-skill/1/1
+
+### edit portofolio
+PATCH http://localhost:5000/edit-skill/1
+Content-Type: application/json
+
+{
+    "capability": "Expert dalam menggunakan bahasa Ruby"
+}
+
+###
+DELETE http://localhost:5000/delete-skill/1
+>>>>>>> 8fd2961923d300215fb7ca33775e74bcbbf74646
