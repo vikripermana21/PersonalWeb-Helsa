@@ -1,3 +1,5 @@
+//PendidikanControllers.js
+
 import Pendidikan from '../models/PendidikanModels.js';
 
 export const createPendidikan = async (req, res) => {

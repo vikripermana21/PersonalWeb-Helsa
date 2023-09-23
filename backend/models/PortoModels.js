@@ -1,6 +1,6 @@
+// PortoModels.js
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
-// harus import model data diri buat ambil id_person
 
 const Portofolio = db.define('portofolio', {
     id_portofolio: {
@@ -8,20 +8,23 @@ const Portofolio = db.define('portofolio', {
         primaryKey: true,
         autoIncrement: true,
     },
-    id_person: {
-        type: DataTypes.INTEGER,
-    },
     nama_portofolio: {
         type: DataTypes.STRING,
     },
     file_portofolio: {
         type: DataTypes.STRING,
     },
+    id_person: { // Define the foreign key field
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'data_diri', // Reference the DataDiri model
+            key: 'id_person', // Reference the id_person field in DataDiri
+        },
+    },
 }, {
-    // Nama tabel yang sesuai dengan nama tabel di database
     tableName: 'portofolio',
     timestamps: false,
-    freezeTableName:true
+    freezeTableName: true
 });
 
 export default Portofolio;

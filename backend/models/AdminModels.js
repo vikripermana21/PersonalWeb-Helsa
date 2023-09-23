@@ -1,3 +1,5 @@
+// AdminModels.js
+
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 
@@ -26,9 +28,3 @@ export default Admin;
 (async () => {
     await db.sync();
 })();
-
-
-
-
-
-

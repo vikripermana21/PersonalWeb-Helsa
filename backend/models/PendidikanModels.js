@@ -1,15 +1,12 @@
+// PendidikanModels.js
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
-// harus import model data diri buat ambil id_person
 
 const Pendidikan = db.define('pendidikan', {
     id_pendidikan: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-    },
-    id_person: {
-        type: DataTypes.INTEGER,
     },
     instansi_pendidikan: {
         type: DataTypes.STRING,
@@ -23,8 +20,14 @@ const Pendidikan = db.define('pendidikan', {
     tahun_akhir_ajaran: {
         type: DataTypes.DATE,
     },
+    id_person: { // Define the foreign key field
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'data_diri', // Reference the DataDiri model
+            key: 'id_person', // Reference the id_person field in DataDiri
+        },
+    },
 }, {
-    // Nama tabel yang sesuai dengan nama tabel di database
     tableName: 'pendidikan',
     timestamps: false,
     freezeTableName: true

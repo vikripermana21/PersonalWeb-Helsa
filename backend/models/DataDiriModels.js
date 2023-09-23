@@ -1,6 +1,10 @@
+// DataDiriModels.js
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
-// harus import model pendidikan, organisasi, portofolio, dan skill buat ambil id_pendidikan, id_organisasi, id_portofolio, dan id_skill
+import Pendidikan from './PendidikanModels.js'; // Import the Pendidikan model
+import Portofolio from './PortoModels.js'; // Import the Portofolio model
+import Skill from './SkillModels.js'; // Import the Skill model
+import Organisasi from './OrganisasiModels.js'; // Import the Organisasi model
 
 const DataDiri = db.define('data_diri', {
     id_person: {
@@ -52,24 +56,17 @@ const DataDiri = db.define('data_diri', {
     status: {
         type: DataTypes.STRING,
     },
-    id_pendidikan: {
-        type: DataTypes.INTEGER,
-    },
-    id_organisasi: {
-        type: DataTypes.INTEGER,
-    },
-    id_portofolio: {
-        type: DataTypes.INTEGER,
-    },
-    id_skill: {
-        type: DataTypes.INTEGER,
-    },
 }, {
-    // Nama tabel yang sesuai dengan nama tabel di database
     tableName: 'data_diri',
     timestamps: false,
     freezeTableName: true
 });
+
+// Create associations with other models using their respective foreign keys
+DataDiri.hasMany(Pendidikan, { foreignKey: 'id_person' });
+DataDiri.hasMany(Portofolio, { foreignKey: 'id_person' });
+DataDiri.hasMany(Skill, { foreignKey: 'id_person' });
+DataDiri.hasMany(Organisasi, { foreignKey: 'id_person' });
 
 export default DataDiri;
 
