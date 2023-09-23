@@ -3,6 +3,7 @@ import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createDataDiri, showDataDiriById, updateDataDiri, deleteDataDiri } from "../controllers/DataDiriControllers.js";
+import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
 
 const router = express.Router();
 
@@ -29,5 +30,11 @@ router.post('/add-datadiri', createDataDiri);
 router.get('/show-datadiri/:id_person', showDataDiriById);
 router.patch('/edit-datadiri/:id_person', updateDataDiri);
 router.delete('/delete-datadiri/:id_person', deleteDataDiri);
+
+router.post('/add-skill', createSkill);
+router.get('/show-skill/:id_person', showAllSkill);
+router.get('/show-skill/:id_person/:id_skill', getSkillById);
+router.patch('/edit-skill/:id_skill', updateSkill);
+router.delete('/delete-skill/:id_skill', deleteSkill);
 
 export default router;
