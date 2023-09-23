@@ -3,6 +3,7 @@ import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createDataDiri, showDataDiriById, updateDataDiri, deleteDataDiri } from "../controllers/DataDiriControllers.js";
+import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 
 const router = express.Router();
 
@@ -29,5 +30,11 @@ router.post('/add-datadiri', createDataDiri);
 router.get('/show-datadiri/:id_person', showDataDiriById);
 router.patch('/edit-datadiri/:id_person', updateDataDiri);
 router.delete('/delete-datadiri/:id_person', deleteDataDiri);
+
+router.post('/add-organisasi', createOrganisasi);
+router.get('/show-organisasi/:id_person', showAllOrganisasi); //tampilkan semua organisasi berdasarkan id_person
+router.get('/show-organisasi/:id_person/:id_organisasi', getOrganisasiById); //tampilkan berdasarkan id_organisasi (spesifik)
+router.patch('/edit-organisasi/:id_organisasi', updateOrganisasi);
+router.delete('/delete-organisasi/:id_organisasi', deleteOrganisasi);
 
 export default router;
