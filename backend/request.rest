@@ -14,6 +14,34 @@ GET http://localhost:5000/admin
 
 //------------------------------------------------------------//
 
+### CRUD DATA DIRI (Personal)
+POST http://localhost:5000/personal
+Content-Type: application/json
+
+{
+    "foto": "url/",
+    "nama": "Helsa Alika Femiani",
+    "tempat_lahir" : "Cimahi",
+    "tanggal_lahir" : "2003-05-13",
+    "usia" : 20,
+    "tinggi_badan" : 160.0,
+    "berat_badan" : 45.0,
+    "alamat" : "Kota Cimahi, Jawa Barat, Indonesia",
+    "agama" : "Islam",
+    "jenis_kelamin" : "Perempuan",
+    "telp" : "081572548494",
+    "email" : "helsa.alika.tif421@polban.ac.id",
+    "status" : "Mahasiswa"
+}
+
+###
+GET http://localhost:5000/personal
+
+###
+GET http://localhost:5000/personal/1
+
+//------------------------------------------------------------//
+
 ### CRUD Portofolio
 POST http://localhost:5000/add-porto
 Content-Type: application/json
@@ -25,13 +53,13 @@ Content-Type: application/json
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
-GET http://localhost:5000/show-portofolio/2
+GET http://localhost:5000/show-portofolio/1
 
 ### Menampilkan satu portofolio yang dipilih
-GET http://localhost:5000/show-portofolio/2/4
+GET http://localhost:5000/show-portofolio/2/2
 
 ### edit portofolio
-PATCH http://localhost:5000/edit-portofolio/4
+PATCH http://localhost:5000/edit-portofolio/2
 Content-Type: application/json
 
 {
@@ -39,7 +67,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/delete-portofolio/4
+DELETE http://localhost:5000/delete-portofolio/3
 
 //------------------------------------------------------------//
 
@@ -78,50 +106,63 @@ DELETE http://localhost:5000/delete-pendidikan/2
 
 //------------------------------------------------------------//
 
-### CRUD DataDiri
-POST http://localhost:5000/add-datadiri
+
+# CRUD Organisasi
+
+###Create an Organisasi 
+POST http://localhost:5000/add-organisasi 
 Content-Type: application/json
 
 {
-    "photo": "image_test.jpg",
-    "nama_depan": "Achmad",
-    "nama_belakang": "Effendi",
-    "tempat_lahir": "Bandung",
-    "tanggal_lahir": "1990-01-15",
-    "usia": 33,
-    "tinggi_badan": 175.5,
-    "berat_badan": 70.2,
-    "alamat": "Jl. Pasir Jambu",
-    "agama": "Islam",
-    "jenis_kelamin": "Laki-laki",
-    "nomor_handphone": "082117676553",
-    "email": "A.effendi@yahoo.com",
-    "status": "Menikah"
+"id_person": 1, 
+"nama_organisasi": "BEM Kema Polban", 
+"posisi": "Ketua Departemen Kominfo", 
+"tanggal_mulai_menjabat": "2022-01-25", 
+"tanggal_akhir_menjabat": "2023-12-29"
 }
 
-###
-GET http://localhost:5000/show-datadiri/1
+### Get All Organisasi by id_person 
+GET http://localhost:5000/show-organisasi/1
 
-###
-PATCH http://localhost:5000/edit-datadiri/1
+### Get a Specific Organisasi by id_person and id_organisasi 
+GET http://localhost:5000/show-organisasi/1/1
+
+### Update an Organisasi 
+PATCH http://localhost:5000/edit-organisasi/1 
 Content-Type: application/json
 
 {
-    "photo": "image_test.jpg",
-    "nama_depan": "Achmad",
-    "nama_belakang": "Effendi",
-    "tempat_lahir": "Bandung",
-    "tanggal_lahir": "1990-01-15",
-    "usia": 33,
-    "tinggi_badan": 177.5,
-    "berat_badan": 72.2,
-    "alamat": "Jl. Pasir Kaliki",
-    "agama": "Islam",
-    "jenis_kelamin": "Laki-laki",
-    "nomor_handphone": "082117676553",
-    "email": "A.effendi@yahoo.com",
-    "status": "Menikah"
+"posisi": "Ketua Departemen Kominfo"
+}
+
+### Delete an Organisasi 
+DELETE http://localhost:5000/delete-organisasi/1
+
+# CRUD Skill
+
+### Create a Skill 
+POST http://localhost:5000/add-skill 
+Content-Type: application/json
+
+{
+    "id_person": 1, 
+    "nama_skill": "Ruby", 
+    "capability": "Expert dalam menggunakan bahasa Ruby"
+}
+
+### Get All Skill by id_person 
+GET http://localhost:5000/show-skill/1
+
+### Get a Specific Skill by id_person and id_skill 
+GET http://localhost:5000/show-skill/1/1
+
+### Update a Skill 
+PATCH http://localhost:5000/edit-skill/1 
+Content-Type: application/json
+
+{
+"capability": "Expert dalam menggunakan bahasa Ruby dan Python"
 }
 
 ###
-DELETE http://localhost:5000/delete-datadiri/1
+DELETE http://localhost:5000/delete-skill/1

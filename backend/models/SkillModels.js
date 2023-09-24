@@ -1,17 +1,17 @@
-// PortoModels.js
+// SkillModels.js
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 
-const Portofolio = db.define('portofolio', {
-    id_portofolio: {
+const Skill = db.define('skill', {
+    id_skill: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    nama_portofolio: {
+    nama_skill: {
         type: DataTypes.STRING,
     },
-    file_portofolio: {
+    capability: {
         type: DataTypes.STRING,
     },
     id_person: { // Define the foreign key field
@@ -22,12 +22,12 @@ const Portofolio = db.define('portofolio', {
         },
     },
 }, {
-    tableName: 'portofolio',
+    tableName: 'skill',
     timestamps: false,
     freezeTableName: true
 });
 
-export default Portofolio;
+export default Skill;
 
 (async () => {
     await db.sync();

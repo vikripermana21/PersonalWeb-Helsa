@@ -1,6 +1,9 @@
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
-// harus import model pendidikan, organisasi, portofolio, dan skill buat ambil id_pendidikan, id_organisasi, id_portofolio, dan id_skill
+import Porto from './PortoModels.js';
+import Organisasi from './OrganisasiModels.js';
+import Pendidikan from './PendidikanModels.js';
+import Skill from './SkillModels.js';
 
 const DataDiri = db.define('data_diri', {
     id_person: {
@@ -8,67 +11,84 @@ const DataDiri = db.define('data_diri', {
         primaryKey: true,
         autoIncrement: true,
     },
-    photo: {
-        type: DataTypes.STRING,
-    },
-    nama_depan: {
-        type: DataTypes.STRING,
+    foto: {
+        type: DataTypes.TEXT,
         allowNull: false,
     },
-    nama_belakang: {
+    nama: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     tempat_lahir: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
     tanggal_lahir: {
         type: DataTypes.DATE,
+        allowNull: false,
     },
     usia: {
         type: DataTypes.INTEGER,
+        allowNull: false,
     },
     tinggi_badan: {
-        type: DataTypes.DECIMAL(5, 2),
+        type: DataTypes.FLOAT,
+        allowNull: false,
     },
     berat_badan: {
-        type: DataTypes.DECIMAL(5, 2),
+        type: DataTypes.FLOAT,
+        allowNull: false,
     },
     alamat: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
+        allowNull: false,
     },
     agama: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('Islam', 'Kristen', 'Hindu', 'Buddha', 'Konghucu', 'Lainnya'),
+        allowNull: false,
+        defaultValue: 'Lainnya',
     },
     jenis_kelamin: {
+        type: DataTypes.ENUM('Male', 'Female'),
+        allowNull: false,
+        defaultValue: 'Male',
+    },
+    telp:{
         type: DataTypes.STRING,
+        allowNull: false,
     },
-    nomor_handphone: {
+    email:{
         type: DataTypes.STRING,
+        allowNull: false,
     },
-    email: {
+    status:{
         type: DataTypes.STRING,
-    },
-    status: {
-        type: DataTypes.STRING,
-    },
-    id_pendidikan: {
-        type: DataTypes.INTEGER,
-    },
-    id_organisasi: {
-        type: DataTypes.INTEGER,
-    },
-    id_portofolio: {
-        type: DataTypes.INTEGER,
-    },
-    id_skill: {
-        type: DataTypes.INTEGER,
+        allowNull: false,
     },
 }, {
-    // Nama tabel yang sesuai dengan nama tabel di database
     tableName: 'data_diri',
     timestamps: false,
-    freezeTableName: true
+    freezeTableName:true
+});
+
+DataDiri.hasMany(Porto, {
+    foreignKey: 'id_portofolio', 
+    onDelete: 'CASCADE',
+});
+
+DataDiri.hasMany(Organisasi, {
+    foreignKey: 'id_organisasi', 
+    onDelete: 'CASCADE', 
+});
+
+DataDiri.hasMany(Pendidikan, {
+    foreignKey: 'id_pendidikan', 
+    onDelete: 'CASCADE', 
+});
+
+DataDiri.hasMany(Skill, {
+    foreignKey: 'id_skill', 
+    onDelete: 'CASCADE', 
 });
 
 export default DataDiri;
