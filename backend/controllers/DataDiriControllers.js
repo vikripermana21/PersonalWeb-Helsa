@@ -48,3 +48,58 @@ export const getPersonalById = async (req, res) => {
   }
 }
 
+export const updatePersonal = async (req, res) => {
+  const { id_person } = req.params;
+
+  try {
+    // Remove enum fields from req.body to prevent conflicts
+    delete req.body.agama;
+    delete req.body.jenis_kelamin;
+
+    const [updated] = await DataDiri.update(req.body, {
+      where: { id_person: id_person },
+    });
+
+    if (updated) {
+      const updatedPersonal = await DataDiri.findOne({
+        where: { id_person: id_person },
+        include: [Porto, Organisasi, Pendidikan, Skill],
+      });
+      return res.status(200).json({ message: 'Data diri updated', data: updatedPersonal });
+    }
+
+    return res.status(404).json({ error: 'Data diri tidak ditemukan' });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: 'Terjadi kesalahan dalam mengupdate data diri' });
+  }
+};
+
+export const deletePersonal = async (req, res) => {
+  const { id_person } = req.params;
+
+  try {
+    // Exclude enum fields from deletion to prevent conflicts
+    const excludedFields = ['agama', 'jenis_kelamin'];
+
+    // Build an object with null values for excluded fields
+    const nullValues = {};
+    excludedFields.forEach((field) => {
+      nullValues[field] = null;
+    });
+
+    // Update the data with excluded fields set to null
+    const [updated] = await DataDiri.update(nullValues, {
+      where: { id_person: id_person },
+    });
+
+    if (updated) {
+      return res.status(204).json({ message: 'Data diri deleted' });
+    }
+
+    return res.status(404).json({ error: 'Data diri tidak ditemukan' });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: 'Terjadi kesalahan dalam menghapus data diri' });
+  }
+};
