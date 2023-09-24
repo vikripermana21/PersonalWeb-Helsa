@@ -33,6 +33,7 @@ const Pendidikan = db.define('pendidikan', {
     freezeTableName: true
 });
 
+
 export default Pendidikan;
 
 (async () => {

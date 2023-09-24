@@ -1,36 +1,64 @@
-# CRUD Admin
+//------------------------------------------------------------//
 
-### Create an Admin
+### CRUD Admin
 POST http://localhost:5000/admin
 Content-Type: application/json
 
 {
-    "username": "testadmin",
-    "password": "testadmin4213"
+    "username": "helsa",
+    "password": "helsa4213"
 }
 
-### Get All Admin
+###
 GET http://localhost:5000/admin
 
-# CRUD Portofolio
+//------------------------------------------------------------//
 
-### Create a Portofolio
+### CRUD DATA DIRI (Personal)
+POST http://localhost:5000/personal
+Content-Type: application/json
+
+{
+    "foto": "url/",
+    "nama": "Helsa Alika Femiani",
+    "tempat_lahir" : "Cimahi",
+    "tanggal_lahir" : "2003-05-13",
+    "usia" : 20,
+    "tinggi_badan" : 160.0,
+    "berat_badan" : 45.0,
+    "alamat" : "Kota Cimahi, Jawa Barat, Indonesia",
+    "agama" : "Islam",
+    "jenis_kelamin" : "Perempuan",
+    "telp" : "081572548494",
+    "email" : "helsa.alika.tif421@polban.ac.id",
+    "status" : "Mahasiswa"
+}
+
+###
+GET http://localhost:5000/personal
+
+###
+GET http://localhost:5000/personal/1
+
+//------------------------------------------------------------//
+
+### CRUD Portofolio
 POST http://localhost:5000/add-porto
 Content-Type: application/json
 
 {
-    "id_person": 1,
+    "id_person": 2,
     "nama_portofolio": "CRUD Springboot",
     "file_portofolio": "url/portofolio/springboot.pdf"
 }
 
-### Get All Portofolio by id_person
+### Menampilkan semua portofolio berdasarkan id_person
 GET http://localhost:5000/show-portofolio/1
 
-### Get a Specific Portofolio by id_person and id_portofolio
-GET http://localhost:5000/show-portofolio/1/2
+### Menampilkan satu portofolio yang dipilih
+GET http://localhost:5000/show-portofolio/2/2
 
-### Update a Portofolio
+### edit portofolio
 PATCH http://localhost:5000/edit-portofolio/2
 Content-Type: application/json
 
@@ -38,12 +66,12 @@ Content-Type: application/json
     "nama_portofolio": "Ubah portofolioooww"
 }
 
-### Delete a Portofolio
+###
 DELETE http://localhost:5000/delete-portofolio/3
 
-# CRUD Pendidikan
+//------------------------------------------------------------//
 
-### Create a Pendidikan
+### CRUD Pendidikan
 POST http://localhost:5000/add-pendidikan
 Content-Type: application/json
 
@@ -55,13 +83,13 @@ Content-Type: application/json
     "tahun_akhir_ajaran": "2020-06-30"
 }
 
-### Get All Pendidikan by id_person
+###
 GET http://localhost:5000/show-pendidikan/1
 
-### Get a Specific Pendidikan by id_person and id_pendidikan
+###
 GET http://localhost:5000/show-pendidikan/1/1
 
-### Update a Pendidikan
+###
 PATCH http://localhost:5000/edit-pendidikan/1
 Content-Type: application/json
 
@@ -73,115 +101,68 @@ Content-Type: application/json
     "tahun_akhir_ajaran": "2020-06-30"
 }
 
-### Delete a Pendidikan
+###
 DELETE http://localhost:5000/delete-pendidikan/2
 
-# CRUD DataDiri
+//------------------------------------------------------------//
 
-### Create a DataDiri
-POST http://localhost:5000/add-datadiri
-Content-Type: application/json
-
-{
-    "photo": "image_test.jpg",
-    "nama_depan": "Achmad",
-    "nama_belakang": "Effendi",
-    "tempat_lahir": "Bandung",
-    "tanggal_lahir": "1990-01-15",
-    "usia": 33,
-    "tinggi_badan": 175.5,
-    "berat_badan": 70.2,
-    "alamat": "Jl. Pasir Jambu",
-    "agama": "Islam",
-    "jenis_kelamin": "Laki-laki",
-    "nomor_handphone": "082117676553",
-    "email": "A.effendi@yahoo.com",
-    "status": "Menikah"
-}
-
-### Get DataDiri by id_person
-GET http://localhost:5000/show-datadiri/1
-
-### Update DataDiri
-PATCH http://localhost:5000/edit-datadiri/1
-Content-Type: application/json
-
-{
-    "photo": "image_test.jpg",
-    "nama_depan": "Achmad",
-    "nama_belakang": "Effendi",
-    "tempat_lahir": "Bandung",
-    "tanggal_lahir": "1990-01-15",
-    "usia": 33,
-    "tinggi_badan": 177.5,
-    "berat_badan": 72.2,
-    "alamat": "Jl. Pasir Kaliki",
-    "agama": "Islam",
-    "jenis_kelamin": "Laki-laki",
-    "nomor_handphone": "082117676553",
-    "email": "A.effendi@yahoo.com",
-    "status": "Menikah"
-}
-
-### Delete DataDiri
-DELETE http://localhost:5000/delete-datadiri/3
 
 # CRUD Organisasi
 
-### Create an Organisasi
-POST http://localhost:5000/add-organisasi
+###Create an Organisasi 
+POST http://localhost:5000/add-organisasi 
 Content-Type: application/json
 
 {
-    "id_person": 1,
-    "nama_organisasi": "BEM Kema Polban",
-    "posisi": "Ketua Departemen Kominfo",
-    "tanggal_mulai_menjabat": "2022-01-25",
-    "tanggal_akhir_menjabat": "2023-12-29"
+"id_person": 1, 
+"nama_organisasi": "BEM Kema Polban", 
+"posisi": "Ketua Departemen Kominfo", 
+"tanggal_mulai_menjabat": "2022-01-25", 
+"tanggal_akhir_menjabat": "2023-12-29"
 }
 
-### Get All Organisasi by id_person
+### Get All Organisasi by id_person 
 GET http://localhost:5000/show-organisasi/1
 
-### Get a Specific Organisasi by id_person and id_organisasi
-GET http://localhost:5000/show-organisasi/1/2
+### Get a Specific Organisasi by id_person and id_organisasi 
+GET http://localhost:5000/show-organisasi/1/1
 
-### Update an Organisasi
-PATCH http://localhost:5000/edit-organisasi/1
+### Update an Organisasi 
+PATCH http://localhost:5000/edit-organisasi/1 
 Content-Type: application/json
 
 {
-    "posisi": "Ketua Departemen Kominfo"
+"posisi": "Ketua Departemen Kominfo"
 }
 
-### Delete an Organisasi
+### Delete an Organisasi 
 DELETE http://localhost:5000/delete-organisasi/1
 
 # CRUD Skill
 
-### Create a Skill
-POST http://localhost:5000/add-skill
+### Create a Skill 
+POST http://localhost:5000/add-skill 
 Content-Type: application/json
 
 {
-    "id_person": 1,
-    "nama_skill": "Ruby",
+    "id_person": 1, 
+    "nama_skill": "Ruby", 
     "capability": "Expert dalam menggunakan bahasa Ruby"
 }
 
-### Get All Skill by id_person
+### Get All Skill by id_person 
 GET http://localhost:5000/show-skill/1
 
-### Get a Specific Skill by id_person and id_skill
+### Get a Specific Skill by id_person and id_skill 
 GET http://localhost:5000/show-skill/1/1
 
-### Update a Skill
-PATCH http://localhost:5000/edit-skill/1
+### Update a Skill 
+PATCH http://localhost:5000/edit-skill/1 
 Content-Type: application/json
 
 {
-    "capability": "Expert dalam menggunakan bahasa Ruby dan Python"
+"capability": "Expert dalam menggunakan bahasa Ruby dan Python"
 }
 
-### Delete a Skill
+###
 DELETE http://localhost:5000/delete-skill/1
