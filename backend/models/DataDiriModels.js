@@ -1,3 +1,5 @@
+// DataDiriModels.js
+
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 import Porto from './PortoModels.js';

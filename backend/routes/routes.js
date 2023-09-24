@@ -1,7 +1,7 @@
 import express from "express";
 import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
-import { getAllPersonal, createPersonal, getPersonalById } from "../controllers/DataDiriControllers.js";
+import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
@@ -20,6 +20,8 @@ router.get('/admin', getAllAdmin);
 router.post('/personal', createPersonal);
 router.get('/personal', getAllPersonal);
 router.get('/personal/:id_person', getPersonalById);
+router.patch("/personal/:id_person", updatePersonal);
+router.delete("/personal/:id_person", deletePersonal);
 
 //PORTOFOLIO
 router.post('/add-porto', createPorto);
