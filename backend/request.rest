@@ -57,9 +57,9 @@ POST http://localhost:5000/add-porto
 Content-Type: application/json
 
 {
-    "id_person": 1,
-    "nama_portofolio": "CRUD Springboot",
-    "file_portofolio": "url/portofolio/springboot.pdf"
+    "id_person": 2,
+    "nama_portofolio": "CRUD Springboot 3",
+    "file_portofolio": "url/portofolio/springboot3.pdf"
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person

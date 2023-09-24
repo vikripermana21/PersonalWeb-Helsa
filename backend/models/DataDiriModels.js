@@ -74,22 +74,22 @@ const DataDiri = db.define('data_diri', {
 });
 
 DataDiri.hasMany(Porto, {
-    foreignKey: 'id_portofolio', 
+    foreignKey: 'id_person', 
     onDelete: 'CASCADE',
 });
 
 DataDiri.hasMany(Organisasi, {
-    foreignKey: 'id_organisasi', 
+    foreignKey: 'id_person', 
     onDelete: 'CASCADE', 
 });
 
 DataDiri.hasMany(Pendidikan, {
-    foreignKey: 'id_pendidikan', 
+    foreignKey: 'id_person', 
     onDelete: 'CASCADE', 
 });
 
 DataDiri.hasMany(Skill, {
-    foreignKey: 'id_skill', 
+    foreignKey: 'id_person', 
     onDelete: 'CASCADE', 
 });
 
