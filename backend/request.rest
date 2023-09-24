@@ -1,3 +1,5 @@
+//------------------------------------------------------------//
+
 ### CRUD Admin
 POST http://localhost:5000/admin
 Content-Type: application/json
@@ -10,29 +12,32 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/admin
 
+//------------------------------------------------------------//
 
-### CRUD DATA DIRI
+### CRUD DATA DIRI (Personal)
 POST http://localhost:5000/personal
 Content-Type: application/json
 
 {
-    "photo": "url/",
-    "name": "Helsa Alika Femiani",
-    "date_of_birth" : "2003-05-13",
-    "age" : 20,
-    "address" : "Kota Cimahi, Jawa Barat, Indonesia",
-    "religion" : "Islam",
-    "gender" : "Female",
-    "phone" : "081572548494",
+    "foto": "url/",
+    "nama": "Helsa Alika Femiani",
+    "tempat_lahir" : "Cimahi",
+    "tanggal_lahir" : "2003-05-13",
+    "usia" : 20,
+    "tinggi_badan" : 160.0,
+    "berat_badan" : 45.0,
+    "alamat" : "Kota Cimahi, Jawa Barat, Indonesia",
+    "agama" : "Islam",
+    "jenis_kelamin" : "Perempuan",
+    "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
-    "status" : "Mahasiswa",
-    "id_portofolio" : 1
+    "status" : "Mahasiswa"
 }
 
 ###
 GET http://localhost:5000/personal
 
-##### END OF CRUD DATA DIRI (PERSONAL) ######
+//------------------------------------------------------------//
 
 ### CRUD Portofolio
 POST http://localhost:5000/add-porto
@@ -45,13 +50,13 @@ Content-Type: application/json
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
-GET http://localhost:5000/show-portofolio/2
+GET http://localhost:5000/show-portofolio/1
 
 ### Menampilkan satu portofolio yang dipilih
-GET http://localhost:5000/show-portofolio/2/4
+GET http://localhost:5000/show-portofolio/2/2
 
 ### edit portofolio
-PATCH http://localhost:5000/edit-portofolio/4
+PATCH http://localhost:5000/edit-portofolio/2
 Content-Type: application/json
 
 {
@@ -59,4 +64,101 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/delete-portofolio/4
+DELETE http://localhost:5000/delete-portofolio/3
+
+//------------------------------------------------------------//
+
+### CRUD Pendidikan
+POST http://localhost:5000/add-pendidikan
+Content-Type: application/json
+
+{
+    "id_person": 1,
+    "instansi_pendidikan": "SMAN 2 Ngamprah",
+    "jurusan": "IPS",
+    "tahun_mulai_ajaran": "2017-09-01",
+    "tahun_akhir_ajaran": "2020-06-30"
+}
+
+###
+GET http://localhost:5000/show-pendidikan/1
+
+###
+GET http://localhost:5000/show-pendidikan/1/1
+
+###
+PATCH http://localhost:5000/edit-pendidikan/1
+Content-Type: application/json
+
+{
+    "id_person": 1,
+    "instansi_pendidikan": "SMAN 2 Cijerah",
+    "jurusan": "IPS",
+    "tahun_mulai_ajaran": "2017-09-01",
+    "tahun_akhir_ajaran": "2020-06-30"
+}
+
+###
+DELETE http://localhost:5000/delete-pendidikan/2
+
+//------------------------------------------------------------//
+
+
+# CRUD Organisasi
+
+###Create an Organisasi 
+POST http://localhost:5000/add-organisasi 
+Content-Type: application/json
+
+{
+"id_person": 1, 
+"nama_organisasi": "BEM Kema Polban", 
+"posisi": "Ketua Departemen Kominfo", 
+"tanggal_mulai_menjabat": "2022-01-25", 
+"tanggal_akhir_menjabat": "2023-12-29"
+}
+
+### Get All Organisasi by id_person 
+GET http://localhost:5000/show-organisasi/1
+
+### Get a Specific Organisasi by id_person and id_organisasi 
+GET http://localhost:5000/show-organisasi/1/1
+
+### Update an Organisasi 
+PATCH http://localhost:5000/edit-organisasi/1 
+Content-Type: application/json
+
+{
+"posisi": "Ketua Departemen Kominfo"
+}
+
+### Delete an Organisasi 
+DELETE http://localhost:5000/delete-organisasi/1
+
+# CRUD Skill
+
+### Create a Skill 
+POST http://localhost:5000/add-skill 
+Content-Type: application/json
+
+{
+"id_person": 1, "nama_skill": "Ruby", "capability": "Expert dalam menggunakan bahasa Ruby"
+}
+
+### Get All Skill by id_person GET http://localhost:5000/show-skill/1
+
+### Get a Specific Skill by id_person and id_skill GET http://localhost:5000/show-skill/1/1
+
+### Update a Skill PATCH http://localhost:5000/edit-skill/1 Content-Type: application/json
+
+{
+"capability": "Expert dalam menggunakan bahasa Ruby dan Python"
+}
+
+### Delete a Skill DELETE http://localhost:5000/delete-skill/1
+{
+    "capability": "Expert dalam menggunakan bahasa Ruby"
+}
+
+###
+DELETE http://localhost:5000/delete-skill/1

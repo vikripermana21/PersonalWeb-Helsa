@@ -1,52 +1,65 @@
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 import Porto from './PortoModels.js';
+import Organisasi from './OrganisasiModels.js';
+import Pendidikan from './PendidikanModels.js';
+import Skill from './SkillModels.js';
 
-const Personal = db.define('personal', {
+const DataDiri = db.define('data_diri', {
     id_person: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    photo: {
+    foto: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    name: {
+    nama: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    date_of_birth: {
-        type: DataTypes.DATEONLY,
+    tempat_lahir: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
-    age: {
+    tanggal_lahir: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    usia: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    address: {
+    tinggi_badan: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    },
+    berat_badan: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    },
+    alamat: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    religion: {
+    agama: {
         type: DataTypes.ENUM('Islam', 'Kristen', 'Hindu', 'Buddha', 'Konghucu', 'Lainnya'),
         allowNull: false,
         defaultValue: 'Lainnya',
     },
-    gender: {
+    jenis_kelamin: {
         type: DataTypes.ENUM('Male', 'Female'),
         allowNull: false,
         defaultValue: 'Male',
     },
-    phone:{
+    telp:{
         type: DataTypes.STRING,
         allowNull: false,
     },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
-        field: 'email_index',
     },
     status:{
         type: DataTypes.STRING,
@@ -54,17 +67,32 @@ const Personal = db.define('personal', {
     },
 }, {
     // Nama tabel yang sesuai dengan nama tabel di database
-    tableName: 'personal',
+    tableName: 'data_diri',
     timestamps: false,
     freezeTableName:true
 });
 
-Personal.hasMany(Porto, {
+DataDiri.hasMany(Porto, {
     foreignKey: 'id_portofolio', // Nama field yang digunakan sebagai kunci asing di model DataDiri
     onDelete: 'CASCADE', // Opsi: mengatur tindakan saat DataDiri dihapus
 });
 
-export default Personal;
+DataDiri.hasMany(Organisasi, {
+    foreignKey: 'id_organisasi', // Nama field yang digunakan sebagai kunci asing di model DataDiri
+    onDelete: 'CASCADE', // Opsi: mengatur tindakan saat DataDiri dihapus
+});
+
+DataDiri.hasMany(Pendidikan, {
+    foreignKey: 'id_pendidikan', // Nama field yang digunakan sebagai kunci asing di model DataDiri
+    onDelete: 'CASCADE', // Opsi: mengatur tindakan saat DataDiri dihapus
+});
+
+DataDiri.hasMany(Skill, {
+    foreignKey: 'id_skill', // Nama field yang digunakan sebagai kunci asing di model DataDiri
+    onDelete: 'CASCADE', // Opsi: mengatur tindakan saat DataDiri dihapus
+});
+
+export default DataDiri;
 
 (async () => {
     await db.sync();

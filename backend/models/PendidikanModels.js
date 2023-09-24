@@ -1,17 +1,23 @@
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 
-const Portofolio = db.define('portofolio', {
-    id_portofolio: {
+const Pendidikan = db.define('pendidikan', {
+    id_pendidikan: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    nama_portofolio: {
+    instansi_pendidikan: {
         type: DataTypes.STRING,
     },
-    file_portofolio: {
+    jurusan: {
         type: DataTypes.STRING,
+    },
+    tahun_mulai_ajaran: {
+        type: DataTypes.DATE,
+    },
+    tahun_akhir_ajaran: {
+        type: DataTypes.DATE,
     },
     id_person: { // Define the foreign key field
         type: DataTypes.INTEGER,
@@ -22,12 +28,13 @@ const Portofolio = db.define('portofolio', {
     },
 }, {
     // Nama tabel yang sesuai dengan nama tabel di database
-    tableName: 'portofolio',
+    tableName: 'pendidikan',
     timestamps: false,
-    freezeTableName:true
+    freezeTableName: true
 });
 
-export default Portofolio;
+
+export default Pendidikan;
 
 (async () => {
     await db.sync();
