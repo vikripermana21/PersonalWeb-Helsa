@@ -47,8 +47,8 @@ POST http://localhost:5000/add-porto
 Content-Type: application/json
 
 {
-    "id_person": 2,
-    "nama_portofolio": "CRUD Springboot",
+    "id_person": 1,
+    "nama_portofolio": "CRUD Java",
     "file_portofolio": "url/portofolio/springboot.pdf"
 }
 
