@@ -53,7 +53,7 @@ DELETE http://localhost:5000/personal/6
 //------------------------------------------------------------//
 
 ### CRUD Portofolio
-POST http://localhost:5000/add-porto
+POST http://localhost:5000/portofolio
 Content-Type: application/json
 
 {
@@ -63,13 +63,13 @@ Content-Type: application/json
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
-GET http://localhost:5000/show-portofolio/1
+GET http://localhost:5000/portofolio/1
 
 ### Menampilkan satu portofolio yang dipilih
-GET http://localhost:5000/show-portofolio/1/2
+GET http://localhost:5000/portofolio/1/2
 
 ### edit portofolio
-PATCH http://localhost:5000/edit-portofolio/2
+PATCH http://localhost:5000/portofolio/2
 Content-Type: application/json
 
 {
@@ -77,12 +77,12 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/delete-portofolio/1
+DELETE http://localhost:5000/portofolio/1
 
 //------------------------------------------------------------//
 
 ### CRUD Pendidikan
-POST http://localhost:5000/add-pendidikan
+POST http://localhost:5000/pendidikan
 Content-Type: application/json
 
 {
@@ -94,13 +94,13 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/show-pendidikan/1
+GET http://localhost:5000/pendidikan/1
 
 ###
-GET http://localhost:5000/show-pendidikan/1/1
+GET http://localhost:5000/pendidikan/1/1
 
 ###
-PATCH http://localhost:5000/edit-pendidikan/1
+PATCH http://localhost:5000/pendidikan/1
 Content-Type: application/json
 
 {
@@ -112,7 +112,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/delete-pendidikan/2
+DELETE http://localhost:5000/pendidikan/2
 
 //------------------------------------------------------------//
 
@@ -120,7 +120,7 @@ DELETE http://localhost:5000/delete-pendidikan/2
 # CRUD Organisasi
 
 ###Create an Organisasi 
-POST http://localhost:5000/add-organisasi 
+POST http://localhost:5000/organisasi 
 Content-Type: application/json
 
 {
@@ -132,13 +132,13 @@ Content-Type: application/json
 }
 
 ### Get All Organisasi by id_person 
-GET http://localhost:5000/show-organisasi/1
+GET http://localhost:5000/organisasi/1
 
 ### Get a Specific Organisasi by id_person and id_organisasi 
-GET http://localhost:5000/show-organisasi/1/1
+GET http://localhost:5000/organisasi/1/1
 
 ### Update an Organisasi 
-PATCH http://localhost:5000/edit-organisasi/1 
+PATCH http://localhost:5000/organisasi/1 
 Content-Type: application/json
 
 {
@@ -146,12 +146,12 @@ Content-Type: application/json
 }
 
 ### Delete an Organisasi 
-DELETE http://localhost:5000/delete-organisasi/1
+DELETE http://localhost:5000/organisasi/1
 
 # CRUD Skill
 
 ### Create a Skill 
-POST http://localhost:5000/add-skill 
+POST http://localhost:5000/skill 
 Content-Type: application/json
 
 {
@@ -161,13 +161,13 @@ Content-Type: application/json
 }
 
 ### Get All Skill by id_person 
-GET http://localhost:5000/show-skill/1
+GET http://localhost:5000/skill/1
 
 ### Get a Specific Skill by id_person and id_skill 
-GET http://localhost:5000/show-skill/1/1
+GET http://localhost:5000/skill/1/1
 
 ### Update a Skill 
-PATCH http://localhost:5000/edit-skill/1 
+PATCH http://localhost:5000/skill/1 
 Content-Type: application/json
 
 {
@@ -175,4 +175,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/delete-skill/1
+DELETE http://localhost:5000/skill/1
