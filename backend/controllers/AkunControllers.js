@@ -1,22 +1,71 @@
 //AdminControllers.js
 
 import Akun from '../models/AkunModels.js';
+import jwt from 'jsonwebtoken';
+import DataDiri from '../models/DataDiriModels.js';
 
 
-export const createAdmin = async(req, res) =>{
+export const createAdmin = async (req, res) => {
     try {
-        await Akun.create(req.body);
-        res.status(201).json({msg: "User Created"});
+      const { nama, username, password, role } = req.body;
+  
+      // Cek apakah admin dengan username yang sama sudah ada
+      const existingAdmin = await Akun.findOne({
+        where: { username: username },
+      });
+  
+      // Jika admin dengan username yang sama sudah ada, kembalikan pesan kesalahan
+      if (existingAdmin) {
+        return res.status(409).json({ error: 'Username sudah digunakan' });
+      }
+  
+      // Buat admin baru
+      const newAdmin = await Akun.create({
+        nama: nama,
+        username: username,
+        password: password,
+        role: role,
+      });
+  
+      res.status(201).json({ message: 'Registrasi berhasil', data: newAdmin });
+  
     } catch (error) {
-        console.log(error.message);
+      console.error(error.message);
+      res.status(500).json({ error: 'Terjadi kesalahan saat registrasi' });
     }
-}
+  };
 
-export const getAdmin = async(req, res) =>{
+  export const login = async (req, res) => {
+    
+    const token = jwt.sign(
+        { 
+            id_akun: Akun.id_akun,
+            username: Akun.username,
+            password: Akun.password,
+        }, 'secret-key');
     try {
-        const response = await Akun.findAll();
-        res.status(200).json(response);
+      const { username, password } = req.body;
+  
+      // Cari akun berdasarkan username
+      const akun = await Akun.findOne({
+        where: { username: username },
+        include : [DataDiri],
+      });
+  
+      // Jika akun tidak ditemukan, kembalikan pesan kesalahan
+      if (!akun) {
+        return res.status(401).json({ error: 'Username atau password salah' });
+      }
+  
+      // Cek apakah password sesuai
+      if (akun.password !== password) {
+        return res.status(401).json({ error: 'Username atau password salah' });
+      }
+  
+      res.status(200).json({ message: 'Login berhasil', data: token, infoAkun: akun });
     } catch (error) {
-        console.log(error.message);
+      console.error(error.message);
+      res.status(500).json({ error: 'Terjadi kesalahan saat login' });
     }
-}
+  };
+

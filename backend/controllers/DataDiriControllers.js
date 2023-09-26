@@ -5,6 +5,7 @@ import Porto from '../models/PortoModels.js';
 import Organisasi from '../models/OrganisasiModels.js';
 import Pendidikan from '../models/PendidikanModels.js';
 import Skill from '../models/SkillModels.js';
+import Akun from '../models/AkunModels.js';
 
 
 export const getAllPersonal = async (req, res) => {
@@ -34,7 +35,7 @@ export const getPersonalById = async (req, res) => {
   try {
     const response = await DataDiri.findOne({
       where: { id_person: id_person },
-      include: [Porto, Organisasi, Pendidikan, Skill],
+      include: [ Porto, Organisasi, Pendidikan, Skill],
     });
 
     if (!response) {
