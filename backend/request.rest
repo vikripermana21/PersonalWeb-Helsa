@@ -5,8 +5,19 @@ POST http://localhost:5000/admin
 Content-Type: application/json
 
 {
-    "username": "helsa",
-    "password": "helsa4213"
+    "nama": "ecaa",
+    "username": "ecapedeh",
+    "password": "ecantik29",
+    "role": "Admin"
+}
+
+### Login
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "ecapedeh",
+    "password": "ecantik29"
 }
 
 ###
@@ -49,7 +60,8 @@ Content-Type: application/json
     "jenis_kelamin" : "Perempuan",
     "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
-    "status" : "Mahasiswa"
+    "status" : "Mahasiswa",
+    "id_akun": 1
 }
 
 ###

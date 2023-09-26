@@ -1,7 +1,7 @@
 //routes.js
 
 import express from "express";
-import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
+import { createAdmin, login } from "../controllers/AkunControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
@@ -16,11 +16,14 @@ router.get('/', (req, res) => {
     res.send('tess')
 });
 
-//ADMIN
+//AKUN
 router.post('/admin', createAdmin);
-router.get('/admin', getAllAdmin);
-router.post('/admin/register', registerAdmin);
-router.post('/admin/login', loginAdmin);
+
+// router.get('/admin', getAdmin);
+// router.post('/user', createUser);
+// router.get('/user/:id_akun', getUserById);
+// router.get('/user/', getAllUser);
+router.post('/login', login)
 
 //DATA DIRI
 router.post('/personal', createPersonal);
