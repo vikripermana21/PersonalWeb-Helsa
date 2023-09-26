@@ -1,3 +1,5 @@
+//routes.js
+
 import express from "express";
 import { createAdmin, getAllAdmin } from "../controllers/AdminControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
@@ -5,6 +7,8 @@ import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, delete
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
+import { registerAdmin } from "../controllers/RegisterControllers.js";
+import { loginAdmin } from "../controllers/LoginControllers.js";
 
 const router = express.Router();
 
@@ -15,6 +19,8 @@ router.get('/', (req, res) => {
 //ADMIN
 router.post('/admin', createAdmin);
 router.get('/admin', getAllAdmin);
+router.post('/admin/register', registerAdmin);
+router.post('/admin/login', loginAdmin);
 
 //DATA DIRI
 router.post('/personal', createPersonal);
