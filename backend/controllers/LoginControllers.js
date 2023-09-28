@@ -1,6 +1,6 @@
 //LoginControllers.js
 
-import Admin from '../models/AdminModels.js';
+import Admin from '../models/AkunModels.js';
 
 export const loginAdmin = async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 //RegisterControllers.js
 
-import Admin from '../models/AdminModels.js';
+import Admin from '../models/AkunModels.js';
 
 export const registerAdmin = async (req, res) => {
   try {
