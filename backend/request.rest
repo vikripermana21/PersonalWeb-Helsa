@@ -88,8 +88,8 @@ Content-Type: application/json
 
 {
     "id_person": 1,
-    "nama_portofolio": "CRUD expressJs",
-    "file_portofolio": "url/portofolio/expressJs.pdf"
+    "nama_portofolio": "CRUD expressJs1",
+    "file_portofolio": "url/portofolio/expressJs1.pdf"
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
