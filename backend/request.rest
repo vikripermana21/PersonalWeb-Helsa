@@ -21,25 +21,25 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/admin
+# GET http://localhost:5000/admin
 
 ###
-POST http://localhost:5000/admin/register
-Content-Type: application/json
+# POST http://localhost:5000/admin/register
+# Content-Type: application/json
 
-{
-    "username": "helsa",
-    "password": "helsa4213"
-}
+# {
+#     "username": "helsa",
+#     "password": "helsa4213"
+# }
 
 ###
-POST http://localhost:5000/admin/login
-Content-Type: application/json
+# POST http://localhost:5000/admin/login
+# Content-Type: application/json
 
-{
-    "username": "helsa",
-    "password": "helsa4213"
-}
+# {
+#     "username": "helsa",
+#     "password": "helsa4213"
+# }
 
 //------------------------------------------------------------//
 
@@ -49,8 +49,8 @@ Content-Type: application/json
 
 {
     "foto": "url/",
-    "nama": "Helsa Alika Femiani",
-    "tempat_lahir" : "Cimahi",
+    "nama": "Muhammad Daffa Raihandika",
+    "tempat_lahir" : "Bandung",
     "tanggal_lahir" : "2003-05-13",
     "usia" : 20,
     "tinggi_badan" : 160.0,
@@ -61,14 +61,14 @@ Content-Type: application/json
     "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
     "status" : "Mahasiswa",
-    "id_akun": 1
+    "id_akun": 2
 }
 
 ###
 GET http://localhost:5000/personal
 
 ###
-GET http://localhost:5000/personal/1
+GET http://localhost:5000/personal/5
 
 ###
 PATCH http://localhost:5000/personal/1
@@ -79,7 +79,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/personal/6
+DELETE http://localhost:5000/personal/10
 //------------------------------------------------------------//
 
 ### CRUD Portofolio
@@ -87,9 +87,9 @@ POST http://localhost:5000/portofolio
 Content-Type: application/json
 
 {
-    "id_person": 2,
-    "nama_portofolio": "CRUD Springboot",
-    "file_portofolio": "url/portofolio/springboot.pdf"
+    "id_person": 1,
+    "nama_portofolio": "CRUD expressJs",
+    "file_portofolio": "url/portofolio/expressJs.pdf"
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person

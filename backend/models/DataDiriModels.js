@@ -6,7 +6,6 @@ import Porto from './PortoModels.js';
 import Organisasi from './OrganisasiModels.js';
 import Pendidikan from './PendidikanModels.js';
 import Skill from './SkillModels.js';
-import Akun from "./AkunModels.js";
 
 const DataDiri = db.define('data_diri', {
     id_person: {
@@ -74,6 +73,7 @@ const DataDiri = db.define('data_diri', {
             model: 'akun', // Reference the DataDiri model
             key: 'id_akun', // Reference the id_person field in DataDiri
         },
+        unique: true
     },
 }, {
     tableName: 'data_diri',
@@ -100,7 +100,6 @@ DataDiri.hasMany(Skill, {
     foreignKey: 'id_person', 
     onDelete: 'CASCADE', 
 });
-
 
 
 export default DataDiri;

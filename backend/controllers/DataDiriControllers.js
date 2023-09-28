@@ -20,15 +20,30 @@ export const getAllPersonal = async (req, res) => {
     }
 };
 
-export const createPersonal = async(req, res) =>{
-    try {
-        const personal = await DataDiri.create(req.body);
-        res.status(201).json({msg: "New DataDiri Created", data: personal});
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).json({ error: 'Terjadi kesalahan dalam menginput' });
+export const createPersonal = async (req, res) => {
+  try {
+    const id_akun = req.body.id_akun;
+
+    const existingDataDiri = await DataDiri.findOne({
+      where: { id_akun: id_akun },
+    });
+
+    if (existingDataDiri) {
+      return res.status(409).json({ error: 'Akun sudah ada' });
     }
+
+    const personal = await DataDiri.create({
+      ...req.body,
+      id_akun: id_akun, 
+    });
+
+    res.status(201).json({ msg: 'New DataDiri Created', data: personal });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: 'Terjadi kesalahan dalam menginput' });
+  }
 };
+
 
 export const getPersonalById = async (req, res) => {
   const { id_person } = req.params;
@@ -95,7 +110,7 @@ export const deletePersonal = async (req, res) => {
     dataToDelete.agama = null;
     dataToDelete.jenis_kelamin = null;
 
-    return res.status(204).json({ message: 'Data diri deleted' });
+    res.status(200).json({ message: 'Data diri deleted' });
   } catch (error) {
       console.error(error.message);
       return res.status(500).json({ error: 'Terjadi kesalahan dalam menghapus data diri' });
