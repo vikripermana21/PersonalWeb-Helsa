@@ -5,8 +5,6 @@ import Porto from '../models/PortoModels.js';
 import Organisasi from '../models/OrganisasiModels.js';
 import Pendidikan from '../models/PendidikanModels.js';
 import Skill from '../models/SkillModels.js';
-import Akun from '../models/AkunModels.js';
-
 
 export const getAllPersonal = async (req, res) => {
     try {
