@@ -1,10 +1,12 @@
-//AdminControllers.js
+// AkunControllers.js
 
+import DataDiri from '../models/DataDiriModels.js';
 import Akun from '../models/AkunModels.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import DataDiri from '../models/DataDiriModels.js';
+import dotenv from 'dotenv';
 
+dotenv.config();
 
 export const createAdmin = async (req, res) => {
   try {
@@ -53,20 +55,23 @@ export const login = async (req, res) => {
       return res.status(401).json({ error: 'Username atau password salah' });
     }
 
-    // Compare the provided password with the hashed password in the database
+    // Bandingkan password yang diberikan dengan password hash di database
     const passwordMatch = await bcrypt.compare(password, akun.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Username atau password salah' });
     }
 
-    // Create a JWT token
+    // Ambil secret key dari environment variable
+    const secretKey = process.env.JWT_SECRET;
+
+    // Buat JWT token dengan secret key
     const token = jwt.sign(
       {
         id_akun: akun.id_akun,
         username: akun.username,
       },
-      'secret-key'
+      secretKey
     );
 
     res.status(200).json({ message: 'Login berhasil', data: token, infoAkun: akun });

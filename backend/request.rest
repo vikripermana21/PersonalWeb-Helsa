@@ -61,14 +61,14 @@ Content-Type: application/json
     "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
     "status" : "Mahasiswa",
-    "id_akun": 2
+    "id_akun": 1
 }
 
 ###
 GET http://localhost:5000/personal
 
 ###
-GET http://localhost:5000/personal/5
+GET http://localhost:5000/personal/1
 
 ###
 PATCH http://localhost:5000/personal/1
@@ -79,7 +79,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/personal/10
+DELETE http://localhost:5000/personal/1
 //------------------------------------------------------------//
 
 ### CRUD Portofolio

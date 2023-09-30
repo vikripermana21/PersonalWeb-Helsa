@@ -1,4 +1,4 @@
-//routes.js
+// routes.js
 
 import express from "express";
 import { createAdmin, login } from "../controllers/AkunControllers.js";
@@ -7,8 +7,7 @@ import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, delete
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
-import { registerAdmin } from "../controllers/RegisterControllers.js";
-import { loginAdmin } from "../controllers/LoginControllers.js";
+import { authenticateToken } from '../middleware/authenticationMiddleware.js';
 
 const router = express.Router();
 
@@ -23,7 +22,7 @@ router.post('/admin', createAdmin);
 // router.post('/user', createUser);
 // router.get('/user/:id_akun', getUserById);
 // router.get('/user/', getAllUser);
-router.post('/login', login)
+router.post('/login', login);
 
 //DATA DIRI
 router.post('/personal', createPersonal);
