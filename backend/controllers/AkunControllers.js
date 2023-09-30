@@ -4,9 +4,6 @@ import DataDiri from '../models/DataDiriModels.js';
 import Akun from '../models/AkunModels.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export const createAdmin = async (req, res) => {
   try {
@@ -65,13 +62,17 @@ export const login = async (req, res) => {
     // Ambil secret key dari environment variable
     const secretKey = process.env.JWT_SECRET;
 
-    // Buat JWT token dengan secret key
+    // Tambahkan opsi expiresIn dalam milisekon (1 hari = 24 jam x 60 menit x 60 detik x 1000 milisekon)
+    const expiresIn = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+
+    // Buat JWT token dengan secret key dan opsi expiresIn
     const token = jwt.sign(
       {
         id_akun: akun.id_akun,
         username: akun.username,
       },
-      secretKey
+      secretKey,
+      { expiresIn } // Add expiresIn option here
     );
 
     res.status(200).json({ message: 'Login berhasil', data: token, infoAkun: akun });
