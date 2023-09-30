@@ -66,9 +66,11 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/personal
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MDc4NjIyfQ.ywQdPlTzMY3-Gvz-t7fpvnDHSiHN_G--vQzS_J-dyLA
 
 ###
 GET http://localhost:5000/personal/1
+Authorization: Bearer m7816hjdhjhadvfyut2367fvgfyautgsdtdftf823tyuftwvjdgdhasgdf21gdhsgvdyjs
 
 ###
 PATCH http://localhost:5000/personal/1

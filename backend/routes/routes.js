@@ -7,7 +7,7 @@ import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, delete
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
-import { authenticateToken } from '../middleware/authenticationMiddleware.js';
+import { verifyToken } from '../middleware/authenticationMiddleware.js';
 
 const router = express.Router();
 
@@ -26,8 +26,8 @@ router.post('/login', login);
 
 //DATA DIRI
 router.post('/personal', createPersonal);
-router.get('/personal', getAllPersonal);
-router.get('/personal/:id_person', getPersonalById);
+router.get('/personal', verifyToken, getAllPersonal);
+router.get('/personal/:id_person', verifyToken, getPersonalById);
 router.patch("/personal/:id_person", updatePersonal);
 router.delete("/personal/:id_person", deletePersonal);
 

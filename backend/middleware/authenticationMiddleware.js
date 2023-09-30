@@ -1,25 +1,18 @@
-// authenticationMiddleware.js
-
+// Middleware untuk mengotentikasi token JWT
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-export const authenticateToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   const token = req.header('Authorization');
 
   if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Access denied. Token is missing.' });
   }
 
-  const secretKey = process.env.JWT_SECRET; // Ambil secret key dari environment variable
-
-  jwt.verify(token, secretKey, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
-    req.user = user;
-    next();
-  });
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; 
+    next(); 
+  } catch (error) {
+    res.status(401).json({ error: 'Invalid token.' });
+  }
 };
