@@ -63,7 +63,7 @@ export const login = async (req, res) => {
     const secretKey = process.env.JWT_SECRET;
 
     // Tambahkan opsi expiresIn dalam milisekon (1 hari = 24 jam x 60 menit x 60 detik x 1000 milisekon)
-    const expiresIn = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+    const expiresIn = 24 * 60 * 60 * 1000;
 
     // Buat JWT token dengan secret key dan opsi expiresIn
     const token = jwt.sign(

@@ -25,11 +25,11 @@ router.post('/admin', createAdmin);
 router.post('/login', login);
 
 //DATA DIRI
-router.post('/personal', createPersonal);
+router.post('/personal', verifyToken, createPersonal);
 router.get('/personal', verifyToken, getAllPersonal);
 router.get('/personal/:id_person', verifyToken, getPersonalById);
-router.patch("/personal/:id_person", updatePersonal);
-router.delete("/personal/:id_person", deletePersonal);
+router.patch("/personal/:id_person", verifyToken, updatePersonal);
+router.delete("/personal/:id_person", verifyToken, deletePersonal);
 
 //PORTOFOLIO
 router.post('/portofolio', createPorto);

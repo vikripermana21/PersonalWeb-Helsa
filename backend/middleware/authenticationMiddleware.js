@@ -2,17 +2,26 @@
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization');
+  const authHeader = req.headers['authorization'];
 
-  if (!token) {
-    return res.status(401).json({ error: 'Access denied. Token is missing.' });
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Format token tidak valid. Harap gunakan "Bearer <token>".' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  if (token == null) {
+    return res.status(401).json({ error: 'Unauthorized.' });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; 
-    next(); 
+    req.user = decoded;
+    next();
   } catch (error) {
-    res.status(401).json({ error: 'Invalid token.' });
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ error: 'Token kedaluwarsa. Harap login kembali.' });
+    }
+    res.status(401).json({ error: 'Token tidak valid.' });
   }
 };

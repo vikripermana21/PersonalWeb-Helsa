@@ -46,6 +46,8 @@ Content-Type: application/json
 ### CRUD DATA DIRI (Personal)
 POST http://localhost:5000/personal
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
+
 
 {
     "foto": "url/",
@@ -66,15 +68,16 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/personal
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MDc4NjIyfQ.ywQdPlTzMY3-Gvz-t7fpvnDHSiHN_G--vQzS_J-dyLA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
 
 ###
 GET http://localhost:5000/personal/1
-Authorization: Bearer m7816hjdhjhadvfyut2367fvgfyautgsdtdftf823tyuftwvjdgdhasgdf21gdhsgvdyjs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
 
 ###
 PATCH http://localhost:5000/personal/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
 
 {
     "nama": "Helsa Alika"
@@ -82,6 +85,7 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/personal/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
 //------------------------------------------------------------//
 
 ### CRUD Portofolio
