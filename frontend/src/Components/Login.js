@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
+// import { useAuth } from '../AuthContext';
 
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useAuth();
+    const [msg, setMsg] = useState("");
+    // const { login } = useAuth();
 
     const navigate = useNavigate();
 
@@ -19,13 +20,13 @@ const Login = () => {
                 username, password
             });
 
-            login(response.data);
-            navigate('/');
+            // login(response.data);
+            navigate('/dashboard');
             console.log("berhasil login");
             console.log("Response :", response.data);
             
         } catch (error) {
-            console.log(error.response);
+            setMsg(error.response.data.error);
         }
     }
     
@@ -50,6 +51,7 @@ const Login = () => {
                 <div className='field'>
                     <button type='submit' className="button is-success">Save</button>
                 </div>
+                <p>{msg}</p>
             </form>
         </div>
     </div>

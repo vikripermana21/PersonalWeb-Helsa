@@ -41,14 +41,6 @@ export const createUser = async (req, res) => {
   };
 
 export const login = async (req, res) => {  
-  // const token = jwt.sign(
-  //     { 
-  //         id_akun: Akun.id_akun,
-  //         username: Akun.username,
-  //         password: Akun.password,
-  //     }, 'secret-key', {
-  //       expiresIn: '10s'
-  //     });
   try {
     const { username, password } = req.body;
 
@@ -69,27 +61,15 @@ export const login = async (req, res) => {
       return res.status(401).json({ error: 'Username atau password salah' });
     }
 
-    // Buat token JWT dengan payload yang sesuai
-    // const tokenPayload = {
-    //   id_akun: akun.id_akun,
-    //   username: akun.username,
-    //   password: akun.password,
-    //   role: akun.role
-    // };
-
-    // // Buat token dengan waktu kedaluwarsa 10 detik
-    // const token = jwt.sign(tokenPayload, 'secret-key', { expiresIn: '10s' });
-
     const id_akun = akun.id_akun;
     const username_akun = akun.username;
-    const password_akun = akun.password;
     const role_akun = akun.role;
 
-    const refreshToken = jwt.sign({id_akun, username_akun, password_akun, role_akun}, process.env.REFRESH_TOKEN_SECRET, {
+    const refreshToken = jwt.sign({id_akun, username_akun, role_akun}, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: '1d'
     });
 
-    const accessToken = jwt.sign({id_akun, username_akun, password_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
+    const accessToken = jwt.sign({id_akun, username_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '15s'
     });
 
@@ -102,7 +82,7 @@ export const login = async (req, res) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000
-    })
+    });
 
     res.status(200).json({ message: 'Login berhasil', access_token: accessToken, info_akun: akun });
   } catch (error) {
@@ -110,4 +90,30 @@ export const login = async (req, res) => {
     res.status(500).json({ error: 'Terjadi kesalahan saat login' });
   }
 };
+
+export const logout = async(req, res) => {
+  const refreshTokens = req.cookies.refreshToken;
+  if(!refreshTokens){
+      return res.sendStatus(204);
+  }
+
+  const user = await Akun.findAll({
+      where: {
+          refresh_token: refreshTokens
+      }
+  });
+
+  if(!user){
+      return res.sendStatus(204);
+  }
+
+  await Akun.update({refresh_token: null}, {
+    where: {
+      id_akun: user[0].id_akun
+    }
+  });
+
+  res.clearCookie('refreshToken');
+  res.status(200).json({msg: "berhasil logout"});
+}
 

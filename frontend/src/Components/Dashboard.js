@@ -1,30 +1,33 @@
-import React from 'react'
-import { useAuth } from '../AuthContext';
-import { useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import Navbar from './Navbar';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 const Dashboard = () => {
-    const {authData, logout} = useAuth();
-    // const navigate = useNavigate();
-    
-    console.log("Auth Dataa: ",authData)
-    
+    const [nama, setNama] = useState("");
+    const [token, setToken] = useState("");
+
     useEffect(() => {
-        if (authData && authData.token) { // Perhatikan perubahan ini
-          const tokenExpiration = new Date(authData.exp * 1000);
-          const timeDifference = tokenExpiration - new Date();
-          console.log('token expiration: ' + tokenExpiration)
-          console.log('data exp: ' + authData.exp)
+        refreshToken();
+    }, [])
+
+    const refreshToken = async() => {
+        try {
+            const response = await axios.get('http://localhost:5000/token');
+            setToken(response.data.accessToken);
+            const decoded = jwt_decode(response.data.accessToken)
+            setNama(decoded.username_akun)
+        } catch (error) {
+            console.log(error.message);
         }
-    }, [authData, logout]);
+    }
 
     return (
         <div>
-            {authData ? (
-                <p>Selamat datang, {authData.infoAkun.nama} di Dashboard!</p>
-            ) : (
-                <p>Silakan login terlebih dahulu.</p>
-            )}
+            <Navbar/>
+            <div className="container mt-5">
+                <h1>Haloo {nama}</h1>
+            </div>
         </div>
     );
 }

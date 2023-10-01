@@ -21,6 +21,16 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:5000/personal
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZV9ha3VuIjoiYWRtaW4xMjMiLCJyb2xlX2FrdW4iOiJVc2VyIiwiaWF0IjoxNjk2MTQ5MTY2LCJleHAiOjE2OTYxNDkxODF9.q7sMvASZQklOxFmC4bv59zpTW-DqNm8PYLR7-W-xFLk
+
+### refresh token
+GET http://localhost:5000/token
+
+### logout
+DELETE http://localhost:5000/logout
+
+###
 # GET http://localhost:5000/admin
 
 ###
@@ -66,6 +76,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/personal
+Authorization: Bearer 
 
 ###
 GET http://localhost:5000/personal/5
