@@ -1,14 +1,14 @@
 //routes.js
 
 import express from "express";
-import { createAdmin, login } from "../controllers/AkunControllers.js";
+import { createUser, login } from "../controllers/AkunControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
-import { registerAdmin } from "../controllers/RegisterControllers.js";
-import { loginAdmin } from "../controllers/LoginControllers.js";
+// import { registerAdmin } from "../controllers/RegisterControllers.js";
+// import { loginAdmin } from "../controllers/LoginControllers.js";
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 //AKUN
-router.post('/admin', createAdmin);
+router.post('/register', createUser);
 
 // router.get('/admin', getAdmin);
 // router.post('/user', createUser);

@@ -1,14 +1,14 @@
 //------------------------------------------------------------//
 
 ### CRUD Admin
-POST http://localhost:5000/admin
+POST http://localhost:5000/register
 Content-Type: application/json
 
 {
-    "nama": "ecaa",
-    "username": "ecapedeh",
-    "password": "ecantik29",
-    "role": "Admin"
+    "nama": "admin",
+    "username": "admin123",
+    "password": "admin321",
+    "confPassword": "admin321"
 }
 
 ### Login
@@ -16,8 +16,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "ecapedeh",
-    "password": "ecantik29"
+    "username": "admin123",
+    "password": "admin321"
 }
 
 ###
@@ -89,6 +89,7 @@ Content-Type: application/json
 {
     "id_person": 1,
     "nama_portofolio": "CRUD expressJs",
+    "deskripsi_portofolio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sed repudiandae saepe facilis id atque labore aspernatur. Doloribus voluptatibus sapiente alias voluptatem dolore, facere in consequuntur, delectus, esse nulla ipsam!",
     "file_portofolio": "url/portofolio/expressJs.pdf"
 }
 

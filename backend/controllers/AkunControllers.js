@@ -3,31 +3,36 @@
 import Akun from '../models/AkunModels.js';
 import jwt from 'jsonwebtoken';
 import DataDiri from '../models/DataDiriModels.js';
+import bcrypt from 'bcrypt';
 
-
-export const createAdmin = async (req, res) => {
+export const createUser = async (req, res) => {
     try {
-      const { nama, username, password, role } = req.body;
+      const { nama, username, password, confPassword, role } = req.body;
   
+      if(password !== confPassword) return res.status(403).json({msg: "Password tidak sesuai."});
+
       // Cek apakah admin dengan username yang sama sudah ada
-      const existingAdmin = await Akun.findOne({
+      const existingUser = await Akun.findOne({
         where: { username: username },
       });
   
       // Jika admin dengan username yang sama sudah ada, kembalikan pesan kesalahan
-      if (existingAdmin) {
+      if (existingUser) {
         return res.status(409).json({ error: 'Username sudah digunakan' });
       }
+
+      const salt = await bcrypt.genSalt();
+      const hashPassword = await bcrypt.hash(password, salt);
   
       // Buat admin baru
-      const newAdmin = await Akun.create({
+      const newUser = await Akun.create({
         nama: nama,
         username: username,
-        password: password,
+        password: hashPassword,
         role: role,
       });
   
-      res.status(201).json({ message: 'Registrasi berhasil', data: newAdmin });
+      res.status(201).json({ message: 'Registrasi berhasil', data: newUser });
   
     } catch (error) {
       console.error(error.message);
@@ -35,37 +40,74 @@ export const createAdmin = async (req, res) => {
     }
   };
 
-  export const login = async (req, res) => {
-    
-    const token = jwt.sign(
-        { 
-            id_akun: Akun.id_akun,
-            username: Akun.username,
-            password: Akun.password,
-        }, 'secret-key');
-    try {
-      const { username, password } = req.body;
-  
-      // Cari akun berdasarkan username
-      const akun = await Akun.findOne({
-        where: { username: username },
-        include : [DataDiri],
-      });
-  
-      // Jika akun tidak ditemukan, kembalikan pesan kesalahan
-      if (!akun) {
-        return res.status(401).json({ error: 'Username atau password salah' });
-      }
-  
-      // Cek apakah password sesuai
-      if (akun.password !== password) {
-        return res.status(401).json({ error: 'Username atau password salah' });
-      }
-  
-      res.status(200).json({ message: 'Login berhasil', data: token, infoAkun: akun });
-    } catch (error) {
-      console.error(error.message);
-      res.status(500).json({ error: 'Terjadi kesalahan saat login' });
+export const login = async (req, res) => {  
+  // const token = jwt.sign(
+  //     { 
+  //         id_akun: Akun.id_akun,
+  //         username: Akun.username,
+  //         password: Akun.password,
+  //     }, 'secret-key', {
+  //       expiresIn: '10s'
+  //     });
+  try {
+    const { username, password } = req.body;
+
+    // Cari akun berdasarkan username
+    const akun = await Akun.findOne({
+      where: { username: username },
+      include : [DataDiri],
+    });
+
+    // Jika akun tidak ditemukan, kembalikan pesan kesalahan
+    if (!akun) {
+      return res.status(401).json({ error: 'Username atau password salah' });
     }
-  };
+
+    // Cek apakah password sesuai
+    const match = await bcrypt.compare(password, akun.password);
+    if (!match) {
+      return res.status(401).json({ error: 'Username atau password salah' });
+    }
+
+    // Buat token JWT dengan payload yang sesuai
+    // const tokenPayload = {
+    //   id_akun: akun.id_akun,
+    //   username: akun.username,
+    //   password: akun.password,
+    //   role: akun.role
+    // };
+
+    // // Buat token dengan waktu kedaluwarsa 10 detik
+    // const token = jwt.sign(tokenPayload, 'secret-key', { expiresIn: '10s' });
+
+    const id_akun = akun.id_akun;
+    const username_akun = akun.username;
+    const password_akun = akun.password;
+    const role_akun = akun.role;
+
+    const refreshToken = jwt.sign({id_akun, username_akun, password_akun, role_akun}, process.env.REFRESH_TOKEN_SECRET, {
+      expiresIn: '1d'
+    });
+
+    const accessToken = jwt.sign({id_akun, username_akun, password_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: '15s'
+    });
+
+    await Akun.update({refresh_token: refreshToken}, {
+      where: {
+        id_akun: id_akun
+      }
+    });
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000
+    })
+
+    res.status(200).json({ message: 'Login berhasil', access_token: accessToken, info_akun: akun });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ error: 'Terjadi kesalahan saat login' });
+  }
+};
 

@@ -24,6 +24,9 @@ const Akun = db.define('akun', {
         allowNull: false,
         defaultValue: 'User',
     },
+    refresh_token: {
+        type: DataTypes.STRING,
+    },
 }, {
     // Nama tabel yang sesuai dengan nama tabel di database
     tableName: 'akun',
