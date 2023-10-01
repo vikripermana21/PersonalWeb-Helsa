@@ -14,8 +14,8 @@ const Login = () => {
     fetch("http://localhost:5000/login", {
       method: "post",
       headers: {
-        authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZSI6ImVjYWxpa2EiLCJpYXQiOjE2OTYxNDY5MTAsImV4cCI6MTc4MjU0NjkxMH0.YLlWxjjzHPpJHQyHqiKF2VSv2ySVBJHq6vQG6GgqSVE",
+        // authorization:
+        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZSI6ImVjYWxpa2EiLCJpYXQiOjE2OTYxNDY5MTAsImV4cCI6MTc4MjU0NjkxMH0.YLlWxjjzHPpJHQyHqiKF2VSv2ySVBJHq6vQG6GgqSVE",
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -26,8 +26,10 @@ const Login = () => {
       }),
     })
       .then((response) => {
+        if (response.ok) {
+          navigate("/dashboard");
+        }
         console.log(response);
-        navigate("/dashboard");
       })
       .catch((err) => {
         console.log(err);
