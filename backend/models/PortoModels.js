@@ -12,6 +12,9 @@ const Portofolio = db.define('portofolio', {
     nama_portofolio: {
         type: DataTypes.STRING,
     },
+    deskripsi_portofolio: {
+        type: DataTypes.STRING,
+    },
     file_portofolio: {
         type: DataTypes.STRING,
     },

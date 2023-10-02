@@ -1,13 +1,16 @@
 // routes.js
 
 import express from "express";
-import { createAdmin, login } from "../controllers/AkunControllers.js";
+import { verifyToken } from "../middleware/VerifyToken.js";
+import { refreshToken } from "../controllers/RefreshTokenControllers.js";
+import { createUser, login, logout } from "../controllers/AkunControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
-import { verifyToken } from '../middleware/authenticationMiddleware.js';
+// import { registerAdmin } from "../controllers/RegisterControllers.js";
+// import { loginAdmin } from "../controllers/LoginControllers.js";
 
 const router = express.Router();
 
@@ -15,21 +18,25 @@ router.get('/', (req, res) => {
     res.send('tess')
 });
 
+// Refresh Token
+router.get('/token', refreshToken);
+
 //AKUN
-router.post('/admin', createAdmin);
+router.post('/register', createUser);
 
 // router.get('/admin', getAdmin);
 // router.post('/user', createUser);
 // router.get('/user/:id_akun', getUserById);
 // router.get('/user/', getAllUser);
-router.post('/login', login);
+router.post('/login', login)
+router.delete('/logout', logout)
 
 //DATA DIRI
-router.post('/personal', verifyToken, createPersonal);
-router.get('/personal', verifyToken, getAllPersonal);
-router.get('/personal/:id_person', verifyToken, getPersonalById);
-router.patch("/personal/:id_person", verifyToken, updatePersonal);
-router.delete("/personal/:id_person", verifyToken, deletePersonal);
+router.post('/personal', createPersonal);
+router.get('/personal', verifyToken ,getAllPersonal);
+router.get('/personal/:id_person', getPersonalById);
+router.patch("/personal/:id_person", updatePersonal);
+router.delete("/personal/:id_person", deletePersonal);
 
 //PORTOFOLIO
 router.post('/portofolio', createPorto);
