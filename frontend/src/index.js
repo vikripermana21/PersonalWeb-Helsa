@@ -6,7 +6,7 @@ import LandingPage from "./landingPage";
 import Login from "./components/Login/login";
 import Registrasi from "./components/Login/registrasi";
 import Dashboard from "./components/dashboard";
-
+import DataDiriCreate from "./components/DataDiri/dataDiriCreate";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/datadiri",
+    element: <DataDiriCreate />,
   },
 ]);
 root.render(
