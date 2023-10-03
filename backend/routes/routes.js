@@ -1,4 +1,4 @@
-//routes.js
+// routes.js
 
 import express from "express";
 import { verifyToken } from "../middleware/VerifyToken.js";

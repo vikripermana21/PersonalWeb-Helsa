@@ -5,10 +5,10 @@ POST http://localhost:5000/create-user
 Content-Type: application/json
 
 {
-    "nama": "dafdaf",
-    "username": "dafdaf",
-    "password": "admin4321",
-    "confPassword": "admin4321"
+    "nama": "Admin",
+    "username": "admin123",
+    "password": "admin321",
+    "confPassword": "admin321"
 }
 
 ### Login
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5000/personal
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZV9ha3VuIjoiYWRtaW4xMjMiLCJyb2xlX2FrdW4iOiJVc2VyIiwiaWF0IjoxNjk2MTQ5MTY2LCJleHAiOjE2OTYxNDkxODF9.q7sMvASZQklOxFmC4bv59zpTW-DqNm8PYLR7-W-xFLk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZV9ha3VuIjoiYWRtaW4xMjMiLCJyb2xlX2FrdW4iOiJVc2VyIiwiaWF0IjoxNjk2Mjk2MjA1LCJleHAiOjE2OTYyOTYyMjB9.v1Gdgrcdq4jW-_JlG2b68MvDz15uQ1gs1Hsgpz98IRQ
 
 ### refresh token
 GET http://localhost:5000/token
@@ -56,6 +56,7 @@ DELETE http://localhost:5000/logout
 ### CRUD DATA DIRI (Personal)
 POST http://localhost:5000/personal
 Content-Type: application/json
+Authorization: Bearer <>
 
 {
     "foto": "url/",
@@ -67,30 +68,33 @@ Content-Type: application/json
     "berat_badan" : 45.0,
     "alamat" : "Kota Cimahi, Jawa Barat, Indonesia",
     "agama" : "Islam",
-    "jenis_kelamin" : "Perempuan",
+    "jenis_kelamin" : "Laki-Laki",
     "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
     "status" : "Mahasiswa",
-    "id_akun": 2
+    "id_akun": 1
 }
 
-###
+### Find All
 GET http://localhost:5000/personal
 Authorization: Bearer 
 
-###
-GET http://localhost:5000/personal/5
+### Find One
+GET http://localhost:5000/personal/1
+Authorization: Bearer <>
 
-###
+### Update
 PATCH http://localhost:5000/personal/1
 Content-Type: application/json
-
+Authorization: Bearer <>
 {
     "nama": "Helsa Alika"
 }
 
-###
-DELETE http://localhost:5000/personal/10
+### Delete
+DELETE http://localhost:5000/personal/1
+Authorization: Bearer <>
+
 //------------------------------------------------------------//
 
 ### CRUD Portofolio

@@ -1,36 +1,28 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useAuth } from '../AuthContext';
 
 
-const Login = () => {
-    const [username, setUsername] = useState("");
+const Register = () => {
+    const [nama, setNama] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("");
-    const [msg, setMsg] = useState("");
-    // const { login } = useAuth();
+    // const [password, setPass] = useState("")
+    // const [usia, setUsia] = useState()
 
-    const navigate = useNavigate();
-
-    
+    const navigate = useNavigate()
 
 
-    const loginHandler = async (e) => {
+    const saveUser = async (e) => {
         e.preventDefault();
         try {
-            // console.log("tesss")
-            const response = await axios.post('http://localhost:5000/login', {
-                username, password
+            await axios.post('http://localhost:5000/admin', {
+                nama, username, password
             });
-
-
-            // login(response.data);
-            navigate('/dashboard');
-            console.log("berhasil login");
-            console.log("Response :", response.data);
-            
+            navigate('/login');
+            console.log("berhasil daftar");
         } catch (error) {
-            setMsg(error.response.data.error);
+            console.log(error.response);
         }
     }
     
@@ -39,7 +31,13 @@ const Login = () => {
   return (
     <div className="columns mt-5 is-centered">
         <div className="column is-half">
-            <form onSubmit={loginHandler}>
+            <form onSubmit={saveUser}>
+                <div className='field'>
+                    <label className="label">Nama</label>
+                    <div className="control">
+                        <input type="text" className="input" value={nama} onChange={(e) => setNama(e.target.value)}/>
+                    </div>
+                </div>
                 <div className='field'>
                     <label className="label">Username</label>
                     <div className="control">
@@ -55,11 +53,10 @@ const Login = () => {
                 <div className='field'>
                     <button type='submit' className="button is-success">Save</button>
                 </div>
-                <p>{msg}</p>
             </form>
         </div>
     </div>
   )
 }
 
-export default Login
+export default Register
