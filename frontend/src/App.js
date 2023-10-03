@@ -1,22 +1,25 @@
-// import {BrowserRouter, Routes, Route} from "react-router-dom"
-// // import { AuthProvider } from "./AuthContext";
-// import AddPortofolio from "./Components/AddPortofolio";
-// import Dashboard from "./Components/Dashboard";
-// import Register from "./Components/Register";
-// import Login from "./Components/Login";
-// // import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
-// function App() {
-//   return (
-//     <BrowserRouter>
-//         <Routes>
-//           <Route path="/" element={<Login/>}/>
-//           <Route path="/dashboard" element={<Dashboard/>}/>
-//           <Route path="/portofolio" element={<AddPortofolio/>}/>
-//           <Route path="/register" element={<Register/>}/>
-//         </Routes>
-//     </BrowserRouter>
-//   );
-// }
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
 
-// export default App;
+export default App;
