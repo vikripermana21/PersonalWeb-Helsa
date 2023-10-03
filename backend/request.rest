@@ -1,14 +1,14 @@
 //------------------------------------------------------------//
 
 ### CRUD Admin
-POST http://localhost:5000/register
+POST http://localhost:5000/create-user
 Content-Type: application/json
 
 {
-    "nama": "admin",
-    "username": "admin123",
-    "password": "admin321",
-    "confPassword": "admin321"
+    "nama": "dafdaf",
+    "username": "dafdaf",
+    "password": "admin4321",
+    "confPassword": "admin4321"
 }
 
 ### Login

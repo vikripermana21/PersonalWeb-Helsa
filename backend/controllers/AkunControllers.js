@@ -38,7 +38,7 @@ export const createUser = async (req, res) => {
       console.error(error.message);
       res.status(500).json({ error: 'Terjadi kesalahan saat registrasi' });
     }
-  };
+};
 
 export const login = async (req, res) => {  
   try {

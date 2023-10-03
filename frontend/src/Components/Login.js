@@ -12,13 +12,17 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    
+
 
     const loginHandler = async (e) => {
         e.preventDefault();
         try {
+            // console.log("tesss")
             const response = await axios.post('http://localhost:5000/login', {
                 username, password
             });
+
 
             // login(response.data);
             navigate('/dashboard');

@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.get('/token', refreshToken);
 
 //AKUN
-router.post('/register', createUser);
+router.post('/create-user', createUser);
 
 // router.get('/admin', getAdmin);
 // router.post('/user', createUser);

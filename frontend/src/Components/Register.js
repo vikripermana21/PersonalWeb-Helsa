@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, {useState} from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -7,24 +7,32 @@ const Register = () => {
     const [nama, setNama] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("");
-    // const [password, setPass] = useState("")
-    // const [usia, setUsia] = useState()
+    const [confPassword, setConfPass] = useState("");
+    const [role, setRole] = useState("");
+    const [msg, setMsg] = useState("");
 
     const navigate = useNavigate()
 
 
     const saveUser = async (e) => {
         e.preventDefault();
+        if (!nama || !username || !password || !confPassword) {
+            setMsg("All fields are required.");
+            return;
+        }
         try {
-            await axios.post('http://localhost:5000/admin', {
-                nama, username, password
+            await axios.post('http://localhost:5000/create-user', {
+                nama, username, password, confPassword, role
             });
-            navigate('/login');
+            navigate('/');
             console.log("berhasil daftar");
         } catch (error) {
-            console.log(error.response);
+            console.log(error);
+            setMsg(error.response.data.error);
         }
     }
+
+    
     
     
 
@@ -51,8 +59,21 @@ const Register = () => {
                     </div>
                 </div>
                 <div className='field'>
+                    <label className="label">Konfirmasi Password</label>
+                    <div className="control">
+                        <input type="password" className="input" value={confPassword} onChange={(e) => setConfPass(e.target.value)}/>
+                    </div>
+                </div>
+                <div className='field'>
+                    <label className="label">Role</label>
+                    <div className="control">
+                        <input type="text" className="input" value={role} onChange={(e) => setRole(e.target.value)}/>
+                    </div>
+                </div>
+                <div className='field'>
                     <button type='submit' className="button is-success">Save</button>
                 </div>
+                <p>{msg}</p>
             </form>
         </div>
     </div>
