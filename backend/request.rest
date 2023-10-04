@@ -5,17 +5,10 @@ POST http://localhost:5000/create-user
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-    "nama": "ecaa",
-    "username": "ecalika",
-    "password": "ecalika",
-    "role": "Admin"
-=======
     "nama": "Admin",
     "username": "admin123",
     "password": "admin321",
     "confPassword": "admin321"
->>>>>>> daffa
 }
 
 ### Login
@@ -23,13 +16,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-    "username": "admin",
-    "password": "admin"
-=======
     "username": "admin123",
     "password": "admin321"
->>>>>>> daffa
 }
 
 ###
