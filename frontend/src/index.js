@@ -8,6 +8,9 @@ import Registrasi from "./components/Login/registrasi";
 import Dashboard from "./components/dashboard";
 import DataDiriCreate from "./components/DataDiri/dataDiriCreate";
 import DataDiriList from "./components/DataDiri/dataDiriList";
+import PortofolioCreate from "./components/Portofolio/portofolioCreate";
+import PortofolioList from "./components/Portofolio/portofolioList";
+import PortofolioDetail from "./components/Portofolio/portofolioDetail";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -34,6 +37,18 @@ const router = createBrowserRouter([
   {
     path: "/datadiri",
     element: <DataDiriList />,
+  },
+  {
+    path: "/portofolio/create",
+    element: <PortofolioCreate />,
+  },
+  {
+    path: "/portofolio/:id_person",
+    element: <PortofolioList />,
+  },
+  {
+    path: "/portofolio/:id_person/:id_portofolio",
+    element: <PortofolioDetail />,
   },
 ]);
 root.render(
