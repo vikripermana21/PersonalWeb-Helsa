@@ -8,6 +8,8 @@ import Registrasi from "./components/Login/registrasi";
 import Dashboard from "./components/dashboard";
 import DataDiriCreate from "./components/DataDiri/dataDiriCreate";
 import DataDiriList from "./components/DataDiri/dataDiriList";
+import PendidikanCreate from "./components/Pendidikan/pendidikanCreate";
+import PendidikanList from "./components/Pendidikan/pendidikanList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
   {
     path: "/datadiri",
     element: <DataDiriList />,
+  },
+  {
+    path: "/pendidikan/create",
+    element: <PendidikanCreate />,
+  },
+  {
+    path: "/pendidikan",
+    element: <PendidikanList />,
   },
 ]);
 root.render(
