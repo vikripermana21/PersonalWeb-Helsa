@@ -21,6 +21,11 @@ const Login = () => {
         password,
       });
 
+      const accessToken = response.data.access_token;
+
+      // Simpan token akses di local storage
+      localStorage.setItem("accessToken", accessToken);
+
       // login(response.data);
       navigate("/dashboard");
       console.log("berhasil login");
