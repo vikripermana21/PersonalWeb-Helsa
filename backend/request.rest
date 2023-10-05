@@ -16,13 +16,13 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "admin123",
-    "password": "admin321"
+    "username": "daffaraihandika",
+    "password": "daffa170203"
 }
 
 ###
 GET http://localhost:5000/personal
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZV9ha3VuIjoiYWRtaW4xMjMiLCJyb2xlX2FrdW4iOiJVc2VyIiwiaWF0IjoxNjk2Mjk2MjA1LCJleHAiOjE2OTYyOTYyMjB9.v1Gdgrcdq4jW-_JlG2b68MvDz15uQ1gs1Hsgpz98IRQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZV9ha3VuIjoiZGFmZmFyYWloYW5kaWthIiwicm9sZV9ha3VuIjoiVXNlciIsImlhdCI6MTY5NjMwOTUzNiwiZXhwIjoxNjk2MzA5NTUxfQ._Ao79uJgTfef25LcxCacEokIHsmgWsccITZ0JZRqJv4
 
 ### refresh token
 GET http://localhost:5000/token
