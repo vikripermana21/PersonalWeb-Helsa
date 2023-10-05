@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Sidebar, Button } from 'daisyui/react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -18,21 +17,30 @@ const Dashboard = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          
-              <Sidebar name="my-sidebar" side="left" width="64" hideOnClickOutside>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">Sidebar Menu</h3>
-                <ul className="mt-4 space-y-2">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-                <Button className="mt-4" tag="a" href="#" color="blue">Sign In</Button>
-              </div>
-            </Sidebar>
+          {/* Sidebar */}
 
-          {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
+        <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center justify-center">
+
+          {/* Page content here */}
+          <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Sidebar</label>
+          </div> 
+            <div className="drawer-side">
+              <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
+              <ul class="menu p-8 w-80 min-h-full bg-info-content text-white">
+                {/* Sidebar content here */}
+                <li><a>Data Diri</a></li>
+                <li><a>Pendidikan</a></li>
+                <li><a>Organisasi</a></li>
+                <li><a>Skill</a></li>
+                <li><a>Portofolio</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Sidebar */}
+
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
