@@ -9,7 +9,6 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
-  // const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -21,12 +20,6 @@ const Login = () => {
         password,
       });
 
-      const accessToken = response.data.access_token;
-
-      // Simpan token akses di local storage
-      localStorage.setItem("accessToken", accessToken);
-
-      // login(response.data);
       navigate("/dashboard");
       console.log("berhasil login");
       console.log("Response :", response.data);

@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
+import { async } from 'q';
 
 const Dashboard = () => {
   const [nama, setNama] = useState("");
   const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
 
   useEffect(() => {
     refreshToken();
@@ -24,17 +26,11 @@ const Dashboard = () => {
   const refreshToken = async() => {
     try {
       // Mengambil token akses dari penyimpanan lokal
-      const accessToken = localStorage.getItem("accessToken");
-      const response = await axios.get('http://localhost:5000/token', {
-        headers: {
-          'Authorization': `Bearer ${accessToken}` // Sertakan token akses dalam header
-        }
-      });
-
+      const response = await axios.get('http://localhost:5000/token');
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken)
       setNama(decoded.nama)
-      console.log(decoded.nama)
+      setExpire(decoded.exp)
     } catch (error) {
       console.log(error.message);
     }
