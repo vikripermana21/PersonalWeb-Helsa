@@ -10,6 +10,7 @@ import DataDiriCreate from "./components/DataDiri/dataDiriCreate";
 import DataDiriList from "./components/DataDiri/dataDiriList";
 import PendidikanCreate from "./components/Pendidikan/pendidikanCreate";
 import PendidikanList from "./components/Pendidikan/pendidikanList";
+import PendidikanEdit from "./components/Pendidikan/pendidikanEdit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -42,8 +43,12 @@ const router = createBrowserRouter([
     element: <PendidikanCreate />,
   },
   {
-    path: "/pendidikan",
+    path: "/pendidikan/:id_person",
     element: <PendidikanList />,
+  },
+  {
+    path: "/pendidikan/:id_person/edit/:id_pendidikan",
+    element: <PendidikanEdit />,
   },
 ]);
 root.render(

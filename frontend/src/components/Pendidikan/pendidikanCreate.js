@@ -28,7 +28,7 @@ const PendidikanCreate = () => {
     try {
       const response = await axios.post("http://localhost:5000/pendidikan", formData);
 
-      navigate("/pendidikan");
+      navigate("/pendidikan/${id_person}");
       console.log("Pendidikan record created successfully:");
       console.log("Response :", response.data);
     } catch (error) {
@@ -41,7 +41,7 @@ const PendidikanCreate = () => {
     <div className="bg-base-200 h-auto box-border p-4">
       <div className="flex justify-center items-center mt-5">
         <h1>
-          <b>Pendidikan</b>
+          <b>Tambah Pendidikan</b>
         </h1>
       </div>
       <div className="flex justify-center items-center p-2 mt-5">
