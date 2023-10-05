@@ -1,39 +1,59 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
-import { async } from 'q';
+// import { async } from 'q';
 
 const Dashboard = () => {
   const [nama, setNama] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    refreshToken();
+      refreshToken();
+      // getUser();
   }, [])
 
-  const navigate = useNavigate();
-  const Logout = async () => {
-    try {
-      await axios.delete("http://localhost:5000/logout");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const refreshToken = async() => {
-    try {
-      // Mengambil token akses dari penyimpanan lokal
-      const response = await axios.get('http://localhost:5000/token');
-      setToken(response.data.accessToken);
-      const decoded = jwt_decode(response.data.accessToken)
-      setNama(decoded.nama)
-      setExpire(decoded.exp)
-    } catch (error) {
-      console.log(error.message);
-    }
+      try {
+          const response = await axiosJWT.get('http://localhost:5000/token');
+          setToken(response.data.accessToken);
+          const decoded = jwt_decode(response.data.accessToken)
+          setNama(decoded.username_akun)
+          setExpire(decoded.exp)
+      } catch (error) {
+          console.log(error.message);
+      }
+  }
+
+  const axiosJWT = axios.create();
+
+  axiosJWT.interceptors.request.use(async(config) => {
+      const currentDate = new Date();
+      if(expire * 1000 < currentDate.getTime()){
+          const response = await axios.get('http://localhost:5000/token');
+          config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+          setToken(response.data.accessToken)
+          const decoded = jwt_decode(response.data.accessToken)
+          setNama(decoded.username_akun)
+          setExpire(decoded.exp)
+      }
+
+      return config;
+  }, (error) => {
+      Promise.reject(error);
+  });
+
+  const getUser = async() => {
+      const response = await axiosJWT.get('http://localhost:5000/personal', {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      });
+
+      console.log(response.data);
+      setUsers(response.data);
   }
 
   return (
@@ -81,7 +101,7 @@ const Dashboard = () => {
               </details>
             </li>
             <li>
-              <a href="#" onClick={Logout}>
+              <a href="#">
                 Logout
               </a>
             </li>
