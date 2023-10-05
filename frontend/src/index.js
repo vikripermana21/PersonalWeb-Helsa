@@ -9,6 +9,9 @@ import Registrasi from "./components/Login/registrasi";
 import Dashboard from "./components/dashboard";
 import DataDiriCreate from "./components/DataDiri/dataDiriCreate";
 import DataDiriList from "./components/DataDiri/dataDiriList";
+import PendidikanCreate from "./components/Pendidikan/pendidikanCreate";
+import PendidikanList from "./components/Pendidikan/pendidikanList";
+import PendidikanEdit from "./components/Pendidikan/pendidikanEdit";
 import PortofolioCreate from "./components/Portofolio/portofolioCreate";
 import PortofolioList from "./components/Portofolio/portofolioList";
 import PortofolioDetail from "./components/Portofolio/portofolioDetail";
@@ -43,6 +46,18 @@ const router = createBrowserRouter([
   {
     path: "/datadiri",
     element: <DataDiriList />,
+  },
+  {
+    path: "/pendidikan/create",
+    element: <PendidikanCreate />,
+  },
+  {
+    path: "/pendidikan/:id_person",
+    element: <PendidikanList />,
+  },
+  {
+    path: "/pendidikan/:id_person/:id_pendidikan",
+    element: <PendidikanEdit />,
   },
   {
     path: "/portofolio/create",
