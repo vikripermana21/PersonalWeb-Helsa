@@ -1,14 +1,14 @@
 //------------------------------------------------------------//
 
 ### CRUD Admin
-POST http://localhost:5000/admin
+POST http://localhost:5000/create-user
 Content-Type: application/json
 
 {
-    "nama": "ecaa",
-    "username": "ecapedeh",
-    "password": "ecantik29",
-    "role": "Admin"
+    "nama": "Admin",
+    "username": "admin123",
+    "password": "admin321",
+    "confPassword": "admin321"
 }
 
 ### Login
@@ -16,9 +16,19 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "ecapedeh",
-    "password": "ecantik29"
+    "username": "admin123",
+    "password": "admin321"
 }
+
+###
+GET http://localhost:5000/personal
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZV9ha3VuIjoiZGFmZmFyYWloYW5kaWthIiwicm9sZV9ha3VuIjoiVXNlciIsImlhdCI6MTY5NjMwOTUzNiwiZXhwIjoxNjk2MzA5NTUxfQ._Ao79uJgTfef25LcxCacEokIHsmgWsccITZ0JZRqJv4
+
+### refresh token
+GET http://localhost:5000/token
+
+### logout
+DELETE http://localhost:5000/logout
 
 ###
 # GET http://localhost:5000/admin
@@ -46,8 +56,7 @@ Content-Type: application/json
 ### CRUD DATA DIRI (Personal)
 POST http://localhost:5000/personal
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
-
+Authorization: Bearer <>
 
 {
     "foto": "url/",
@@ -59,33 +68,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c
     "berat_badan" : 45.0,
     "alamat" : "Kota Cimahi, Jawa Barat, Indonesia",
     "agama" : "Islam",
-    "jenis_kelamin" : "Perempuan",
+    "jenis_kelamin" : "Laki-Laki",
     "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
     "status" : "Mahasiswa",
     "id_akun": 1
 }
 
-###
+### Find All
 GET http://localhost:5000/personal
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
+Authorization: Bearer 
 
-###
+### Find One
 GET http://localhost:5000/personal/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
+Authorization: Bearer <>
 
-###
+### Update
 PATCH http://localhost:5000/personal/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
-
+Authorization: Bearer <>
 {
     "nama": "Helsa Alika"
 }
 
-###
+### Delete
 DELETE http://localhost:5000/personal/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZSI6ImVjYXBlZGVoIiwiaWF0IjoxNjk2MTExMTMwLCJleHAiOjE3ODI1MTExMzB9.HAO4nmtKLeSecNjxdeWWF8jaEpU62jGyDGhuf-dH_98
+Authorization: Bearer <>
+
 //------------------------------------------------------------//
 
 ### CRUD Portofolio
@@ -94,12 +103,13 @@ Content-Type: application/json
 
 {
     "id_person": 1,
-    "nama_portofolio": "CRUD expressJs1",
-    "file_portofolio": "url/portofolio/expressJs1.pdf"
+    "nama_portofolio": "CRUD expressJs",
+    "deskripsi_portofolio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sed repudiandae saepe facilis id atque labore aspernatur. Doloribus voluptatibus sapiente alias voluptatem dolore, facere in consequuntur, delectus, esse nulla ipsam!",
+    "file_portofolio": "url/portofolio/expressJs.pdf"
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
-GET http://localhost:5000/portofolio/1
+GET http://localhost:5000/portofolio/2
 
 ### Menampilkan satu portofolio yang dipilih
 GET http://localhost:5000/portofolio/1/2
@@ -109,7 +119,9 @@ PATCH http://localhost:5000/portofolio/2
 Content-Type: application/json
 
 {
-    "nama_portofolio": "Ubah portofolioooww"
+    "nama_portofolio": "CRUD expressJs",
+    "deskripsi_portofolio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sed repudiandae saepe facilis id atque labore aspernatur. Doloribus voluptatibus sapiente alias voluptatem dolore, facere in consequuntur, delectus, esse nulla ipsam!",
+    "file_portofolio": "url/portofolio/expressJs.pdf"
 }
 
 ###

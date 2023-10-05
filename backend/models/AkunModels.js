@@ -1,5 +1,3 @@
-// AkunModels.js
-
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 import DataDiri from "./DataDiriModels.js";
@@ -24,6 +22,9 @@ const Akun = db.define('akun', {
         type: DataTypes.ENUM('Admin', 'User'),
         allowNull: false,
         defaultValue: 'User',
+    },
+    refresh_token: {
+        type: DataTypes.STRING,
     },
 }, {
     // Nama tabel yang sesuai dengan nama tabel di database

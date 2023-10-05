@@ -9,7 +9,8 @@ CREATE TABLE akun (
     nama VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    role role_enum 
+    role role_enum, 
+    refresh_token TEXT 
 );
 
 CREATE TYPE agama_enum AS ENUM ('Islam', 'Kristen', 'Hindu', 'Buddha', 'Konghucu', 'Lainnya');
@@ -54,6 +55,7 @@ CREATE TABLE portofolio (
     id_portofolio SERIAL PRIMARY KEY,
     id_person INT,
     nama_portofolio VARCHAR(50) NOT NULL,
+    deskripsi_portofolio TEXT,
     file_portofolio TEXT
 );
 
@@ -96,5 +98,6 @@ DROP TABLE IF EXISTS portofolio;
 DROP TABLE IF EXISTS pendidikan;
 DROP TABLE IF EXISTS organisasi;
 DROP TABLE IF EXISTS akun;
+DROP TABLE IF EXISTS admin;
 
 DELETE FROM personal WHERE id_person=1;
