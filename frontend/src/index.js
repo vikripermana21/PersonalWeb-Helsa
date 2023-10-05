@@ -12,6 +12,9 @@ import PortofolioCreate from "./components/Portofolio/portofolioCreate";
 import PortofolioList from "./components/Portofolio/portofolioList";
 import PortofolioDetail from "./components/Portofolio/portofolioDetail";
 import PortofolioEdit from "./components/Portofolio/portofolioEdit";
+import SkillCreate from "./components/Skill/skillCreate";
+import SkillEdit from "./components/Skill/skillEdit";
+import SkillList from "./components/Skill/skillList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -54,6 +57,18 @@ const router = createBrowserRouter([
   {
     path: "/portofolio/:id_person/edit/:id_portofolio",
     element: <PortofolioEdit />,
+  },
+  {
+    path: "/skill/create",
+    element: <SkillCreate/>
+  },
+  {
+    path: "/skill/:id_person",
+    element: <SkillList/>
+  },
+  {
+    path: "/skill/:id_person/edit/:id_skill",
+    element: <SkillEdit/>
   },
 ]);
 root.render(
