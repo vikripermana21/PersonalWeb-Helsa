@@ -29,6 +29,27 @@ const PortofolioList = () => {
     navigate(`/portofolio/${id_person}/${id_portofolio}`);
   }
 
+  const redirectToEditPortofolio = (id_portofolio) => {
+    navigate(`/portofolio/${id_person}/edit/${id_portofolio}`);
+  }
+
+  const redirectToAddPortofolio = () => {
+    navigate('/portofolio/create')
+  }
+
+  const deletePortoHandler = async(id_portofolio) => {
+    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus data ini?");
+    if(confirmDelete){
+      try {
+        await axios.delete(`http://localhost:5000/portofolio/${id_portofolio}`)
+        window.location.reload();
+        console.log("Data berhasil dihapus")
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <div>
       <div className="bg-base-200 h-auto box-border p-4">
@@ -37,8 +58,14 @@ const PortofolioList = () => {
             <b>Portofolio</b>
           </h1>
         </div>
+        
         <div className="flex justify-center items-center p-2 mt-5">
           <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+            <div className="flex justify-end items-center p-2 mb-4">
+              <button onClick={redirectToAddPortofolio} className="btn btn-success">
+                Tambah Portofolio
+              </button>
+            </div>
             <table className="table-auto w-full">
               <thead>
                 <tr>
@@ -54,18 +81,20 @@ const PortofolioList = () => {
                     <td className="border px-4 py-2">{portofolio.deskripsi_portofolio}</td>
                     <td className="border px-4 py-2 text-center">
                       <button
-                        className="btn btn-sm btn-accent inline-block"
+                        className="btn btn-sm btn-success inline-block"
                         onClick={() => redirectToPortofolioDetails(portofolio.id_portofolio)}
                       >
                         Show Details
                       </button>
                       <button
                         className="btn btn-sm btn-primary ml-3"
+                        onClick={() => redirectToEditPortofolio(portofolio.id_portofolio)}
                       >
                         Edit
                       </button>
                       <button
                         className="btn btn-sm btn-error ml-3"
+                        onClick={() => deletePortoHandler(portofolio.id_portofolio)}
                       >
                         Delete
                       </button>

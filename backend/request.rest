@@ -109,7 +109,7 @@ Content-Type: application/json
 }
 
 ### Menampilkan semua portofolio berdasarkan id_person
-GET http://localhost:5000/portofolio/1
+GET http://localhost:5000/portofolio/2
 
 ### Menampilkan satu portofolio yang dipilih
 GET http://localhost:5000/portofolio/1/2
@@ -119,7 +119,9 @@ PATCH http://localhost:5000/portofolio/2
 Content-Type: application/json
 
 {
-    "nama_portofolio": "Ubah portofolioooww"
+    "nama_portofolio": "CRUD expressJs",
+    "deskripsi_portofolio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sed repudiandae saepe facilis id atque labore aspernatur. Doloribus voluptatibus sapiente alias voluptatem dolore, facere in consequuntur, delectus, esse nulla ipsam!",
+    "file_portofolio": "url/portofolio/expressJs.pdf"
 }
 
 ###

@@ -11,6 +11,7 @@ import DataDiriList from "./components/DataDiri/dataDiriList";
 import PortofolioCreate from "./components/Portofolio/portofolioCreate";
 import PortofolioList from "./components/Portofolio/portofolioList";
 import PortofolioDetail from "./components/Portofolio/portofolioDetail";
+import PortofolioEdit from "./components/Portofolio/portofolioEdit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: "/portofolio/:id_person/:id_portofolio",
     element: <PortofolioDetail />,
+  },
+  {
+    path: "/portofolio/:id_person/edit/:id_portofolio",
+    element: <PortofolioEdit />,
   },
 ]);
 root.render(
