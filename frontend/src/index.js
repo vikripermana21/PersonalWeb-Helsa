@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./landingPage";
@@ -15,6 +16,7 @@ import PortofolioEdit from "./components/Portofolio/portofolioEdit";
 import SkillCreate from "./components/Skill/skillCreate";
 import SkillEdit from "./components/Skill/skillEdit";
 import SkillList from "./components/Skill/skillList";
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([

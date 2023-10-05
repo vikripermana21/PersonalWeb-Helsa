@@ -1,86 +1,49 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+import axios from "axios";
 import jwt_decode from 'jwt-decode';
+import Sidebar from './Navigation/sidebar';
+import { FaBars } from 'react-icons/fa';
 
 const Dashboard = () => {
-    const [nama, setNama] = useState("");
-    const [token, setToken] = useState("");
-    const [expire, setExpire] = useState("");
-    const [users, setUsers] = useState([]);
+  const [nama, setNama] = useState("");
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
-    useEffect(() => {
-        refreshToken();
-        // getUser();
-    }, [])
+  useEffect(() => {
+      refreshToken();
+  }, [])
 
-    const refreshToken = async() => {
-        try {
-            const response = await axiosJWT.get('http://localhost:5000/token');
-            setToken(response.data.accessToken);
-            const decoded = jwt_decode(response.data.accessToken)
-            setNama(decoded.username_akun)
-            setExpire(decoded.exp)
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
+  const refreshToken = async() => {
+      try {
+          const response = await axios.get('http://localhost:5000/token');
+          const decoded = jwt_decode(response.data.accessToken)
+          setNama(decoded.nama)
+          console.log("Decoded response : ", decoded)
+      } catch (error) {
+          console.log(error.message);
+      }
+  }
 
-    const axiosJWT = axios.create();
+  return (
+    <div>
+      <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+        {isSidebarVisible && <Sidebar />}
+        {/* Main Content */}
+        <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+          {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
+          <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+          >
+            <FaBars size={24} /> {/* Ikon hamburger */}
+          </button>
+          <div className="bg-white p-4 rounded shadow-md">
+            <h1 className="text-3xl font-semibold mb-4">Dashboard</h1>
+            <p className="text-lg">Hallooo {nama}</p>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
 
-    axiosJWT.interceptors.request.use(async(config) => {
-        const currentDate = new Date();
-        if(expire * 1000 < currentDate.getTime()){
-            const response = await axios.get('http://localhost:5000/token');
-            config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-            setToken(response.data.accessToken)
-            const decoded = jwt_decode(response.data.accessToken)
-            setNama(decoded.username_akun)
-            setExpire(decoded.exp)
-        }
-
-        return config;
-    }, (error) => {
-        Promise.reject(error);
-    });
-
-    const getUser = async() => {
-        const response = await axiosJWT.get('http://localhost:5000/personal', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-
-        console.log(response.data);
-        setUsers(response.data);
-    }
-
-    return (
-        <div>
-            <div className="container mt-5">
-                <h1>Haloo {nama}</h1>
-                <button className='button is-info' onClick={getUser}>Get User</button>
-                <table className='table is-stripped is-fullwidth'>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Username</th>
-                            <th>Alamat</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {users.map((user, index) => (
-                            <tr key={users.id}>
-                                <td>{index + 1}</td>
-                                <td>{user.nama}</td>
-                                <td>{user.alamat}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
-}
-
-export default Dashboard
+export default Dashboard;
