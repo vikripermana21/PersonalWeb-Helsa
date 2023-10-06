@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { PiLockKeyLight } from "react-icons/pi";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { useAuth } from '../AuthContext';
+import { AiOutlineUser } from "react-icons/ai";
+import { PiLockKeyLight } from "react-icons/pi";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -14,22 +13,23 @@ const Login = () => {
   const navigate = useNavigate();
 
   const loginHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:5000/login", {
-        username,
-        password,
-      });
+      e.preventDefault();
+      try {
+          // console.log("tesss")
+          const response = await axios.post('http://localhost:5000/login', {
+              username, password
+          });
 
-      // login(response.data);
-      navigate("/dashboard");
-      console.log("berhasil login");
-      console.log("Response :", response.data);
-    } catch (error) {
-      setMsg(error.response.data.error);
-      console.log(error);
-    }
-  };
+
+          // login(response.data);
+          navigate('/dashboard');
+          console.log("berhasil login");
+          console.log("Response :", response.data);
+          
+      } catch (error) {
+          setMsg(error.response.data.error);
+      }
+  }
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -55,15 +55,13 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <p>Please fill in the data correctly</p>
+            <p>{msg}</p>
             <div className="card-actions justify-end">
               <button
-                type="submit"
                 className="btn btn-outline btn-success btn-sm"
               >
                 Login
               </button>
-              <p>{msg}</p>
             </div>
           </form>
         </div>
