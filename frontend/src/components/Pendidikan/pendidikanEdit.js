@@ -68,7 +68,7 @@ const PendidikanEdit = () => {
 
   return (
     <div>
-      <div className={`bg-gray-100 flex`}>
+      <div className={`bg-gray-200 flex`}>
         <Sidebar />
         <main className={`flex-1 p-4`}>
           <button
@@ -77,7 +77,7 @@ const PendidikanEdit = () => {
           >
             <FaBars size={24} />
           </button>
-          <div className="bg-base-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-auto box-border p-4">
             <div className="flex justify-center items-center mt-5">
               <h1>
                 <b>Edit Pendidikan</b>
@@ -95,7 +95,7 @@ const PendidikanEdit = () => {
                       name="instansi_pendidikan"
                       value={formData.instansi_pendidikan}
                       onChange={handleChange}
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>
@@ -108,7 +108,7 @@ const PendidikanEdit = () => {
                       name="jurusan"
                       value={formData.jurusan}
                       onChange={handleChange}
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>
@@ -121,7 +121,7 @@ const PendidikanEdit = () => {
                       name="tahun_mulai_ajaran"
                       value={formData.tahun_mulai_ajaran}
                       onChange={handleChange}
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>
@@ -134,7 +134,7 @@ const PendidikanEdit = () => {
                       name="tahun_akhir_ajaran"
                       value={formData.tahun_akhir_ajaran}
                       onChange={handleChange}
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>
