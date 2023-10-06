@@ -49,7 +49,7 @@ const PendidikanCreate = () => {
 
   return (
     <div>
-      <div className={`bg-gray-100 ${isSidebarVisible ? "" : "h-screen"} flex`}>
+      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
           <button
@@ -58,7 +58,7 @@ const PendidikanCreate = () => {
           >
             <FaBars size={24} />
           </button>
-          <div className="bg-base-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-auto box-border p-4">
             <div className="flex justify-center items-center mt-5">
               <h1>
                 <b>Tambah Pendidikan</b>
@@ -78,7 +78,7 @@ const PendidikanCreate = () => {
                       value={formData.instansi_pendidikan}
                       onChange={handleChange}
                       placeholder="Nama Instansi Pendidikan"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>
@@ -93,7 +93,7 @@ const PendidikanCreate = () => {
                       value={formData.jurusan}
                       onChange={handleChange}
                       placeholder="Jurusan"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>
@@ -108,7 +108,7 @@ const PendidikanCreate = () => {
                         name="tahun_mulai_ajaran"
                         value={formData.tahun_mulai_ajaran}
                         onChange={handleChange}
-                        className="input input-bordered input-sm w-1/2"
+                        className="bg-gray-300 input input-bordered input-sm w-1/2"
                         required
                       />
                     </div>
@@ -124,7 +124,7 @@ const PendidikanCreate = () => {
                         name="tahun_akhir_ajaran"
                         value={formData.tahun_akhir_ajaran}
                         onChange={handleChange}
-                        className="input input-bordered input-sm w-1/2"
+                        className="bg-gray-300 input input-bordered input-sm w-1/2"
                         required
                       />
                     </div>
@@ -140,7 +140,7 @@ const PendidikanCreate = () => {
                       value={formData.id_person}
                       onChange={handleChange}
                       placeholder="ID Person"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
                   </div>

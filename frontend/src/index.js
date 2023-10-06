@@ -56,7 +56,7 @@ const router = createBrowserRouter([
     element: <PendidikanList />,
   },
   {
-    path: "/pendidikan/:id_person/:id_pendidikan",
+    path: "/pendidikan/:id_person/edit/:id_pendidikan",
     element: <PendidikanEdit />,
   },
   {
