@@ -2,7 +2,7 @@ import React from "react";
 
 const DataDiriCreate = () => {
   return (
-    <div className="bg-base-200 h-auto box-border p-4">
+    <div className="bg-gray-200 h-auto box-border p-4">
       <div className="flex justify-center items-center mt-5">
         <h1>
           <b>Data Diri</b>
@@ -19,7 +19,7 @@ const DataDiriCreate = () => {
               <input
                 type="text"
                 placeholder="Nama Lengkap"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
               />
             </div>
             <div className="mb-4 flex items-center">
@@ -30,7 +30,7 @@ const DataDiriCreate = () => {
               <input
                 type="text"
                 placeholder="Tempat Lahir"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
               />
             </div>
             <div className="mb-4">
@@ -41,7 +41,7 @@ const DataDiriCreate = () => {
                 </label>
                 <input
                   type="date"
-                  className="input input-bordered input-sm w-1/2"
+                  className="bg-gray-300 input input-bordered input-sm w-1/2"
                 />
               </div>
             </div>
@@ -82,7 +82,7 @@ const DataDiriCreate = () => {
                 <input
                   type="number"
                   placeholder="0"
-                  className="input input-bordered input-sm w-1/12"
+                  className="bg-gray-300 input input-bordered input-sm w-1/12"
                 />
               </div>
             </div>
@@ -95,7 +95,7 @@ const DataDiriCreate = () => {
                 <input
                   type="number"
                   placeholder="0"
-                  className="input input-bordered input-sm w-1/12"
+                  className="bg-gray-300 input input-bordered input-sm w-1/12"
                 />
               </div>
             </div>
@@ -107,7 +107,7 @@ const DataDiriCreate = () => {
                 </label>
                 <textarea
                   placeholder="Alamat lengkap..."
-                  className="input input-bordered input-sm w-1/2 h-20"
+                  className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                 />
               </div>
             </div>
@@ -117,7 +117,7 @@ const DataDiriCreate = () => {
                   <span className="label-text">Agama</span>
                 </label>
                 <select
-                  className="input input-sm input-bordered w-1/2"
+                  className="bg-gray-300 input input-sm input-bordered w-1/2"
                   size="1"
                 >
                   <option value="">Pilih Agama...</option>
@@ -138,7 +138,7 @@ const DataDiriCreate = () => {
               <input
                 type="text"
                 placeholder="Contoh : Mahasiswa"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
               />
             </div>
             <div className="mb-4">
@@ -150,7 +150,7 @@ const DataDiriCreate = () => {
                 <input
                   type="email"
                   placeholder="email@contoh.com"
-                  className="input input-bordered input-sm w-2/3"
+                  className="bg-gray-300 input input-bordered input-sm w-2/3"
                 />
               </div>
             </div>
@@ -163,7 +163,7 @@ const DataDiriCreate = () => {
                 <input
                   type="tel"
                   placeholder="+62..."
-                  className="input input-bordered input-sm w-2/3"
+                  className="bg-gray-300 input input-bordered input-sm w-2/3"
                 />
               </div>
             </div>
@@ -180,7 +180,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                     />
                   </div>
                   <div className="mb-4">
@@ -190,7 +190,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                     />
                   </div>
                   <div className="mb-4">
@@ -200,7 +200,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                     />
                   </div>
                 </div>

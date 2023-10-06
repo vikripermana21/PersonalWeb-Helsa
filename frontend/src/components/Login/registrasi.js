@@ -35,8 +35,8 @@ const Registrasi = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="bg-gray-200 flex justify-center items-center h-screen">
+      <div className="bg-white rounded-lg card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Registrasi</h2>
           <form onSubmit={registerHandler}>
@@ -45,7 +45,7 @@ const Registrasi = () => {
               <input
                 type="text"
                 placeholder="Name"
-                className="input input-ghost w-full max-w-xs"
+                className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
@@ -54,7 +54,7 @@ const Registrasi = () => {
               <input
                 type="text"
                 placeholder="Username"
-                className="input input-ghost w-full max-w-xs"
+                className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
@@ -63,7 +63,7 @@ const Registrasi = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="input input-ghost w-full max-w-xs"
+                className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -72,7 +72,7 @@ const Registrasi = () => {
               <input
                 type="password"
                 placeholder="Konfirmasi Password"
-                className="input input-ghost w-full max-w-xs"
+                className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setConfPassword(e.target.value)}
               />
             </div>

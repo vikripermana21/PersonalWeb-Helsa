@@ -4,7 +4,7 @@ import axios from "axios";
 const DataDiriList = () => {
   return (
     <div>
-      <div className="bg-base-200 h-auto box-border p-4">
+      <div className="bg-gray-200 h-auto box-border p-4">
         <div className="flex justify-center items-center mt-5">
           <h1>
             <b>Data Diri</b>

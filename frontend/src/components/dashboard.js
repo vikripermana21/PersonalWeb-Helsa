@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>

@@ -95,6 +95,7 @@ const PendidikanEdit = () => {
                       name="instansi_pendidikan"
                       value={formData.instansi_pendidikan}
                       onChange={handleChange}
+                      placeholder="Nama Instansi Pendidikan"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
@@ -108,6 +109,7 @@ const PendidikanEdit = () => {
                       name="jurusan"
                       value={formData.jurusan}
                       onChange={handleChange}
+                      placeholder="Jurusan"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       required
                     />
