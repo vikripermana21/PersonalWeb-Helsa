@@ -85,6 +85,9 @@ ALTER TABLE akun DROP CONSTRAINT IF EXISTS akun_id_person_fk;
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
+DROP TYPE IF EXISTS "public"."enum_akun_role";
+
+
 
 -- Drop database
 
