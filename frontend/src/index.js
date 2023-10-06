@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import axios from "axios";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./landingPage";
@@ -13,6 +14,12 @@ import PortofolioList from "./components/Portofolio/portofolioList";
 import PortofolioDetail from "./components/Portofolio/portofolioDetail";
 import OrganisasiCreate from "./components/Organisasi/organisasiCreate";
 import OrganisasiList from "./components/Organisasi/organisasiList";
+import OrganisasiEdit from "./components/Organisasi/organisasiEdit";
+import PortofolioEdit from "./components/Portofolio/portofolioEdit";
+import SkillCreate from "./components/Skill/skillCreate";
+import SkillEdit from "./components/Skill/skillEdit";
+import SkillList from "./components/Skill/skillList";
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -53,12 +60,32 @@ const router = createBrowserRouter([
     element: <PortofolioDetail />,
   },
   {
+    path: "/portofolio/:id_person/edit/:id_portofolio",
+    element: <PortofolioEdit />,
+  },
+  {
     path: "/organisasi/create",
     element: <OrganisasiCreate />,
   },
   {
     path: "/organisasi/:id_person",
     element: <OrganisasiList />,
+  },
+  {
+    path: "/organisasi/:id_person/edit/:id_organisasi",
+    element: <OrganisasiEdit />,
+  },
+  {
+    path: "/skill/create",
+    element: <SkillCreate/>
+  },
+  {
+    path: "/skill/:id_person",
+    element: <SkillList/>
+  },
+  {
+    path: "/skill/:id_person/edit/:id_skill",
+    element: <SkillEdit/>
   },
 ]);
 root.render(
