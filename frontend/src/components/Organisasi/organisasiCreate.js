@@ -5,6 +5,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { FaBars } from 'react-icons/fa';
+import Sidebar from "../Navigation/sidebar";
 
 const OrganisasiCreate = () => {
   const [id_person, setIdPerson] = useState("");
@@ -12,6 +14,7 @@ const OrganisasiCreate = () => {
   const [posisi, setPosisi] = useState("");
   const [tanggal_mulai_menjabat, setTanggalMulai] = useState(null);
   const [tanggal_akhir_menjabat, setTanggalAkhir] = useState(null);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const navigate = useNavigate();
 
@@ -35,12 +38,24 @@ const OrganisasiCreate = () => {
   };
 
   return (
-    <div className="bg-base-200 h-auto box-border p-4">
-      <div className="flex justify-center items-center mt-5">
-      <h1 style={{ fontSize: "36px" }}>
-        <b>Organisasi</b>
-      </h1>
-      </div>
+    <div>
+    <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+        {isSidebarVisible && <Sidebar />}
+        {/* Main Content */}
+        <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+          {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
+          <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+          >
+            <FaBars size={24} /> {/* Ikon hamburger */}
+          </button>
+          <div className="bg-base-200 h-auto box-border p-4">
+            <div className="flex justify-center items-center mt-5">
+              <h1>
+                <b>Tambah Portofolio</b>
+              </h1>
+            </div>
       <div className="flex justify-center items-center p-2 mt-5">
         <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-6/12 h-auto">
           <form onSubmit={createOrganisasiHandler}>
@@ -137,11 +152,13 @@ const OrganisasiCreate = () => {
                 Cancel
               </button>
               <button className="btn btn-success btn-sm w-1/3">Save</button>
+              </div>
+                </form>
+              </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </main>
       </div>
-      <div className="container mx-auto text-center p-2"></div>
     </div>
   );
 };
