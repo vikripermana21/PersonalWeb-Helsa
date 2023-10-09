@@ -22,6 +22,7 @@ import SkillList from "./components/Skill/skillList";
 import OrganisasiCreate from "./components/Organisasi/organisasiCreate";
 import OrganisasiList from "./components/Organisasi/organisasiList";
 import OrganisasiEdit from "./components/Organisasi/organisasiEdit";
+import DataDiriEdit from "./components/DataDiri/dataDiriEdit";
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -47,8 +48,12 @@ const router = createBrowserRouter([
     element: <DataDiriCreate />,
   },
   {
-    path: "/datadiri",
+    path: "/datadiri/:id_person",
     element: <DataDiriList />,
+  },
+  {
+    path: "/datadiri/edit/:id_person",
+    element: <DataDiriEdit />,
   },
   {
     path: "/pendidikan/create",
@@ -79,8 +84,8 @@ const router = createBrowserRouter([
     element: <PortofolioEdit />,
   },
   {
-  path: "/organisasi/create",
-  element: <OrganisasiCreate />,
+    path: "/organisasi/create",
+    element: <OrganisasiCreate />,
   },
   {
     path: "/organisasi/:id_person",
@@ -92,15 +97,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/skill/create",
-    element: <SkillCreate/>
+    element: <SkillCreate />,
   },
   {
     path: "/skill/:id_person",
-    element: <SkillList/>
+    element: <SkillList />,
   },
   {
     path: "/skill/:id_person/edit/:id_skill",
-    element: <SkillEdit/>
+    element: <SkillEdit />,
   },
 ]);
 root.render(

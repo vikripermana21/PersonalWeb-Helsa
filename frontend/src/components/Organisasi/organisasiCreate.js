@@ -41,19 +41,17 @@ const OrganisasiCreate = () => {
     <div>
     <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
-        {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
-          {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
           <button
             className="p-2 bg-blue-500 text-white rounded-md mb-4"
             onClick={() => setIsSidebarVisible(!isSidebarVisible)}
           >
-            <FaBars size={24} /> {/* Ikon hamburger */}
+            <FaBars size={24} />
           </button>
           <div className="bg-gray-200 h-auto box-border p-4">
             <div className="flex justify-center items-center mt-5">
               <h1>
-                <b>Tambah Portofolio</b>
+                <b>Tambah Organisasi</b>
               </h1>
             </div>
       <div className="flex justify-center items-center p-2 mt-5">
@@ -98,7 +96,6 @@ const OrganisasiCreate = () => {
                 onChange={(e) => setPosisi(e.target.value)}
               />
             </div>
-            {/* Tanggal Mulai Menjabat */}
             <div className="mb-4 flex items-center">
               <label className="w-1/3 mr-2">
                 <span className="label-text">Tanggal Mulai Menjabat</span>
@@ -108,11 +105,11 @@ const OrganisasiCreate = () => {
               placeholderText="DD-MM-YYYY"
                 selected={tanggal_mulai_menjabat}
                 onChange={(date) => setTanggalMulai(date)}
-                dateFormat="dd-MM-yyyy" // Format tanggal yang Anda inginkan
+                dateFormat="dd-MM-yyyy"
                 className="bg-gray-300 input input-bordered input-sm"
                 style={{ width: "10%" }}
-                showYearDropdown // Mengaktifkan pilihan tahun
-                yearDropdownItemNumber={10} // Jumlah tahun yang akan ditampilkan dalam dropdown
+                showYearDropdown
+                yearDropdownItemNumber={10}
               />
               <FontAwesomeIcon
                 icon={faCalendarDays}
@@ -123,7 +120,6 @@ const OrganisasiCreate = () => {
               />
 
             </div>
-            {/* Tanggal Akhir Menjabat */}
             <div className="mb-4 flex items-center">
               <label className="w-1/3 mr-2">
                 <span className="label-text">Tanggal Akhir Menjabat</span>
