@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
+import '../../styles/style.css';
 
 const PendidikanCreate = () => {
   const [formData, setFormData] = useState({
@@ -10,19 +11,25 @@ const PendidikanCreate = () => {
     jurusan: "",
     tahun_mulai_ajaran: "",
     tahun_akhir_ajaran: "",
-    id_person: "",
   });
+
+  const [id_person, setIdPerson] = useState("");
 
   const [msg, setMsg] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setIdPerson(localStorage.getItem('id'))
+  }, [])
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
+      id_person
     });
   };
 
@@ -31,10 +38,10 @@ const PendidikanCreate = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/pendidikan",
-        formData
+        formData, id_person
       );
 
-      navigate(`/pendidikan/${formData.id_person}`);
+      navigate(`/pendidikan/${id_person}`);
       console.log("Pendidikan record created successfully:");
       console.log("Response:", response.data);
     } catch (error) {
@@ -129,7 +136,7 @@ const PendidikanCreate = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-4 flex items-center">
+                  <div className="mb-4 flex items-center hide-element">
                     <label className="w-1/3 mr-1">
                       <span className="label-text">ID Person</span>
                       <span className="text-red-500">*</span>
@@ -137,11 +144,9 @@ const PendidikanCreate = () => {
                     <input
                       type="number"
                       name="id_person"
-                      value={formData.id_person}
-                      onChange={handleChange}
-                      placeholder="ID Person"
+                      value={id_person}
+                      disabled
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
-                      required
                     />
                   </div>
 

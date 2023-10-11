@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
-import jwt_decode from 'jwt-decode';
 import '../../styles/style.css';
 
 const PortofolioCreate = () => {
@@ -16,15 +15,8 @@ const PortofolioCreate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // getIdUser();
     setIdPerson(localStorage.getItem('id'))
   }, [])
-
-  const getIdUser = () => {
-    const token = localStorage.getItem("accessToken");
-    const decoded = jwt_decode(token);
-    setIdPerson(decoded.id_akun);
-  }
 
   const createPortoHandler = async (e) => {
     e.preventDefault();

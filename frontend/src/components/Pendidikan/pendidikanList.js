@@ -27,7 +27,7 @@ const PendidikanList = () => {
   };
 
   const redirectToEditPendidikan = (id_pendidikan) => {
-    navigate(`/pendidikan/${id_person}/${id_pendidikan}`);
+    navigate(`/pendidikan/${id_person}/edit/${id_pendidikan}`);
   };
 
   const redirectToAddPendidikan = () => {
