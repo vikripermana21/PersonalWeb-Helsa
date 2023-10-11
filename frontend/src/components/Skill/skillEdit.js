@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
+import '../../styles/style.css';
 
 const SkillEdit = () => {
   const [nama_skill, setNamaSkill] = useState("");
@@ -65,7 +66,7 @@ const SkillEdit = () => {
             <div className="flex justify-center items-center p-2 mt-5">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
                 <form onSubmit={skillEditHandler}>
-                  <div className="mb-4 flex items-center">
+                  <div className="mb-4 flex items-center hide-element">
                     <label className="w-1/3 mr-2">
                       <span className="label-text">Id Person</span>
                       <span className="text-red-500">*</span>

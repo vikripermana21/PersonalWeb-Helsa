@@ -32,7 +32,9 @@ const Sidebar = () => {
 
   return (
     <aside className="w-64 bg-blue-500 h-screen text-white p-4 flex flex-col">
-      <div className="mb-8 text-2xl font-semibold">CV Maker</div>
+      <Link to={`/dashboard`}>
+        <div className="mb-8 text-2xl font-semibold">CV Maker</div>
+      </Link>
       <ul className="space-y-2 flex-1">
         <li>
           <Link to={`/datadiri/${id}`} className="flex items-center p-2 space-x-2 rounded-md hover:bg-blue-400" style={{ width: '100%' }}>
