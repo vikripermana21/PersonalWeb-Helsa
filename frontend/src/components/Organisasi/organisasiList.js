@@ -3,11 +3,6 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import { FaBars } from 'react-icons/fa';
-import Sidebar from "../Navigation/sidebar";
 
 const OrganisasiList = () => {
   const { id_person } = useParams();

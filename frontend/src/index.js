@@ -22,9 +22,6 @@ import PortofolioEdit from "./components/Portofolio/portofolioEdit";
 import SkillCreate from "./components/Skill/skillCreate";
 import SkillEdit from "./components/Skill/skillEdit";
 import SkillList from "./components/Skill/skillList";
-import OrganisasiCreate from "./components/Organisasi/organisasiCreate";
-import OrganisasiList from "./components/Organisasi/organisasiList";
-import OrganisasiEdit from "./components/Organisasi/organisasiEdit";
 import DataDiriEdit from "./components/DataDiri/dataDiriEdit";
 axios.defaults.withCredentials = true;
 

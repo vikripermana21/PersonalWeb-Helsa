@@ -7,15 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { FaBars } from 'react-icons/fa';
-import Sidebar from "../Navigation/sidebar";
 
 const OrganisasiEdit = () => {
   const [nama_organisasi, setNamaOrganisasi] = useState("");
