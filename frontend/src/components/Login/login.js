@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { PiLockKeyLight } from "react-icons/pi";
+import jwt_decode from 'jwt-decode';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,13 +16,13 @@ const Login = () => {
   const loginHandler = async (e) => {
       e.preventDefault();
       try {
-          // console.log("tesss")
           const response = await axios.post('http://localhost:5000/login', {
               username, password
           });
 
-
-          // login(response.data);
+          const decoded = jwt_decode(response.data.access_token)
+          localStorage.setItem('id', decoded.id_akun)
+          
           navigate('/dashboard');
           console.log("berhasil login");
           console.log("Response :", response.data);

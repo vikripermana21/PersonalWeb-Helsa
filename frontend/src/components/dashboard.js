@@ -17,6 +17,7 @@ const Dashboard = () => {
           const response = await axios.get('http://localhost:5000/token');
           const decoded = jwt_decode(response.data.accessToken)
           setNama(decoded.nama)
+          localStorage.setItem('id', decoded.id_akun)
           console.log("Decoded response : ", decoded)
       } catch (error) {
           console.log(error.message);

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
+import jwt_decode from 'jwt-decode';
+import '../../styles/style.css';
 
 const PortofolioCreate = () => {
   const [id_person, setIdPerson] = useState("");
@@ -12,6 +14,17 @@ const PortofolioCreate = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // getIdUser();
+    setIdPerson(localStorage.getItem('id'))
+  }, [])
+
+  const getIdUser = () => {
+    const token = localStorage.getItem("accessToken");
+    const decoded = jwt_decode(token);
+    setIdPerson(decoded.id_akun);
+  }
 
   const createPortoHandler = async (e) => {
     e.preventDefault();
@@ -53,16 +66,16 @@ const PortofolioCreate = () => {
             <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
                 <form onSubmit={createPortoHandler}>
-                  <div className="mb-4 flex items-center">
+                  <div className="mb-4 flex items-center hide-element">
                     <label className="w-1/3 mr-2">
                       <span className="label-text">Id Person</span>
                       <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="number"
-                      placeholder="Id Person"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
-                      onChange={(e) => setIdPerson(e.target.value)}
+                      value={id_person}
+                      disabled
                     />
                   </div>
                   <div className="mb-4 flex items-center">
