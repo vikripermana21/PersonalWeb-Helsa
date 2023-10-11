@@ -81,6 +81,7 @@ const OrganisasiList = () => {
                       <th className="border px-4 py-2">Posisi</th>
                       <th className="border px-4 py-2">Tanggal Mulai Menjabat</th>
                       <th className="border px-4 py-2">Tanggal Akhir Menjabat</th>
+                      <th className="border px-4 py-2">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,18 +92,20 @@ const OrganisasiList = () => {
                         <td className="border px-4 py-2">{organisasi.tanggal_mulai_menjabat}</td>
                         <td className="border px-4 py-2">{organisasi.tanggal_akhir_menjabat}</td>
                         <td className="border px-4 py-2 text-center">
-                          <button
-                            className="btn btn-sm btn-primary ml-3"
-                            onClick={() => redirectToEditOrganisasi(organisasi.id_organisasi)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-sm btn-error ml-3"
-                            onClick={() => deleteOrganisasiHandler(organisasi.id_organisasi)}
-                          >
-                            Delete
-                          </button>
+                          <div className="flex">
+                            <button
+                              className="btn btn-sm btn-primary ml-3"
+                              onClick={() => redirectToEditOrganisasi(organisasi.id_organisasi)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn btn-sm btn-error ml-3"
+                              onClick={() => deleteOrganisasiHandler(organisasi.id_organisasi)}
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
