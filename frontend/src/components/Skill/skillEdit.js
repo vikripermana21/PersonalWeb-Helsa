@@ -45,7 +45,7 @@ const SkillEdit = () => {
 
   return (
     <div>
-      <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
@@ -56,7 +56,7 @@ const SkillEdit = () => {
           >
             <FaBars size={24} /> {/* Ikon hamburger */}
           </button>
-          <div className="bg-base-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-auto box-border p-4">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Edit Skill</b>
@@ -73,7 +73,7 @@ const SkillEdit = () => {
                     <input
                       type="number"
                       placeholder="Id Person"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={id_person}
                       disabled
                     />
@@ -86,7 +86,7 @@ const SkillEdit = () => {
                     <input
                       type="text"
                       placeholder="Nama Skill"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={nama_skill}
                       onChange={(e) => setNamaSkill(e.target.value)}
                     />
@@ -99,7 +99,7 @@ const SkillEdit = () => {
                     <input
                       type="text"
                       placeholder="Capability Percent"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={capability}
                       onChange={(e) => setCapability(e.target.value)}
                     />

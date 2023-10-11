@@ -7,6 +7,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { FaBars } from 'react-icons/fa';
+import Sidebar from "../Navigation/sidebar";
 
 const OrganisasiEdit = () => {
   const [nama_organisasi, setNamaOrganisasi] = useState("");
@@ -53,7 +62,7 @@ const OrganisasiEdit = () => {
 
   return (
     <div>
-      <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
@@ -64,7 +73,7 @@ const OrganisasiEdit = () => {
           >
             <FaBars size={24} /> {/* Ikon hamburger */}
           </button>
-          <div className="bg-base-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-auto box-border p-4">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Edit Organisasi</b>
@@ -81,7 +90,7 @@ const OrganisasiEdit = () => {
                     <input
                       type="number"
                       placeholder="Id Person"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={id_person}
                       disabled
                     />
@@ -94,7 +103,7 @@ const OrganisasiEdit = () => {
                     <input
                       type="text"
                       placeholder="Nama Organisasi"
-                      className="input input-bordered input-sm w-2/3"
+                      className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={nama_organisasi}
                       onChange={(e) => setNamaOrganisasi(e.target.value)}
                     />
@@ -107,7 +116,7 @@ const OrganisasiEdit = () => {
                     <input
                       type="text"
                       placeholder="Posisi"
-                      className="input input-bordered input-sm"
+                      className="bg-gray-300 input input-bordered input-sm"
                       style={{ width: "50%" }}
                       value={posisi}
                       onChange={(e) => setPosisi(e.target.value)}
@@ -124,7 +133,7 @@ const OrganisasiEdit = () => {
                       selected={tanggal_mulai_menjabat}
                       onChange={(date) => setTanggalMulai(date)}
                       dateFormat="dd-MM-yyyy" // Format tanggal yang Anda inginkan
-                      className="input input-bordered input-sm"
+                      className="bg-gray-300 input input-bordered input-sm"
                       style={{ width: "10%" }}
                       showYearDropdown // Mengaktifkan pilihan tahun
                       yearDropdownItemNumber={10} // Jumlah tahun yang akan ditampilkan dalam dropdown
@@ -148,7 +157,7 @@ const OrganisasiEdit = () => {
                       selected={tanggal_akhir_menjabat}
                       onChange={(date) => setTanggalAkhir(date)}
                       dateFormat="dd-MM-yyyy"
-                      className="input input-bordered input-sm"
+                      className="bg-gray-300 input input-bordered input-sm"
                       style={{ width: "50%" }}
                       showYearDropdown
                       yearDropdownItemNumber={10}

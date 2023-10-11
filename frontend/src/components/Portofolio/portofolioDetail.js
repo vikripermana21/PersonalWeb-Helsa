@@ -33,7 +33,7 @@ const PortofolioDetail = () => {
 
     return (
       <div>
-        <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+        <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
           {isSidebarVisible && <Sidebar />}
           {/* Main Content */}
           <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
@@ -44,7 +44,7 @@ const PortofolioDetail = () => {
             >
               <FaBars size={24} /> {/* Ikon hamburger */}
             </button>
-            <div className="bg-base-200 h-auto box-border p-4">
+            <div className="bg-gray-200 h-auto box-border p-4">
               <div className="flex justify-center items-center">
                 <h1>
                   <b>Detail Portofolio</b>
