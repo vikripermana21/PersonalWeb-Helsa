@@ -16,13 +16,13 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "username": "admin123",
-    "password": "admin321"
+    "username": "daffa123",
+    "password": "daffa321"
 }
 
 ###
 GET http://localhost:5000/personal
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoxLCJ1c2VybmFtZV9ha3VuIjoiYWRtaW4xMjMiLCJyb2xlX2FrdW4iOiJVc2VyIiwiaWF0IjoxNjk2Mjk2MjA1LCJleHAiOjE2OTYyOTYyMjB9.v1Gdgrcdq4jW-_JlG2b68MvDz15uQ1gs1Hsgpz98IRQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9ha3VuIjoyLCJ1c2VybmFtZV9ha3VuIjoiZGFmZmExMjMiLCJyb2xlX2FrdW4iOiJVc2VyIiwiaWF0IjoxNjk3MDUzNDIzLCJleHAiOjE2OTcwNTcwMjN9.Zor_xYT3wxqmTkgcWuxEiz0_zqtGxMCp7-aca2Tc9NE
 
 ### refresh token
 GET http://localhost:5000/token
@@ -59,7 +59,7 @@ Content-Type: application/json
 Authorization: Bearer <>
 
 {
-    "foto": "url/",
+    "foto": "url", //kemungkinan besar bakal error jadi harus coba lewat postman
     "nama": "Muhammad Daffa Raihandika",
     "tempat_lahir" : "Bandung",
     "tanggal_lahir" : "2003-05-13",
@@ -72,7 +72,10 @@ Authorization: Bearer <>
     "telp" : "081572548494",
     "email" : "helsa.alika.tif421@polban.ac.id",
     "status" : "Mahasiswa",
-    "id_akun": 1
+    "instagram" : "daffabarudakbandungwell",
+    "github" : "daaffaa",
+    "linkedin" : "daffaraihandika",
+    "id_akun": 2
 }
 
 ### Find All
@@ -80,7 +83,7 @@ GET http://localhost:5000/personal
 Authorization: Bearer 
 
 ### Find One
-GET http://localhost:5000/personal/1
+GET http://localhost:5000/personal/4
 Authorization: Bearer <>
 
 ### Update

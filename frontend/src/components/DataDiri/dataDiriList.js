@@ -1,7 +1,38 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DataDiriList = () => {
+  const [data_diri, setDataDiri] = useState([]);
+  const [msg, setMsg] = useState("");
+  
+
+  const navigate = useNavigate();
+  const baseUrl = 'http://localhost:5000/';
+
+  useEffect(() => {
+    getDataDiri();
+  }, [])
+
+  const token = localStorage.getItem('token');
+
+  const getDataDiri = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/personal", 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      console.log("Data : ", response.data)
+      setDataDiri(response.data)
+    } catch (error) {
+        setMsg(error.response.data.error);
+        console.log(error);
+    }
+  }
+
   return (
     <div>
       <div className="bg-base-200 h-auto box-border p-4">
@@ -12,91 +43,58 @@ const DataDiriList = () => {
         </div>
         <div className="flex justify-center items-center p-2 mt-5">
           <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
-            <table className="table-auto w-full">
-              <tbody>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Nama</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    Helsa Alika
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Tempat Lahir</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    Cimahi
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Tanggal Lahir</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    13 Mei 2003
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    Perempuan
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    160
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Berat Badan</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    45
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Alamat</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    Cimahi
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Agama</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    Islam
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Status</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    Mahasiswa
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Email</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    helsa@gmail.com
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Telepon</td>
-                  <td colSpan={2} className="border px-4 py-2">
-                    +6281572548494
-                  </td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4">Media Sosial</td>
-                  <td className="border px-4 py-2 w-1/5">Instagram</td>
-                  <td className="border px-4 py-2">helsalika13</td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4"></td>
-                  <td className="border px-4 py-2 w-1/5">LinkedIn</td>
-                  <td className="border px-4 py-2">-</td>
-                </tr>
-                <tr>
-                  <td className="border px-4 py-2 w-1/4"></td>
-                  <td className="border px-4 py-2 w-1/5">Github</td>
-                  <td className="border px-4 py-2">helsaalika</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th>
+                      <label>
+                        <input type="checkbox" className="checkbox" />
+                      </label>
+                    </th>
+                    <th>Foto Profil</th>
+                    <th>Nama</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data_diri.map((personal) => (
+                    <tr>
+                      <th>
+                        <label>
+                          <input type="checkbox" className="checkbox" />
+                        </label>
+                      </th>
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img src={`${baseUrl}${personal.foto}`}  alt="Avatar Tailwind CSS Component" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="font-bold">{personal.username}</div>
+                            <div className="text-sm opacity-50">{personal.nama}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        {personal.nama}
+                      </td>
+                      <td>
+                        {personal.tanggal_lahir}
+                      </td>
+                      <th>
+                        <button className="btn btn-ghost btn-xs">details</button>
+                      </th>
+                    </tr>
+                  ))}
+                </tbody>
+                
+              </table>
+            </div>
           </div>
         </div>
       </div>

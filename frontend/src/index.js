@@ -8,6 +8,8 @@ import Registrasi from "./components/Login/registrasi";
 import Dashboard from "./components/dashboard";
 import DataDiriCreate from "./components/DataDiri/dataDiriCreate";
 import DataDiriList from "./components/DataDiri/dataDiriList";
+import DataDiriDetails from "./components/DataDiri/dataDiriDetails";
+import DataDiriEdit from "./components/DataDiri/dataDiriEdit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
   {
     path: "/datadiri/create",
     element: <DataDiriCreate />,
+  },
+  {
+    path: "/datadiri/:id_akun",
+    element: <DataDiriDetails />,
+  },
+  {
+    path: "/datadiri/edit/:id_person",
+    element: <DataDiriEdit />,
   },
   {
     path: "/datadiri",

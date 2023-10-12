@@ -21,6 +21,9 @@ const Login = () => {
         password,
       });
 
+      const token = response.data.access_token;
+      localStorage.setItem('token', token); 
+
       // login(response.data);
       navigate("/dashboard");
       console.log("berhasil login");

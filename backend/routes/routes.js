@@ -5,7 +5,7 @@ import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshTokenControllers.js";
 import { createUser, login, logout } from "../controllers/AkunControllers.js";
 import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
-import { getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
+import { upload, getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
@@ -32,10 +32,10 @@ router.post('/login', login)
 router.delete('/logout', logout)
 
 //DATA DIRI
-router.post('/personal', createPersonal);
+router.post('/personal', upload.single('foto'), createPersonal);
 router.get('/personal', verifyToken ,getAllPersonal);
 router.get('/personal/:id_person', getPersonalById);
-router.patch("/personal/:id_person", updatePersonal);
+router.patch("/personal/:id_person", upload.single('foto'), updatePersonal);
 router.delete("/personal/:id_person", deletePersonal);
 
 //PORTOFOLIO

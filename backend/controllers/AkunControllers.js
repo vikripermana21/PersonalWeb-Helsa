@@ -70,7 +70,7 @@ export const login = async (req, res) => {
     });
 
     const accessToken = jwt.sign({id_akun, username_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '15s'
+      expiresIn: '3600s'
     });
 
     await Akun.update({refresh_token: refreshToken}, {
