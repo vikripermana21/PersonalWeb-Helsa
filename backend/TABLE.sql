@@ -30,6 +30,9 @@ CREATE TABLE data_diri (
     telp VARCHAR(15),
     email VARCHAR(100),
     status VARCHAR(20),
+    instagram VARCHAR(20),
+    linkedin VARCHAR(20),
+    github VARCHAR(20),
     id_akun INT
 );
 
