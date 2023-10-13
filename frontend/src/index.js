@@ -23,6 +23,7 @@ import SkillCreate from "./components/Skill/skillCreate";
 import SkillEdit from "./components/Skill/skillEdit";
 import SkillList from "./components/Skill/skillList";
 import DataDiriEdit from "./components/DataDiri/dataDiriEdit";
+import DataDiriDetails from "./components/DataDiri/dataDiriDetails";
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -48,7 +49,15 @@ const router = createBrowserRouter([
     element: <DataDiriCreate />,
   },
   {
-    path: "/datadiri/:id_person",
+    path: "/datadiri/:id_akun",
+    element: <DataDiriDetails />,
+  },
+  {
+    path: "/datadiri/edit/:id_person",
+    element: <DataDiriEdit />,
+  },
+  {
+    path: "/datadiri",
     element: <DataDiriList />,
   },
   {

@@ -67,6 +67,18 @@ const DataDiri = db.define('data_diri', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    instagram:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    linkedin:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    github:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     id_akun: { // Define the foreign key field
         type: DataTypes.INTEGER,
         references: {
