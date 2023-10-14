@@ -3,59 +3,48 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Sidebar from "./Navigation/sidebar";
 import { FaBars } from "react-icons/fa";
-import { Document, Page, pdfjs } from "react-pdf";
 import jsPDF from "jspdf";
+import 'jspdf-autotable';
 
 const Dashboard = () => {
   const [nama, setNama] = useState("");
   const [cvData, setCvData] = useState(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-  const [cvVisible, setCvVisible] = useState(false);
 
   useEffect(() => {
-    refreshToken();
+    fetchData();
   }, []);
 
-  const refreshToken = async () => {
+  const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:5000/token");
       const decoded = jwt_decode(response.data.accessToken);
       setNama(decoded.nama);
-      localStorage.setItem("id", decoded.id_akun);
 
       const id_person = decoded.id_akun;
 
       const personalResponse = await axios.get(
-        `http://localhost:5000/personal`
+        `http://localhost:5000/personal/${id_person}`
       );
-      const personalData = personalResponse.data;
-
       const educationResponse = await axios.get(
         `http://localhost:5000/pendidikan/${id_person}`
       );
-      const educationData = educationResponse.data;
-
       const organizationResponse = await axios.get(
         `http://localhost:5000/organisasi/${id_person}`
       );
-      const organizationData = organizationResponse.data;
-
       const skillResponse = await axios.get(
         `http://localhost:5000/skill/${id_person}`
       );
-      const skillData = skillResponse.data;
-
       const portfolioResponse = await axios.get(
         `http://localhost:5000/portofolio/${id_person}`
       );
-      const portfolioData = portfolioResponse.data;
 
       setCvData({
-        personal: personalData,
-        education: educationData,
-        organization: organizationData,
-        skills: skillData,
-        portfolio: portfolioData,
+        personal: personalResponse.data,
+        education: educationResponse.data,
+        organization: organizationResponse.data,
+        skills: skillResponse.data,
+        portfolio: portfolioResponse.data,
       });
     } catch (error) {
       console.log(error.message);
@@ -66,92 +55,93 @@ const Dashboard = () => {
     if (cvData) {
       const doc = new jsPDF();
   
-      // Tambahkan konten ke PDF
+      doc.setFontSize(14);
+      doc.text("Curiculum Vitae (CV)", 105, 15, null, null, "center");
+  
+      // Data Diri
       doc.setFontSize(16);
-      doc.text("Curriculum Vitae", 105, 15, null, null, "center");
-  
-      // Data diri
-      doc.setFontSize(14);
       doc.text("Data Diri", 20, 30);
-      doc.setFontSize(12);
-      doc.text(`Nama: ${cvData.personal.nama}`, 20, 40);
-      doc.text(`Alamat: ${cvData.personal.alamat}`, 20, 50);
-      doc.text(`Email: ${cvData.personal.email}`, 20, 60);
   
-      // Tambahkan data pendidikan
-      doc.setFontSize(14);
-      doc.text("Pendidikan", 20, 80);
+      const personalInfo = [
+        "Nama: " + cvData.personal.nama,
+        "Tempat Lahir: " + cvData.personal.tempat_lahir,
+        "Tanggal Lahir: " + cvData.personal.tanggal_lahir,
+        "Usia: " + cvData.personal.usia,
+        "Jenis Kelamin: " + cvData.personal.jenis_kelamin,
+        "Tinggi Badan: " + cvData.personal.tinggi_badan,
+        "Berat Badan: " + cvData.personal.berat_badan,
+        "Agama: " + cvData.personal.agama,
+        "Status: " + cvData.personal.status,
+        "Alamat: " + cvData.personal.alamat,
+        "Email: " + cvData.personal.email,
+        "Telepon: " + cvData.personal.telp,
+        "Instagram: " + cvData.personal.instagram,
+        "LinkedIn: " + cvData.personal.linkedin,
+        "Github: " + cvData.personal.github,
+      ];
+  
       doc.setFontSize(12);
-      let educationY = 90;
-      cvData.education.forEach((education) => {
-        doc.text(`Instansi: ${education.instansi_pendidikan}`, 20, educationY);
-        doc.text(`Jurusan: ${education.jurusan}`, 20, educationY + 10);
-        educationY += 20;
+      doc.text(20, 40, personalInfo);
+  
+      let startY = 125;
+  
+      // Pendidikan
+      doc.setFontSize(16);
+      doc.text("Pendidikan", 20, startY);
+  
+      doc.autoTable({
+        head: [["Instansi", "Jurusan", "Mulai Ajaran", "Akhir Ajaran"]],
+        body: cvData.education.map((education) => [
+          education.instansi_pendidikan,
+          education.jurusan,
+          education.tahun_mulai_ajaran,
+          education.tahun_akhir_ajaran,
+        ]),
+        startY: startY + 5,
       });
   
-      // Tambahkan data organisasi
-      doc.setFontSize(14);
-      doc.text("Organisasi", 20, educationY + 20);
-      doc.setFontSize(12);
-      let organizationY = educationY + 30;
-      cvData.organization.forEach((organization) => {
-        doc.text(
-          `Nama Organisasi: ${organization.nama_organisasi}`,
-          20,
-          organizationY
-        );
-        doc.text(`Posisi: ${organization.posisi}`, 20, organizationY + 10);
-        doc.text(
-          `Tanggal Mulai Menjabat: ${organization.tanggal_mulai_menjabat}`,
-          20,
-          organizationY + 20
-        );
-        doc.text(
-          `Tanggal Akhir Menjabat: ${organization.tanggal_akhir_menjabat}`,
-          20,
-          organizationY + 30
-        );
-        organizationY += 40;
+      // Organisasi
+      startY = doc.autoTable.previous.finalY + 20;
+      doc.setFontSize(16);
+      doc.text("Organisasi", 20, startY);
+  
+      doc.autoTable({
+        head: [["Nama Organisasi", "Posisi", "Mulai Menjabat", "Akhir Menjabat"]],
+        body: cvData.organization.map((organization) => [
+          organization.nama_organisasi,
+          organization.posisi,
+          organization.tanggal_mulai_menjabat,
+          organization.tanggal_akhir_menjabat,
+        ]),
+        startY: startY + 5,
       });
   
-      // Tambahkan data skill
-      doc.setFontSize(14);
-      doc.text("Skill", 20, organizationY + 20);
-      doc.setFontSize(12);
-      let skillY = organizationY + 30;
-      cvData.skills.forEach((skill) => {
-        doc.text(`Nama Skill: ${skill.nama_skill}`, 20, skillY);
-        doc.text(`Capability Skill: ${skill.capability}%`, 20, skillY + 10);
-        skillY += 20;
+      // Skill
+      startY = doc.autoTable.previous.finalY + 20;
+      doc.setFontSize(16);
+      doc.text("Keterampilan", 20, startY);
+  
+      doc.autoTable({
+        head: [["Nama Skill", "Capability"]],
+        body: cvData.skills.map((skill) => [skill.nama_skill, skill.capability + "%"]),
+        startY: startY + 5,
       });
   
-      // Tambahkan data portofolio
-      doc.setFontSize(14);
-      doc.text("Portofolio", 20, skillY + 20);
-      doc.setFontSize(12);
-      let portofolioY = skillY + 30;
-      cvData.portfolio.forEach((portofolio) => {
-        doc.text(
-          `Nama Portofolio: ${portofolio.nama_portofolio}`,
-          20,
-          portofolioY
-        );
-        doc.text(
-          `Deskripsi Portofolio: ${portofolio.deskripsi_portofolio}`,
-          20,
-          portofolioY + 10
-        );
-        portofolioY += 20;
+      // Portofolio
+      startY = doc.autoTable.previous.finalY + 20;
+      doc.setFontSize(16);
+      doc.text("Portofolio", 20, startY);
+  
+      doc.autoTable({
+        head: [["Nama Portofolio", "Deskripsi"]],
+        body: cvData.portfolio.map((portfolio) => [portfolio.nama_portofolio, portfolio.deskripsi_portofolio]),
+        startY: startY + 5,
       });
   
-      // Simpan file PDF
       const pdfDataUri = doc.output("datauristring");
   
-      // Buka PDF di tab baru dengan iframe
-      const newWindow = window.open();
-      newWindow.document.write(
-        '<iframe src="data:application/pdf;base64,' + btoa(pdfDataUri) + '"></iframe>'
-      );
+      const newTab = window.open();
+      newTab.document.write('<iframe width="100%" height="100%" src="' + pdfDataUri + '"></iframe');
     }
   };  
 
@@ -169,17 +159,12 @@ const Dashboard = () => {
           <div className="bg-white p-4 rounded shadow-md">
             <h1 className="text-3xl font-semibold mb-4">Dashboard</h1>
             <p className="text-lg">Hello, {nama}</p>
-            {cvData && cvVisible ? (
-              <Document file={cvData}>
-                <Page pageNumber={1} />
-              </Document>
-            ) : (
-              <button
-                onClick={generatePDF}
-                className="btn btn-success" // Use the desired styling class
-              >
-                Generate CV
+            {cvData ? (
+              <button onClick={generatePDF} className="btn btn-success">
+                Generate CV (PDF)
               </button>
+            ) : (
+              <p>Loading CV data...</p>
             )}
           </div>
         </main>

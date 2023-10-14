@@ -77,6 +77,8 @@ const PendidikanList = () => {
                     <tr>
                       <th className="border px-4 py-2">Instansi Pendidikan</th>
                       <th className="border px-4 py-2">Jurusan</th>
+                      <th className="border px-4 py-2">Tahun Mulai Ajaran</th>
+                      <th className="border px-4 py-2">Tahun Akhir Ajaran</th>
                       <th className="border px-4 py-2">Aksi</th>
                     </tr>
                   </thead>
@@ -85,6 +87,8 @@ const PendidikanList = () => {
                       <tr key={pendidikanItem.id_pendidikan}>
                         <td className="border px-4 py-2">{pendidikanItem.instansi_pendidikan}</td>
                         <td className="border px-4 py-2">{pendidikanItem.jurusan}</td>
+                        <td className="border px-4 py-2">{pendidikanItem.tahun_mulai_ajaran}</td>
+                        <td className="border px-4 py-2">{pendidikanItem.tahun_akhir_ajaran}</td>
                         <td className="border px-4 py-2 text-center">
                           <button
                             className="btn btn-sm btn-primary ml-3"
