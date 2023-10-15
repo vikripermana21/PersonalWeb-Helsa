@@ -24,37 +24,49 @@ const DataDiriDetails = () => {
     const [github, setGithub] = useState("");
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
-    const navigate = useNavigate();
-    const baseUrl = 'http://localhost:5000/';
+  const navigate = useNavigate();
+  const baseUrl = "http://localhost:5000/";
 
-    useEffect(() => {
-        getDetailPerson();
-    }, [])
+  useEffect(() => {
+    getDetailPerson();
+  }, []);
 
-    const getDetailPerson = async () => {
-        try {
-          const response = await axios.get(`http://localhost:5000/personal/${id_akun}`)
-          console.log("Data : ", response.data)
-          setFoto(response.data.foto)
-          setNama(response.data.nama)
-          setTempatLahir(response.data.tempat_lahir)
-          setTanggalLahir(response.data.tanggal_lahir)
-          setUsia(response.data.usia)
-          setTinggiBadan(response.data.tinggi_badan)
-          setBeratBadan(response.data.berat_badan)
-          setAlamat(response.data.alamat)
-          setAgama(response.data.agama)
-          setJenisKelamin(response.data.jenis_kelamin)
-          setTelp(response.data.telp)
-          setEmail(response.data.email)
-          setStatus(response.data.status)
-          setInstagram(response.data.instagram)
-          setLinkedin(response.data.linkedin)
-          setGithub(response.data.github)
-        } catch (error) {
-          console.log(error.message)
-        }
-      }
+  const getDetailPerson = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/personal/${id_akun}`
+      );
+      console.log("Data : ", response.data);
+      setFoto(response.data.foto);
+      setNama(response.data.nama);
+      setTempatLahir(response.data.tempat_lahir);
+      setTanggalLahir(response.data.tanggal_lahir);
+      setUsia(response.data.usia);
+      setTinggiBadan(response.data.tinggi_badan);
+      setBeratBadan(response.data.berat_badan);
+      setAlamat(response.data.alamat);
+      setAgama(response.data.agama);
+      setJenisKelamin(response.data.jenis_kelamin);
+      setTelp(response.data.telp);
+      setEmail(response.data.email);
+      setStatus(response.data.status);
+      setInstagram(response.data.instagram);
+      setLinkedin(response.data.linkedin);
+      setGithub(response.data.github);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // Function to navigate to the edit page
+  const redirectToEditDataDiri = () => {
+    navigate(`/datadiri/edit/${id_akun}`);
+  };
+
+  // Function to navigate to the create page
+  const redirectToAddDataDiri = () => {
+    navigate("/datadiri/create");
+  };
 
     return (
       <div>
@@ -158,4 +170,4 @@ const DataDiriDetails = () => {
     )
 }
 
-export default DataDiriDetails
+export default DataDiriDetails;

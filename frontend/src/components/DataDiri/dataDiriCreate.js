@@ -64,7 +64,7 @@ const DataDiriCreate = () => {
   }
 
   return (
-    <div className="bg-base-200 h-auto box-border p-4">
+    <div className="bg-gray-200 h-auto box-border p-4">
       <div className="flex justify-center items-center mt-5">
         <h1>
           <b>Data Diri</b>
@@ -80,7 +80,7 @@ const DataDiriCreate = () => {
               </label>
               <input
                 type="file"
-                className="input input-bordered input-md w-2/3"
+                className="bg-gray-300 input input-bordered input-md w-2/3"
                 onChange={(e) => setFoto(e.target.files[0])}
               />
             </div>
@@ -111,7 +111,7 @@ const DataDiriCreate = () => {
               <input
                 type="text"
                 placeholder="Nama Lengkap"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 onChange={(e) => setNama(e.target.value)}
               />
             </div>
@@ -123,7 +123,7 @@ const DataDiriCreate = () => {
               <input
                 type="text"
                 placeholder="Tempat Lahir"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 onChange={(e) => setTempatLahir(e.target.value)}
               />
             </div>
@@ -135,7 +135,7 @@ const DataDiriCreate = () => {
                 </label>
                 <input
                   type="date"
-                  className="input input-bordered input-sm w-1/2"
+                  className="bg-gray-300 input input-bordered input-sm w-1/2"
                   onChange={(e) => setTanggalLahir(e.target.value)}
                 />
               </div>
@@ -148,7 +148,7 @@ const DataDiriCreate = () => {
               <input
                 type="number"
                 placeholder="Usia"
-                className="input input-bordered input-sm w-1/12"
+                className="bg-gray-300 input input-bordered input-sm w-1/12"
                 onChange={(e) => setUsia(e.target.value)}
               />
             </div>
@@ -191,7 +191,7 @@ const DataDiriCreate = () => {
                 <input
                   type="number"
                   placeholder="0"
-                  className="input input-bordered input-sm w-1/12"
+                  className="bg-gray-300 input input-bordered input-sm w-1/12"
                   onChange={(e) => setTinggiBadan(e.target.value)}
                 />
               </div>
@@ -205,7 +205,7 @@ const DataDiriCreate = () => {
                 <input
                   type="number"
                   placeholder="0"
-                  className="input input-bordered input-sm w-1/12"
+                  className="bg-gray-300 input input-bordered input-sm w-1/12"
                   onChange={(e) => setBeratBadan(e.target.value)}
                 />
               </div>
@@ -218,7 +218,7 @@ const DataDiriCreate = () => {
                 </label>
                 <textarea
                   placeholder="Alamat lengkap..."
-                  className="input input-bordered input-sm w-1/2 h-20"
+                  className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                   onChange={(e) => setAlamat(e.target.value)}
                 />
               </div>
@@ -229,7 +229,7 @@ const DataDiriCreate = () => {
                   <span className="label-text">Agama</span>
                 </label>
                 <select
-                  className="input input-sm input-bordered w-1/2"
+                  className="bg-gray-300 input input-sm input-bordered w-1/2"
                   size="1"
                   onChange={(e) => setAgama(e.target.value)}
                 >
@@ -251,7 +251,7 @@ const DataDiriCreate = () => {
               <input
                 type="text"
                 placeholder="Contoh : Mahasiswa"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 onChange={(e) => setStatus(e.target.value)}
               />
             </div>
@@ -264,7 +264,7 @@ const DataDiriCreate = () => {
                 <input
                   type="email"
                   placeholder="email@contoh.com"
-                  className="input input-bordered input-sm w-2/3"
+                  className="bg-gray-300 input input-bordered input-sm w-2/3"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -278,7 +278,7 @@ const DataDiriCreate = () => {
                 <input
                   type="tel"
                   placeholder="+62..."
-                  className="input input-bordered input-sm w-2/3"
+                  className="bg-gray-300 input input-bordered input-sm w-2/3"
                   onChange={(e) => setTelp(e.target.value)}
                 />
               </div>
@@ -296,7 +296,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                       onChange={(e) => setInstagram(e.target.value)}
                     />
                   </div>
@@ -307,7 +307,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                       onChange={(e) => setLinkedin(e.target.value)}
                     />
                   </div>
@@ -318,7 +318,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                       onChange={(e) => setGithub(e.target.value)}
                     />
                   </div>
