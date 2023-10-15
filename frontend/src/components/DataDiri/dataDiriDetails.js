@@ -111,6 +111,18 @@ const DataDiriDetails = () => {
                       </td>
                     </tr>
                     <tr>
+                      <td className="border px-4 py-2 w-1/4">Tanggal Lahir</td>
+                      <td colSpan={2} className="border px-4 py-2">
+                        {tanggal_lahir}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border px-4 py-2 w-1/4">Usia</td>
+                      <td colSpan={2} className="border px-4 py-2">
+                        {usia}
+                      </td>
+                    </tr>
+                    <tr>
                       <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
                       <td colSpan={4} className="border px-4 py-2">
                         {tinggi_badan}
@@ -132,6 +144,12 @@ const DataDiriDetails = () => {
                       <td className="border px-4 py-2 w-1/4">Agama</td>
                       <td colSpan={7} className="border px-4 py-2">
                         {agama}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
+                      <td colSpan={7} className="border px-4 py-2">
+                        {jenis_kelamin}
                       </td>
                     </tr>
                     <tr>

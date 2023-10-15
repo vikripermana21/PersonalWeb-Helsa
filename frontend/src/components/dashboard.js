@@ -98,10 +98,10 @@ const Dashboard = () => {
           education.tahun_akhir_ajaran,
         ]),
         startY: startY + 5,
-        theme: 'grid', // Use 'grid' theme for borders
+        theme: 'grid',
         styles: {
-          lineWidth: 0.1, // Border width
-          lineColor: [0, 0, 0], // Black color
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0],
         },
       });
   
@@ -119,10 +119,10 @@ const Dashboard = () => {
           organization.tanggal_akhir_menjabat,
         ]),
         startY: startY + 5,
-        theme: 'grid', // Use 'grid' theme for borders
+        theme: 'grid',
         styles: {
-          lineWidth: 0.1, // Border width
-          lineColor: [0, 0, 0], // Black color
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0],
         },
       });
   
@@ -135,10 +135,10 @@ const Dashboard = () => {
         head: [["Nama Skill", "Capability"]],
         body: cvData.skills.map((skill) => [skill.nama_skill, skill.capability + "%"]),
         startY: startY + 5,
-        theme: 'grid', // Use 'grid' theme for borders
+        theme: 'grid',
         styles: {
-          lineWidth: 0.1, // Border width
-          lineColor: [0, 0, 0], // Black color
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0],
         },
       });
   
@@ -151,10 +151,10 @@ const Dashboard = () => {
         head: [["Nama Portofolio", "Deskripsi"]],
         body: cvData.portfolio.map((portfolio) => [portfolio.nama_portofolio, portfolio.deskripsi_portofolio]),
         startY: startY + 5,
-        theme: 'grid', // Use 'grid' theme for borders
+        theme: 'grid',
         styles: {
-          lineWidth: 0.1, // Border width
-          lineColor: [0, 0, 0], // Black color
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0],
         },
       });
   
