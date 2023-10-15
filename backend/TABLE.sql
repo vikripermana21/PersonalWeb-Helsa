@@ -30,6 +30,9 @@ CREATE TABLE data_diri (
     telp VARCHAR(15),
     email VARCHAR(100),
     status VARCHAR(20),
+    instagram VARCHAR(20),
+    linkedin VARCHAR(20),
+    github VARCHAR(20),
     id_akun INT
 );
 
@@ -84,6 +87,9 @@ ALTER TABLE akun DROP CONSTRAINT IF EXISTS akun_id_person_fk;
 
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
+
+DROP TYPE IF EXISTS "public"."enum_akun_role";
+
 
 
 -- Drop database

@@ -22,10 +22,11 @@ export const refreshToken = async(req, res) => {
             if(err)return res.sendStatus(403);
 
             const id_akun = user[0].id_akun;
+            const nama = user[0].nama;
             const username_akun = user[0].username;
             const role_akun = user[0].role;
 
-            const accessToken = jwt.sign({id_akun, username_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
+            const accessToken = jwt.sign({id_akun, nama, username_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
                 expiresIn: '15s'
             });
 

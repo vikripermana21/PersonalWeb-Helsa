@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { PiLockKeyLight } from "react-icons/pi";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { useAuth } from '../AuthContext';
+import { AiOutlineUser } from "react-icons/ai";
+import { PiLockKeyLight } from "react-icons/pi";
+import jwt_decode from 'jwt-decode';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -14,29 +14,27 @@ const Login = () => {
   const navigate = useNavigate();
 
   const loginHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:5000/login", {
-        username,
-        password,
-      });
+      e.preventDefault();
+      try {
+          const response = await axios.post('http://localhost:5000/login', {
+              username, password
+          });
 
-      const token = response.data.access_token;
-      localStorage.setItem('token', token); 
-
-      // login(response.data);
-      navigate("/dashboard");
-      console.log("berhasil login");
-      console.log("Response :", response.data);
-    } catch (error) {
-      setMsg(error.response.data.error);
-      console.log(error);
-    }
-  };
+          const decoded = jwt_decode(response.data.access_token)
+          localStorage.setItem('id', decoded.id_akun)
+          
+          navigate('/dashboard');
+          console.log("berhasil login");
+          console.log("Response :", response.data);
+          
+      } catch (error) {
+          setMsg(error.response.data.error);
+      }
+  }
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="bg-gray-200 flex justify-center items-center h-screen">
+      <div className="bg-white rounded-lg w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">Login</h2>
           <form onSubmit={loginHandler}>
@@ -45,7 +43,7 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Username"
-                className="input input-ghost w-full max-w-xs"
+                className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
@@ -54,19 +52,17 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Password"
-                className="input input-ghost w-full max-w-xs"
+                className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <p>Please fill in the data correctly</p>
+            <p>{msg}</p>
             <div className="card-actions justify-end">
               <button
-                type="submit"
                 className="btn btn-outline btn-success btn-sm"
               >
                 Login
               </button>
-              <p>{msg}</p>
             </div>
           </form>
         </div>

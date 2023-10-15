@@ -1,46 +1,47 @@
-import React from "react";
+import React, {useState, useEffect} from 'react'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import jwt_decode from 'jwt-decode';
+import Sidebar from './Navigation/sidebar';
+import { FaBars } from 'react-icons/fa';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const Logout = async () => {
-    try {
-      await axios.delete("http://localhost:5000/logout");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [nama, setNama] = useState("");
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+
+  useEffect(() => {
+      refreshToken();
+  }, [])
+
+  const refreshToken = async() => {
+      try {
+          const response = await axios.get('http://localhost:5000/token');
+          const decoded = jwt_decode(response.data.accessToken)
+          setNama(decoded.nama)
+          localStorage.setItem('id', decoded.id_akun)
+          console.log("Decoded response : ", decoded)
+      } catch (error) {
+          console.log(error.message);
+      }
+  }
 
   return (
     <div>
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
-        </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2 bg-base-100">
-                  <li>
-                    <a>Link 1</a>
-                  </li>
-                  <li>
-                    <a>Link 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a href="#" onClick={Logout}>
-                Logout
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+        {isSidebarVisible && <Sidebar />}
+        {/* Main Content */}
+        <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+          {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
+          <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+          >
+            <FaBars size={24} /> {/* Ikon hamburger */}
+          </button>
+          <div className="bg-white p-4 rounded shadow-md">
+            <h1 className="text-3xl font-semibold mb-4">Dashboard</h1>
+            <p className="text-lg">Hallooo {nama}</p>
+          </div>
+        </main>
       </div>
     </div>
   );
