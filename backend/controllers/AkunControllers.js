@@ -62,14 +62,15 @@ export const login = async (req, res) => {
     }
 
     const id_akun = akun.id_akun;
+    const nama = akun.nama;
     const username_akun = akun.username;
     const role_akun = akun.role;
 
-    const refreshToken = jwt.sign({id_akun, username_akun, role_akun}, process.env.REFRESH_TOKEN_SECRET, {
+    const refreshToken = jwt.sign({id_akun, nama, username_akun, role_akun}, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: '1d'
     });
 
-    const accessToken = jwt.sign({id_akun, username_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
+    const accessToken = jwt.sign({id_akun, nama, username_akun, role_akun}, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '15s'
     });
 

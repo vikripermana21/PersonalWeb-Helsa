@@ -1,4 +1,3 @@
-
 import db from "../config/database.js";
 import { DataTypes } from 'sequelize';
 import DataDiri from "./DataDiriModels.js";
