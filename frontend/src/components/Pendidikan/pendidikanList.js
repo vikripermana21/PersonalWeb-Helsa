@@ -17,7 +17,9 @@ const PendidikanList = () => {
 
   const getPendidikan = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/pendidikan/${id_person}`);
+      const response = await axios.get(
+        `http://localhost:5000/pendidikan/${id_person}`
+      );
       console.log("Berhasil ambil data pendidikan dari id_person =", id_person);
       console.log("Data:", response.data);
       setPendidikan(response.data);
@@ -31,11 +33,13 @@ const PendidikanList = () => {
   };
 
   const redirectToAddPendidikan = () => {
-    navigate('/pendidikan/create');
+    navigate("/pendidikan/create");
   };
 
   const deletePendidikanHandler = async (id_pendidikan) => {
-    const confirmDelete = window.confirm("Apakah Anda yakin ingin menghapus data ini?");
+    const confirmDelete = window.confirm(
+      "Apakah Anda yakin ingin menghapus data ini?"
+    );
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:5000/pendidikan/${id_pendidikan}`);
@@ -68,7 +72,10 @@ const PendidikanList = () => {
             <div className="flex justify-center items-center p-2 mt-5">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
-                  <button onClick={redirectToAddPendidikan} className="btn btn-success">
+                  <button
+                    onClick={redirectToAddPendidikan}
+                    className="btn btn-success"
+                  >
                     Tambah Pendidikan
                   </button>
                 </div>
@@ -85,20 +92,36 @@ const PendidikanList = () => {
                   <tbody>
                     {pendidikan.map((pendidikanItem) => (
                       <tr key={pendidikanItem.id_pendidikan}>
-                        <td className="border px-4 py-2">{pendidikanItem.instansi_pendidikan}</td>
-                        <td className="border px-4 py-2">{pendidikanItem.jurusan}</td>
-                        <td className="border px-4 py-2">{pendidikanItem.tahun_mulai_ajaran}</td>
-                        <td className="border px-4 py-2">{pendidikanItem.tahun_akhir_ajaran}</td>
+                        <td className="border px-4 py-2">
+                          {pendidikanItem.instansi_pendidikan}
+                        </td>
+                        <td className="border px-4 py-2">
+                          {pendidikanItem.jurusan}
+                        </td>
+                        <td className="border px-4 py-2">
+                          {pendidikanItem.tahun_mulai_ajaran.substring(0, 4)}
+                        </td>
+                        <td className="border px-4 py-2">
+                          {pendidikanItem.tahun_akhir_ajaran.substring(0, 4)}
+                        </td>
                         <td className="border px-4 py-2 text-center">
                           <button
                             className="btn btn-sm btn-primary ml-3"
-                            onClick={() => redirectToEditPendidikan(pendidikanItem.id_pendidikan)}
+                            onClick={() =>
+                              redirectToEditPendidikan(
+                                pendidikanItem.id_pendidikan
+                              )
+                            }
                           >
                             Edit
                           </button>
                           <button
                             className="btn btn-sm btn-error ml-3"
-                            onClick={() => deletePendidikanHandler(pendidikanItem.id_pendidikan)}
+                            onClick={() =>
+                              deletePendidikanHandler(
+                                pendidikanItem.id_pendidikan
+                              )
+                            }
                           >
                             Delete
                           </button>

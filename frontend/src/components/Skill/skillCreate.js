@@ -19,6 +19,12 @@ const SkillCreate = () => {
 
   const createSkillHandler = async (e) => {
     e.preventDefault();
+
+    if (isNaN(capability) || capability < 0 || capability > 100) {
+      console.log("Capability yang diinputkan tidak sesuai.");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:5000/skill", {
         id_person,
