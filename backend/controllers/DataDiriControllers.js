@@ -64,7 +64,7 @@ export const getPersonalById = async (req, res) => {
   const { id_person } = req.params;
   try {
     const response = await DataDiri.findOne({
-      where: { id_person: id_person },
+      where: { id_akun: id_person },
       include: [ Porto, Organisasi, Pendidikan, Skill],
     });
 
@@ -99,14 +99,14 @@ export const updatePersonal = async (req, res) => {
     const [updated] = await DataDiri.update(
       updateData,
       {
-        where: { id_person: id_person },
+        where: { id_akun: id_person },
       }
     );
 
 
     if (updated) {
       const updatedPersonal = await DataDiri.findOne({
-        where: { id_person: id_person },
+        where: { id_akun: id_person },
         include: [Porto, Organisasi, Pendidikan, Skill],
       });
       return res.status(200).json({ message: 'Data diri updated', data: updatedPersonal });

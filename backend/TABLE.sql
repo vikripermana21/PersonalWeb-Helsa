@@ -106,4 +106,4 @@ DROP TABLE IF EXISTS organisasi;
 DROP TABLE IF EXISTS akun;
 DROP TABLE IF EXISTS admin;
 
-DELETE FROM personal WHERE id_person=1;
+DELETE FROM akun WHERE id_akun=3;

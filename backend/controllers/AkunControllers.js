@@ -9,7 +9,7 @@ export const createUser = async (req, res) => {
     try {
       const { nama, username, password, confPassword, role } = req.body;
   
-      if(password !== confPassword) return res.status(403).json({msg: "Password tidak sesuai."});
+      if(password !== confPassword) return res.status(400).json({msg: "Password tidak sesuai."});
 
       // Cek apakah admin dengan username yang sama sudah ada
       const existingUser = await Akun.findOne({
@@ -18,7 +18,7 @@ export const createUser = async (req, res) => {
   
       // Jika admin dengan username yang sama sudah ada, kembalikan pesan kesalahan
       if (existingUser) {
-        return res.status(409).json({ error: 'Username sudah digunakan' });
+        return res.status(409).json({ msg: 'Username sudah digunakan' });
       }
 
       const salt = await bcrypt.genSalt();
@@ -52,13 +52,13 @@ export const login = async (req, res) => {
 
     // Jika akun tidak ditemukan, kembalikan pesan kesalahan
     if (!akun) {
-      return res.status(401).json({ error: 'Username atau password salah' });
+      return res.status(401).json({ msg: 'Username atau password salah' });
     }
 
     // Cek apakah password sesuai
     const match = await bcrypt.compare(password, akun.password);
     if (!match) {
-      return res.status(401).json({ error: 'Username atau password salah' });
+      return res.status(401).json({ msg: 'Username atau password salah' });
     }
 
     const id_akun = akun.id_akun;

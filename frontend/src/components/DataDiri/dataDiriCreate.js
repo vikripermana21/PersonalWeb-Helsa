@@ -56,7 +56,7 @@ const DataDiriCreate = () => {
       const response = await axios.post("http://localhost:5000/personal", formData);
       console.log(response.data);
       const id_person = response.data.data.id_person;
-      navigate(`/datadiri/${id_person}`)
+      navigate(`/datadiri/${id_akun}`)
     } catch (error) {
         setMsg(error.response.data.error);
         console.log(error);

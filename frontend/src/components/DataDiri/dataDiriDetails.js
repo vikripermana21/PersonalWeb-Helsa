@@ -23,6 +23,8 @@ const DataDiriDetails = () => {
     const [linkedin, setLinkedin] = useState("");
     const [github, setGithub] = useState("");
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+    const [notFound, setNotFound] = useState(false);
+    const [dataLoaded, setDataLoaded] = useState(false);
 
   const navigate = useNavigate();
   const baseUrl = "http://localhost:5000/";
@@ -53,8 +55,10 @@ const DataDiriDetails = () => {
       setInstagram(response.data.instagram);
       setLinkedin(response.data.linkedin);
       setGithub(response.data.github);
+      setDataLoaded(true);
     } catch (error) {
       console.log(error.message);
+      setNotFound(true);
     }
   };
 
@@ -88,80 +92,170 @@ const DataDiriDetails = () => {
               </h1>
             </div>
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
-                <table className="table-auto w-full">
-                  <tbody>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Nama</td>
-                      <td colSpan={5} className="border px-4 py-2">{nama}</td>
-                      <td rowSpan={6} className="border px-4 py-2">
-                        <div className="flex items-center justify-center h-full">
-                          <img src={`${baseUrl}${foto}`} alt="Foto profil" className="w-48 h-49 rounded-md item-center mask mask-squircle" />
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Tempat Lahir</td>
-                      <td colSpan={2} className="border px-4 py-2">{tempat_lahir}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Tanggal Lahir</td>
-                      <td colSpan={2} className="border px-4 py-2">{tanggal_lahir}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Usia</td>
-                      <td colSpan={2} className="border px-4 py-2">{usia}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
-                      <td colSpan={4} className="border px-4 py-2">{jenis_kelamin}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
-                      <td colSpan={4} className="border px-4 py-2">{tinggi_badan}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Berat Badan</td>
-                      <td colSpan={7} className="border px-4 py-2">{berat_badan}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Alamat</td>
-                      <td colSpan={7} className="border px-4 py-2">{alamat}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Agama</td>
-                      <td colSpan={7} className="border px-4 py-2">{agama}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Status</td>
-                      <td colSpan={7} className="border px-4 py-2">{status}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Email</td>
-                      <td colSpan={7} className="border px-4 py-2">{email}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/4">Telepon</td>
-                      <td colSpan={7} className="border px-4 py-2">{telp}</td>
-                    </tr>
-                    <tr>
-                      <td rowSpan={4} className="border px-4 py-2 w-1/4">Media Sosial</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/5">Instagram</td>
-                      <td colSpan={4} className="border px-4 py-2">{instagram}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/5">LinkedIn</td>
-                      <td colSpan={4} className="border px-4 py-2">{linkedin}</td>
-                    </tr>
-                    <tr>
-                      <td className="border px-4 py-2 w-1/5">Github</td>
-                      <td colSpan={4} className="border px-4 py-2">{github}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              {notFound ? (
+                <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+                    <div className="flex justify-end items-center p-2 mb-4">
+                      <button  className="btn btn-success" onClick={redirectToAddDataDiri}>
+                        Tambah Data Diri
+                      </button>
+                    </div>                  
+                  <table className="table-auto w-full">
+                    <tbody>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Nama</td>
+                        <td colSpan={5} className="border px-4 py-2"></td>
+                        <td rowSpan={6} className="border px-4 py-2">
+                          <div className="flex items-center justify-center h-full">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Tempat Lahir</td>
+                        <td colSpan={2} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Tanggal Lahir</td>
+                        <td colSpan={2} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Usia</td>
+                        <td colSpan={2} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
+                        <td colSpan={4} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
+                        <td colSpan={4} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Berat Badan</td>
+                        <td colSpan={7} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Alamat</td>
+                        <td colSpan={7} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Agama</td>
+                        <td colSpan={7} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Status</td>
+                        <td colSpan={7} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Email</td>
+                        <td colSpan={7} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/4">Telepon</td>
+                        <td colSpan={7} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td rowSpan={4} className="border px-4 py-2 w-1/4">Media Sosial</td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/5">Instagram</td>
+                        <td colSpan={4} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/5">LinkedIn</td>
+                        <td colSpan={4} className="border px-4 py-2"></td>
+                      </tr>
+                      <tr>
+                        <td className="border px-4 py-2 w-1/5">Github</td>
+                        <td colSpan={4} className="border px-4 py-2"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              ): (
+                  dataLoaded ? (
+                    <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+                      <table className="table-auto w-full">
+                        <tbody>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Nama</td>
+                            <td colSpan={5} className="border px-4 py-2">{nama}</td>
+                            <td rowSpan={6} className="border px-4 py-2">
+                              <div className="flex items-center justify-center h-full">
+                                <img src={`${baseUrl}${foto}`} alt="Foto profil" className="w-48 h-49 rounded-md item-center mask mask-squircle" />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Tempat Lahir</td>
+                            <td colSpan={2} className="border px-4 py-2">{tempat_lahir}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Tanggal Lahir</td>
+                            <td colSpan={2} className="border px-4 py-2">{tanggal_lahir}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Usia</td>
+                            <td colSpan={2} className="border px-4 py-2">{usia}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
+                            <td colSpan={4} className="border px-4 py-2">{jenis_kelamin}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
+                            <td colSpan={4} className="border px-4 py-2">{tinggi_badan}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Berat Badan</td>
+                            <td colSpan={7} className="border px-4 py-2">{berat_badan}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Alamat</td>
+                            <td colSpan={7} className="border px-4 py-2">{alamat}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Agama</td>
+                            <td colSpan={7} className="border px-4 py-2">{agama}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Status</td>
+                            <td colSpan={7} className="border px-4 py-2">{status}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Email</td>
+                            <td colSpan={7} className="border px-4 py-2">{email}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/4">Telepon</td>
+                            <td colSpan={7} className="border px-4 py-2">{telp}</td>
+                          </tr>
+                          <tr>
+                            <td rowSpan={4} className="border px-4 py-2 w-1/4">Media Sosial</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/5">Instagram</td>
+                            <td colSpan={4} className="border px-4 py-2">{instagram}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/5">LinkedIn</td>
+                            <td colSpan={4} className="border px-4 py-2">{linkedin}</td>
+                          </tr>
+                          <tr>
+                            <td className="border px-4 py-2 w-1/5">Github</td>
+                            <td colSpan={4} className="border px-4 py-2">{github}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div className="flex justify-start items-center p-2 mt-4">
+                        <button  className="btn btn-success" onClick={redirectToEditDataDiri}>
+                          Edit Data Diri
+                        </button>
+                      </div> 
+                    </div>
+                  ) : (
+                    <p>Loading...</p>
+                  )
+              )}
             </div>
           </div>
         </main>
