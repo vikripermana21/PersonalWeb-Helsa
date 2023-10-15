@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import '../../styles/style.css';
 
 const DataDiriCreate = () => {
   const [id_akun, setIdAkun] = useState("");
@@ -23,6 +24,10 @@ const DataDiriCreate = () => {
   const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIdAkun(localStorage.getItem('id'))
+  }, [])
 
   const createPersonal = async (e) => {
     e.preventDefault();
@@ -79,13 +84,13 @@ const DataDiriCreate = () => {
                 onChange={(e) => setFoto(e.target.files[0])}
               />
             </div>
-            <div className="mb-4 flex items-center">
+            <div className=" flex items-center">
               <label className="w-1/3 mr-2">
                 <span className="label-text"></span>
               </label>
               {foto && typeof foto === 'object' && <img src={URL.createObjectURL(foto)} alt="Preview" className="mask mask-squircle w-48 h-49" />}
             </div>
-            <div className="mb-4 flex items-center">
+            <div className=" flex items-center hide-element">
               <label className="w-1/3 mr-2">
                 <span className="label-text">Id Akun</span>
                 <span className="text-red-500">*</span>
@@ -94,7 +99,8 @@ const DataDiriCreate = () => {
                 type="number"
                 placeholder="id"
                 className="input input-bordered input-sm w-2/3"
-                onChange={(e) => setIdAkun(e.target.value)}
+                value={id_akun}
+                disabled
               />
             </div>
             <div className="mb-4 flex items-center">

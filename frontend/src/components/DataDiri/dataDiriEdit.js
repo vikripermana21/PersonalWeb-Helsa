@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import '../../styles/style.css';
 
 const DataDiriEdit = () => {
   const { id_person } = useParams();
@@ -122,7 +123,7 @@ const DataDiriEdit = () => {
               {foto && typeof foto === 'object' && <img src={URL.createObjectURL(foto)} alt="Preview" className="mask mask-squircle w-48 h-49" />}
               {foto && typeof foto === 'string' && <img src={`${baseUrl}${foto}`} alt="Existing" className="mask mask-squircle w-48 h-49" />}
             </div>
-            <div className="mb-4 flex items-center">
+            <div className="mb-4 flex items-center hide-element">
               <label className="w-1/3 mr-2">
                 <span className="label-text">Id Akun</span>
                 <span className="text-red-500">*</span>

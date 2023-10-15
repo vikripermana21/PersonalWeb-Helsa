@@ -9,7 +9,6 @@ const Sidebar = () => {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    // getIdUser();
     setId(localStorage.getItem('id'))
   }, [])
 
@@ -23,12 +22,6 @@ const Sidebar = () => {
       console.log(error.message);
     }
   }
-
-  // const getIdUser = () => {
-  //   const token = localStorage.getItem("accessToken");
-  //   const decoded = jwt_decode(token);
-  //   setId(decoded.id_akun);
-  // }
 
   return (
     <aside className="w-64 bg-blue-500 h-screen text-white p-4 flex flex-col">

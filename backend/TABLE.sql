@@ -57,7 +57,7 @@ CREATE TABLE pendidikan (
 CREATE TABLE portofolio (
     id_portofolio SERIAL PRIMARY KEY,
     id_person INT,
-    nama_portofolio VARCHAR(50) NOT NULL,
+    nama_portofolio VARCHAR(50),
     deskripsi_portofolio TEXT,
     file_portofolio TEXT
 );

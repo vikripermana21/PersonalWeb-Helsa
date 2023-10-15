@@ -89,6 +89,8 @@ export const updatePersonal = async (req, res) => {
 
     const foto = req.file ? req.file.path : null; //cek apakah file di upload
 
+    console.log("foto: " + foto);
+
     const updateData = { ...req.body };
     if (req.file) {
       updateData.foto = req.file.path;

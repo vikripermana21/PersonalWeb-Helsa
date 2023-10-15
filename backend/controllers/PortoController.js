@@ -1,10 +1,33 @@
 //PortoControllers.js
 
 import Portofolio from '../models/PortoModels.js';
+import multer from 'multer';
+
+//define multer for uploads any files
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+      cb(null, './uploads/portofolio');
+    },
+    filename: function(req, file, cb) {
+      cb(null, new Date().toISOString().replace(/:/g, '-').replace(/ /g, '-') + file.originalname);
+    }
+});
+
+//inisialisasi upload
+export const uploadPorto = multer({storage:storage});
 
 export const createPorto = async(req, res) =>{
     try {
-        const porto = await Portofolio.create(req.body);
+        const fotoPorto = req.file ? req.file.path : null;
+
+        const porto = await Portofolio.create({
+            nama_portofolio: req.body.nama_portofolio,
+            deskripsi_portofolio: req.body.deskripsi_portofolio,
+            file_portofolio: fotoPorto,
+            id_person: req.body.id_person
+        });
+        console.log("Received file: ", req.file);
+
         res.status(201).json({msg: "Portofolio Created", data: porto});
     } catch (error) {
         console.log(error.message);
@@ -44,8 +67,9 @@ export const getPortoById = async(req, res) =>{
 
 export const updatePorto = async (req,res) => {
     try {
+        const fotoPorto = req.file ? req.file.path : null;
         // console.log(req.body);
-        await Portofolio.update(req.body, {
+        await Portofolio.update({...req.body, file_portofolio:fotoPorto}, {
             where: {
                 id_portofolio: req.params.id_portofolio
             }
