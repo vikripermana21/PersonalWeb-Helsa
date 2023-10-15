@@ -94,7 +94,7 @@ const DataDiriEdit = () => {
     }
   }
   return <div> 
-    <div className="bg-base-200 h-auto box-border p-4">
+    <div className="bg-gray-200 h-auto box-border p-4">
       <div className="flex justify-center items-center mt-5">
         <h1>
           <b>Data Diri</b>
@@ -111,7 +111,7 @@ const DataDiriEdit = () => {
               <input
                 type="file"
                 placeholder="foto"
-                className="input input-bordered input-sm w-1/8"
+                className="bg-gray-300 input input-bordered input-sm w-1/8"
                 onChange={(e) => setFoto(e.target.files[0])}
               />
             </div>
@@ -130,7 +130,7 @@ const DataDiriEdit = () => {
               <input
                 type="number"
                 placeholder="id"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={id_person}
                 disabled
               />
@@ -143,7 +143,7 @@ const DataDiriEdit = () => {
               <input
                 type="text"
                 placeholder="Nama Lengkap"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={nama}
                 onChange={(e) => setNama(e.target.value)}
               />
@@ -156,7 +156,7 @@ const DataDiriEdit = () => {
               <input
                 type="text"
                 placeholder="Tempat Lahir"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={tempat_lahir}
                 onChange={(e) => setTempatLahir(e.target.value)}
               />
@@ -169,7 +169,7 @@ const DataDiriEdit = () => {
                 </label>
                 <input
                   type="date"
-                  className="input input-bordered input-sm w-1/2"
+                  className="bg-gray-300 input input-bordered input-sm w-1/2"
                   value={tanggal_lahir}
                   onChange={(e) => setTanggalLahir(e.target.value)}
                 />
@@ -183,7 +183,7 @@ const DataDiriEdit = () => {
               <input
                 type="number"
                 placeholder="Usia"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={usia}
                 onChange={(e) => setUsia(e.target.value)}
               />
@@ -229,7 +229,7 @@ const DataDiriEdit = () => {
                 <input
                   type="number"
                   placeholder="0"
-                  className="input input-bordered input-sm w-1/12"
+                  className="bg-gray-300 input input-bordered input-sm w-1/12"
                   value={tinggi_badan}
                   onChange={(e) => setTinggiBadan(e.target.value)}
                 />
@@ -244,7 +244,7 @@ const DataDiriEdit = () => {
                 <input
                   type="number"
                   placeholder="0"
-                  className="input input-bordered input-sm w-1/12"
+                  className="bg-gray-300 input input-bordered input-sm w-1/12"
                   value={berat_badan}
                   onChange={(e) => setBeratBadan(e.target.value)}
                 />
@@ -258,7 +258,7 @@ const DataDiriEdit = () => {
                 </label>
                 <textarea
                   placeholder="Alamat lengkap..."
-                  className="input input-bordered input-sm w-1/2 h-20"
+                  className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                   value={alamat}
                   onChange={(e) => setAlamat(e.target.value)}
                 />
@@ -270,7 +270,7 @@ const DataDiriEdit = () => {
                   <span className="label-text">Agama</span>
                 </label>
                 <select
-                  className="input input-sm input-bordered w-1/2"
+                  className="bg-gray-300 input input-sm input-bordered w-1/2"
                   size="1"
                   value={agama}
                   onChange={(e) => setAgama(e.target.value)}
@@ -293,7 +293,7 @@ const DataDiriEdit = () => {
               <input
                 type="text"
                 placeholder="Contoh : Mahasiswa"
-                className="input input-bordered input-sm w-2/3"
+                className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               />
@@ -307,7 +307,7 @@ const DataDiriEdit = () => {
                 <input
                   type="email"
                   placeholder="email@contoh.com"
-                  className="input input-bordered input-sm w-2/3"
+                  className="bg-gray-300 input input-bordered input-sm w-2/3"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -322,7 +322,7 @@ const DataDiriEdit = () => {
                 <input
                   type="tel"
                   placeholder="+62..."
-                  className="input input-bordered input-sm w-2/3"
+                  className="bg-gray-300 input input-bordered input-sm w-2/3"
                   value={telp}
                   onChange={(e) => setTelp(e.target.value)}
                 />
@@ -341,7 +341,7 @@ const DataDiriEdit = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                       value={instagram}
                       onChange={(e) => setInstagram(e.target.value)}
                     />
@@ -353,7 +353,7 @@ const DataDiriEdit = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                       value={linkedin}
                       onChange={(e) => setLinkedin(e.target.value)}
                     />
@@ -365,7 +365,7 @@ const DataDiriEdit = () => {
                     <input
                       type="text"
                       placeholder="username"
-                      className="input input-bordered input-sm w-full"
+                      className="bg-gray-300 input input-bordered input-sm w-full"
                       value={github}
                       onChange={(e) => setGithub(e.target.value)}
                     />

@@ -80,7 +80,7 @@ const Dashboard = () => {
         "Github: " + cvData.personal.github,
       ];
   
-      doc.setFontSize(12);
+      doc.setFontSize(11);
       doc.text(20, 40, personalInfo);
   
       let startY = 125;
@@ -98,6 +98,11 @@ const Dashboard = () => {
           education.tahun_akhir_ajaran,
         ]),
         startY: startY + 5,
+        theme: 'grid', // Use 'grid' theme for borders
+        styles: {
+          lineWidth: 0.1, // Border width
+          lineColor: [0, 0, 0], // Black color
+        },
       });
   
       // Organisasi
@@ -114,6 +119,11 @@ const Dashboard = () => {
           organization.tanggal_akhir_menjabat,
         ]),
         startY: startY + 5,
+        theme: 'grid', // Use 'grid' theme for borders
+        styles: {
+          lineWidth: 0.1, // Border width
+          lineColor: [0, 0, 0], // Black color
+        },
       });
   
       // Skill
@@ -125,6 +135,11 @@ const Dashboard = () => {
         head: [["Nama Skill", "Capability"]],
         body: cvData.skills.map((skill) => [skill.nama_skill, skill.capability + "%"]),
         startY: startY + 5,
+        theme: 'grid', // Use 'grid' theme for borders
+        styles: {
+          lineWidth: 0.1, // Border width
+          lineColor: [0, 0, 0], // Black color
+        },
       });
   
       // Portofolio
@@ -136,6 +151,11 @@ const Dashboard = () => {
         head: [["Nama Portofolio", "Deskripsi"]],
         body: cvData.portfolio.map((portfolio) => [portfolio.nama_portofolio, portfolio.deskripsi_portofolio]),
         startY: startY + 5,
+        theme: 'grid', // Use 'grid' theme for borders
+        styles: {
+          lineWidth: 0.1, // Border width
+          lineColor: [0, 0, 0], // Black color
+        },
       });
   
       const pdfDataUri = doc.output("datauristring");
