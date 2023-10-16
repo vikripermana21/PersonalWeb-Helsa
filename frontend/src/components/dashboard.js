@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import Sidebar from "./Navigation/sidebar";
 import { FaBars } from "react-icons/fa";
 import jsPDF from "jspdf";
-import 'jspdf-autotable';
+import "jspdf-autotable";
 
 const Dashboard = () => {
   const [nama, setNama] = useState("");
@@ -52,118 +52,103 @@ const Dashboard = () => {
   };
 
   const generatePDF = () => {
-    if (cvData) {
-      const doc = new jsPDF();
-  
-      doc.setFontSize(14);
-      doc.text("Curiculum Vitae (CV)", 105, 15, null, null, "center");
-  
-      // Data Diri
-      doc.setFontSize(16);
-      doc.text("Data Diri", 20, 30);
-  
-      const personalInfo = [
-        "Nama: " + cvData.personal.nama,
-        "Tempat Lahir: " + cvData.personal.tempat_lahir,
-        "Tanggal Lahir: " + cvData.personal.tanggal_lahir,
-        "Usia: " + cvData.personal.usia,
-        "Jenis Kelamin: " + cvData.personal.jenis_kelamin,
-        "Tinggi Badan: " + cvData.personal.tinggi_badan,
-        "Berat Badan: " + cvData.personal.berat_badan,
-        "Agama: " + cvData.personal.agama,
-        "Status: " + cvData.personal.status,
-        "Alamat: " + cvData.personal.alamat,
-        "Email: " + cvData.personal.email,
-        "Telepon: " + cvData.personal.telp,
-        "Instagram: " + cvData.personal.instagram,
-        "LinkedIn: " + cvData.personal.linkedin,
-        "Github: " + cvData.personal.github,
-      ];
-  
-      doc.setFontSize(11);
-      doc.text(20, 40, personalInfo);
-  
-      let startY = 125;
-  
-      // Pendidikan
-      doc.setFontSize(16);
-      doc.text("Pendidikan", 20, startY);
-  
-      doc.autoTable({
-        head: [["Instansi", "Jurusan", "Mulai Ajaran", "Akhir Ajaran"]],
-        body: cvData.education.map((education) => [
-          education.instansi_pendidikan,
-          education.jurusan,
-          education.tahun_mulai_ajaran,
-          education.tahun_akhir_ajaran,
-        ]),
-        startY: startY + 5,
-        theme: 'grid',
-        styles: {
-          lineWidth: 0.1,
-          lineColor: [0, 0, 0],
-        },
-      });
-  
-      // Organisasi
-      startY = doc.autoTable.previous.finalY + 20;
-      doc.setFontSize(16);
-      doc.text("Organisasi", 20, startY);
-  
-      doc.autoTable({
-        head: [["Nama Organisasi", "Posisi", "Mulai Menjabat", "Akhir Menjabat"]],
-        body: cvData.organization.map((organization) => [
-          organization.nama_organisasi,
-          organization.posisi,
-          organization.tanggal_mulai_menjabat,
-          organization.tanggal_akhir_menjabat,
-        ]),
-        startY: startY + 5,
-        theme: 'grid',
-        styles: {
-          lineWidth: 0.1,
-          lineColor: [0, 0, 0],
-        },
-      });
-  
-      // Skill
-      startY = doc.autoTable.previous.finalY + 20;
-      doc.setFontSize(16);
-      doc.text("Keterampilan", 20, startY);
-  
-      doc.autoTable({
-        head: [["Nama Skill", "Capability"]],
-        body: cvData.skills.map((skill) => [skill.nama_skill, skill.capability + "%"]),
-        startY: startY + 5,
-        theme: 'grid',
-        styles: {
-          lineWidth: 0.1,
-          lineColor: [0, 0, 0],
-        },
-      });
-  
-      // Portofolio
-      startY = doc.autoTable.previous.finalY + 20;
-      doc.setFontSize(16);
-      doc.text("Portofolio", 20, startY);
-  
-      doc.autoTable({
-        head: [["Nama Portofolio", "Deskripsi"]],
-        body: cvData.portfolio.map((portfolio) => [portfolio.nama_portofolio, portfolio.deskripsi_portofolio]),
-        startY: startY + 5,
-        theme: 'grid',
-        styles: {
-          lineWidth: 0.1,
-          lineColor: [0, 0, 0],
-        },
-      });
-  
-      const pdfDataUri = doc.output("datauristring");
-  
-      const newTab = window.open();
-      newTab.document.write('<iframe width="100%" height="100%" src="' + pdfDataUri + '"></iframe');
+    if (!cvData) {
+      alert("CV data is not available. Please wait for the data to load.");
+      return;
     }
-  };  
+  
+    const doc = new jsPDF();
+  
+    // Set document properties (optional)
+    doc.setProperties({
+      title: "My CV",
+      author: "Your Name",
+    });
+  
+    // Set the initial y-coordinate
+    let startY = 10;
+  
+    // Define a function to add data and table with a header
+    function addDataAndTable(title, data, header) {
+      if (startY + 20 > 280) {
+        doc.addPage();
+        startY = 10;
+      }
+      doc.text(title, 10, startY);
+      startY += 10;
+      doc.autoTable({
+        head: [header], // Header row
+        body: data,
+        startY,
+        theme: "striped",
+      });
+      startY = doc.autoTable.previous.finalY + 10;
+    }
+  
+    // Add personal data to the CV
+    const personalHeader = ["Attribute", "Value"];
+    const personalData = [
+      ["Name", cvData.personal.nama],
+      ["Date of Birth", cvData.personal.tanggal_lahir],
+      ["Place of Birth", cvData.personal.tempat_lahir],
+      ["Age", cvData.personal.usia],
+      ["Height", cvData.personal.tinggi_badan],
+      ["Weight", cvData.personal.berat_badan],
+      ["Address", cvData.personal.alamat],
+      ["Religion", cvData.personal.agama],
+      ["Gender", cvData.personal.jenis_kelamin],
+      ["Phone", cvData.personal.telp],
+      ["Email", cvData.personal.email],
+      ["Marital Status", cvData.personal.status],
+      ["Instagram", cvData.personal.instagram],
+      ["LinkedIn", cvData.personal.linkedin],
+      ["GitHub", cvData.personal.github],
+    ];
+    addDataAndTable("Personal Information", personalData, personalHeader);
+  
+    // Add education data to the CV
+    const educationHeader = ["Institution", "Major", "Start Year", "End Year"];
+    const educationData = cvData.education.map((edu) => [
+      edu.instansi_pendidikan,
+      edu.jurusan,
+      edu.tahun_mulai_ajaran,
+      edu.tahun_akhir_ajaran,
+    ]);
+    addDataAndTable("Education", educationData, educationHeader);
+  
+    // Add organization data to the CV
+    const organizationHeader = ["Organization", "Position", "Start Date", "End Date"];
+    const organizationData = cvData.organization.map((org) => [
+      org.nama_organisasi,
+      org.posisi,
+      org.tanggal_mulai_menjabat,
+      org.tanggal_akhir_menjabat,
+    ]);
+    addDataAndTable("Organizations", organizationData, organizationHeader);
+  
+    // Add skills data to the CV
+    const skillsHeader = ["Skill", "Capability"];
+    const skillsData = cvData.skills.map((skill) => [
+      skill.nama_skill,
+      skill.capability + "%",
+    ]);
+    addDataAndTable("Skills", skillsData, skillsHeader);
+  
+    // Add portfolio data to the CV
+    const portfolioHeader = ["Portfolio", "Description"];
+    const portfolioData = cvData.portfolio.map((portfolio) => [
+      portfolio.nama_portofolio,
+      portfolio.deskripsi_portofolio,
+    ]);
+    addDataAndTable("Portfolio", portfolioData, portfolioHeader);
+  
+    const pdfDataUri = doc.output("datauristring");
+  
+    const newTab = window.open();
+    newTab.document.write(
+      '<iframe width="100%" height="100%" src="' + pdfDataUri + '"></iframe'
+    );
+  };
 
   return (
     <div>
