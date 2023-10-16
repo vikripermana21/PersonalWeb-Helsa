@@ -11,12 +11,17 @@ const PortofolioCreate = () => {
   const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
   const [file_portofolio, setFilePortofolio] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setIdPerson(localStorage.getItem('id'))
   }, [])
+
+  const redirectCancelButton = () => {
+    navigate(`/portofolio/${id_person}`)
+  }
 
   const createPortoHandler = async (e) => {
     e.preventDefault();
@@ -36,6 +41,7 @@ const PortofolioCreate = () => {
       console.log('Data portofolio : ', response);
     } catch (error) {
       console.log(error.message)
+      setMsg(error.response.data.msg)
     }
   }
 
@@ -83,6 +89,7 @@ const PortofolioCreate = () => {
                       placeholder="Nama Portofolio"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       onChange={(e) => setNamaPortofolio(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4 flex items-center">
@@ -95,6 +102,7 @@ const PortofolioCreate = () => {
                       placeholder="Deskripsi Portofolio"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       onChange={(e) => setDeskripsiPortofolio(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4">
@@ -108,11 +116,13 @@ const PortofolioCreate = () => {
                         placeholder="File"
                         className="bg-gray-300 input input-bordered input-sm w-2/3"
                         onChange={(e) => setFilePortofolio(e.target.files[0])}
+                        required
                       />
                     </div>
                   </div>
+                  <p className="error-message">{msg}</p>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3">
+                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>

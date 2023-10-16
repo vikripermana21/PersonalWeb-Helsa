@@ -30,6 +30,10 @@ const DataDiriEdit = () => {
     getPerson();
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/datadiri/${id_person}`)
+  }
+
   const personEditHandler = async(e) => {
     e.preventDefault();
     try {
@@ -55,6 +59,7 @@ const DataDiriEdit = () => {
       formData.append('linkedin', linkedin);
 
 
+      console.log("JK: ", jenis_kelamin)
       const response = await axios.patch(`http://localhost:5000/personal/${id_person}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -63,6 +68,7 @@ const DataDiriEdit = () => {
 
       navigate(`/datadiri/${id_person}`)
       console.log("Data : ", response)
+      console.log("JK: ", jenis_kelamin)
     } catch (error) {
         setMsg(error.response.data.error);
         console.log(error);
@@ -147,6 +153,7 @@ const DataDiriEdit = () => {
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={nama}
                 onChange={(e) => setNama(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4 flex items-center">
@@ -160,6 +167,7 @@ const DataDiriEdit = () => {
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={tempat_lahir}
                 onChange={(e) => setTempatLahir(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -173,6 +181,7 @@ const DataDiriEdit = () => {
                   className="bg-gray-300 input input-bordered input-sm w-1/2"
                   value={tanggal_lahir}
                   onChange={(e) => setTanggalLahir(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -187,6 +196,7 @@ const DataDiriEdit = () => {
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={usia}
                 onChange={(e) => setUsia(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -199,22 +209,22 @@ const DataDiriEdit = () => {
                   <label className="mr-2">
                     <input
                       type="radio"
-                      name="jenis kelamin"
+                      name="jenis_kelamin"
                       value="Laki-Laki"
                       checked={jenis_kelamin === "Laki-Laki"}
                       className="mr-1"
-                      onChange={(e) => setJenisKelamin(e.target.value)}
+                      onChange={(e) => setJenisKelamin("Laki-Laki")}
                     />
                     Laki-laki
                   </label>
                   <label>
                     <input
                       type="radio"
-                      name="jenis kelamin"
+                      name="jenis_kelamin"
                       value="Perempuan"
                       checked={jenis_kelamin === "Perempuan"}
                       className="mr-1"
-                      onChange={(e) => setJenisKelamin(e.target.value)}
+                      onChange={(e) => setJenisKelamin("Perempuan")}
                     />
                     Perempuan
                   </label>
@@ -276,7 +286,7 @@ const DataDiriEdit = () => {
                   value={agama}
                   onChange={(e) => setAgama(e.target.value)}
                 >
-                  <option value="">Pilih Agama...</option>
+                  <option disabled>Pilih Agama...</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
                   <option value="Katolik">Katolik</option>
@@ -297,6 +307,7 @@ const DataDiriEdit = () => {
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -311,6 +322,7 @@ const DataDiriEdit = () => {
                   className="bg-gray-300 input input-bordered input-sm w-2/3"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -321,11 +333,12 @@ const DataDiriEdit = () => {
                   <span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="tel"
-                  placeholder="+62..."
+                  type="number"
+                  placeholder="contoh: 0812783817283"
                   className="bg-gray-300 input input-bordered input-sm w-2/3"
                   value={telp}
                   onChange={(e) => setTelp(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -375,7 +388,7 @@ const DataDiriEdit = () => {
               </div>
             </div><p>{msg}</p>
             <div className="mt-10 flex justify-center items-center">
-              <button className="btn btn-error btn-sm mr-2 w-1/3">
+              <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                 Cancel
               </button>
               <button className="btn btn-success btn-sm w-1/3">Save</button>

@@ -18,6 +18,10 @@ const SkillEdit = () => {
     getSkill();
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/skill/${id_person}`)
+  }
+
   const skillEditHandler = async(e) => {
     e.preventDefault();
     try {
@@ -90,6 +94,7 @@ const SkillEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={nama_skill}
                       onChange={(e) => setNamaSkill(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4 flex items-center">
@@ -103,10 +108,11 @@ const SkillEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={capability}
                       onChange={(e) => setCapability(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3">
+                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>

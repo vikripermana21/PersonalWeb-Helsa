@@ -2,6 +2,7 @@
 
 import Portofolio from '../models/PortoModels.js';
 import multer from 'multer';
+import mime from 'mime';
 
 //define multer for uploads any files
 const storage = multer.diskStorage({
@@ -18,17 +19,42 @@ export const uploadPorto = multer({storage:storage});
 
 export const createPorto = async(req, res) =>{
     try {
-        const fotoPorto = req.file ? req.file.path : null;
+        // const allowedFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+        // const fotoPorto = req.file ? req.file.path : null;
 
-        const porto = await Portofolio.create({
-            nama_portofolio: req.body.nama_portofolio,
-            deskripsi_portofolio: req.body.deskripsi_portofolio,
-            file_portofolio: fotoPorto,
-            id_person: req.body.id_person
-        });
-        console.log("Received file: ", req.file);
+        // const porto = await Portofolio.create({
+        //     nama_portofolio: req.body.nama_portofolio,
+        //     deskripsi_portofolio: req.body.deskripsi_portofolio,
+        //     file_portofolio: fotoPorto,
+        //     id_person: req.body.id_person
+        // });
+        // console.log("Received file: ", req.file);
 
-        res.status(201).json({msg: "Portofolio Created", data: porto});
+        // res.status(201).json({msg: "Portofolio Created", data: porto});
+
+        if (req.file) {
+            const allowedFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+            const fileExtension = mime.getExtension(req.file.mimetype);
+      
+            if (allowedFileTypes.includes(req.file.mimetype)) {
+              const fotoPorto = req.file.path;
+      
+              const porto = await Portofolio.create({
+                nama_portofolio: req.body.nama_portofolio,
+                deskripsi_portofolio: req.body.deskripsi_portofolio,
+                file_portofolio: fotoPorto,
+                id_person: req.body.id_person
+              });
+      
+              console.log("Received file: ", req.file);
+      
+              res.status(201).json({ msg: "Portofolio Created", data: porto });
+            } else {
+              res.status(400).json({ msg: 'Tipe file harus berupa jpg, jpeg, atau png!' });
+            }
+          } else {
+            res.status(400).json({ msg: 'No file uploaded.' });
+          }
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ error: 'Terjadi kesalahan dalam menginput data portofolio.' });

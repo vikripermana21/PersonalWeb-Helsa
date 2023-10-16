@@ -29,6 +29,10 @@ const DataDiriCreate = () => {
     setIdAkun(localStorage.getItem('id'))
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/datadiri/${id_akun}`)
+  }
+
   const createPersonal = async (e) => {
     e.preventDefault();
     try {
@@ -163,33 +167,30 @@ const DataDiriCreate = () => {
                   <span className="label-text">Jenis Kelamin</span>
                   <span className="text-red-500">*</span>
                 </label>
-                <fieldset>
-                  <div className="flex">
-                    <label className="mr-2">
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="Laki-Laki"
-                        className="mr-1"
-                        onChange={(e) => setJenisKelamin(e.target.value)}
-                        required
-                      />
-                      Laki-laki
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="gender"
-                        value="Perempuan"
-                        className="mr-1"
-                        onChange={(e) => setJenisKelamin(e.target.value)}
-                        required
-                      />
-                      Perempuan
-                    </label>
-                  </div>
-                </fieldset>
-
+                <div className="flex">
+                  <label className="mr-2">
+                    <input
+                      type="radio"
+                      name="jenis kelamin"
+                      value="Laki-Laki"
+                      checked={jenis_kelamin === "Laki-Laki"}
+                      className="mr-1"
+                      onChange={(e) => setJenisKelamin(e.target.value)}
+                    />
+                    Laki-laki
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="jenis kelamin"
+                      value="Perempuan"
+                      checked={jenis_kelamin === "Perempuan"}
+                      className="mr-1"
+                      onChange={(e) => setJenisKelamin(e.target.value)}
+                    />
+                    Perempuan
+                  </label>
+                </div>
               </div>
             </div>
             <div className="mb-4">
@@ -240,6 +241,7 @@ const DataDiriCreate = () => {
               <div className="flex mb-2">
                 <label className="w-1/3 mr-1">
                   <span className="label-text">Agama</span>
+                  <span className="text-red-500">*</span>
                 </label>
                 <select
                   className="bg-gray-300 input input-sm input-bordered w-1/2"
@@ -247,7 +249,7 @@ const DataDiriCreate = () => {
                   onChange={(e) => setAgama(e.target.value)}
                   required
                 >
-                  <option disabled selected value="">Pilih Agama...</option>
+                  <option disabled>Pilih Agama...</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
                   <option value="Katolik">Katolik</option>
@@ -343,7 +345,7 @@ const DataDiriCreate = () => {
               </div>
             </div><p>{msg}</p>
             <div className="mt-10 flex justify-center items-center">
-              <button className="btn btn-error btn-sm mr-2 w-1/3">
+              <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                 Cancel
               </button>
               <button className="btn btn-success btn-sm w-1/3">Save</button>

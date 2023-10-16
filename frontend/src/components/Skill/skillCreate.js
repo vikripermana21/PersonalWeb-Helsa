@@ -17,6 +17,10 @@ const SkillCreate = () => {
     setIdPerson(localStorage.getItem('id'))
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/skill/${id_person}`)
+  }
+
   const createSkillHandler = async (e) => {
     e.preventDefault();
     try {
@@ -79,6 +83,7 @@ const SkillCreate = () => {
                       placeholder="Nama Skill"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       onChange={(e) => setNamaSkill(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4 flex items-center">
@@ -91,10 +96,11 @@ const SkillCreate = () => {
                       placeholder="Capability Percent"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       onChange={(e) => setCapability(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3">
+                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>
