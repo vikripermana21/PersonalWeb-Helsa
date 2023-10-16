@@ -19,18 +19,6 @@ export const uploadPorto = multer({storage:storage});
 
 export const createPorto = async(req, res) =>{
     try {
-        // const allowedFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-        // const fotoPorto = req.file ? req.file.path : null;
-
-        // const porto = await Portofolio.create({
-        //     nama_portofolio: req.body.nama_portofolio,
-        //     deskripsi_portofolio: req.body.deskripsi_portofolio,
-        //     file_portofolio: fotoPorto,
-        //     id_person: req.body.id_person
-        // });
-        // console.log("Received file: ", req.file);
-
-        // res.status(201).json({msg: "Portofolio Created", data: porto});
 
         if (req.file) {
             const allowedFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];

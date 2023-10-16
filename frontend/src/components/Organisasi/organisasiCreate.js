@@ -62,13 +62,20 @@ const OrganisasiCreate = () => {
     <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
-          <div className="bg-gray-200 h-screen box-border p-4">
-            <div className="flex justify-center items-center mt-5">
+        <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
+          >
+            <FaBars size={24} />
+        </button>
+          <div className="bg-gray-200 h-screen box-border p-4 pt-0">
+            <div className="flex justify-center items-center">
               <h1>
                 <b>Tambah Organisasi</b>
               </h1>
             </div>
-      <div className="flex justify-center items-center p-2 mt-5">
+      <div className="flex justify-center items-center p-2">
         <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
           <form onSubmit={createOrganisasiHandler}>
             <div className="mb-4 flex items-center hide-element">
@@ -127,6 +134,8 @@ const OrganisasiCreate = () => {
                 style={{ width: "10%" }}
                 showYearDropdown
                 yearDropdownItemNumber={10}
+                popperPlacement="top-start" 
+                
                 required
               />
               <FontAwesomeIcon
@@ -148,10 +157,12 @@ const OrganisasiCreate = () => {
                 selected={tanggal_akhir_menjabat}
                 onChange={(date) => setTanggalAkhir(date)}
                 dateFormat="dd-MM-yyyy"
-                className="bg-gray-300 input input-bordered input-sm"
+                className="bg-gray-300 input input-bordered input-sm "
                 style={{ width: "50%" }}
                 showYearDropdown
                 yearDropdownItemNumber={10}
+                popperPlacement="top-start" 
+                
                 required
               />
               <FontAwesomeIcon
@@ -163,13 +174,13 @@ const OrganisasiCreate = () => {
               />
             </div>
             <div className="mt-10 flex justify-center items-center">
-              <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
-                Cancel
-              </button>
-              <button className="btn btn-success btn-sm w-1/3">Save</button>
-              </div>
+                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                      Cancel
+                    </button>
+                    <button className="btn btn-success btn-sm w-1/3">Save</button>
+                  </div>
                 </form>
-              </div>
+            </div>
             </div>
           </div>
         </main>

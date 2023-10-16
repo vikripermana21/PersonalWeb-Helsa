@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from '../Navigation/sidebar.js';
 import { FaBars } from 'react-icons/fa';
+import Navbar2 from "../Navigation/navbar2.js";
 
 const DataDiriDetails = () => {
   const navigate = useNavigate();   
@@ -45,6 +46,10 @@ const DataDiriDetails = () => {
     getDetailPerson();
   }, []);
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   const getDetailPerson = async () => {
     try {
       const response = await axios.get(
@@ -86,24 +91,26 @@ const DataDiriDetails = () => {
 
     return (
       <div>
+        {/* Navbar */}         
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-100 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
-          {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
           <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-          >
-            <FaBars size={24} /> {/* Ikon hamburger */}
+              className="p-2 bg-blue-500 text-white rounded-md mb-4"
+              onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+              style={{ backgroundColor: '#4D4C7D' }}
+            >
+              <FaBars size={24} />
           </button>
-          <div className="bg-base-200 h-auto box-border p-4">
+          <div className="bg-base-200 h-auto box-border p-4 pt-0">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Data Diri</b>
               </h1>
             </div>
-            <div className="flex justify-center items-center p-2 mt-5">
+            <div className="flex justify-center items-center p-2">
               {notFound ? (
                 <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                     <div className="flex justify-end items-center p-2 mb-4">
@@ -207,7 +214,7 @@ const DataDiriDetails = () => {
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Usia</td>
-                            <td colSpan={2} className="border px-4 py-2">{usia}</td>
+                            <td colSpan={2} className="border px-4 py-2">{usia} (tahun)</td>
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
@@ -215,11 +222,11 @@ const DataDiriDetails = () => {
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
-                            <td colSpan={4} className="border px-4 py-2">{tinggi_badan}</td>
+                            <td colSpan={4} className="border px-4 py-2">{tinggi_badan} (cm)</td>
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Berat Badan</td>
-                            <td colSpan={7} className="border px-4 py-2">{berat_badan}</td>
+                            <td colSpan={7} className="border px-4 py-2">{berat_badan} (kg)</td>
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Alamat</td>

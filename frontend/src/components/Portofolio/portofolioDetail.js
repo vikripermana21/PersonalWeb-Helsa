@@ -50,14 +50,21 @@ const PortofolioDetail = () => {
           {isSidebarVisible && <Sidebar />}
           {/* Main Content */}
           <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+          <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
+          >
+            <FaBars size={24} />
+        </button>
             {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
-            <div className="bg-gray-200 h-screen box-border p-4">
+            <div className="bg-gray-200 h-screen box-border p-4 pt-0">
               <div className="flex justify-center items-center">
                 <h1>
                   <b>Detail Portofolio</b>
                 </h1>
               </div>
-              <div className="flex justify-center items-center p-2 mt-5">
+              <div className="flex justify-center items-center p-2">
                 <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                   <table className="table-auto w-full">
                     <tbody>

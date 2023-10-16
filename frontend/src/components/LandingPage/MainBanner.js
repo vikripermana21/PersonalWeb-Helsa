@@ -30,7 +30,7 @@ class MainBanner extends Component {
                                     <div className="col-lg-6">
                                         <div className="main-banner-content">
                                             <span>MODERATE TEAM 1</span>
-                                            <h1>Personal WEB CV Maker</h1>
+                                            <h1>Personal Web CV Maker</h1>
                                             <p>Dirancang oleh Moderate 1 Team</p>
 
                                         </div>

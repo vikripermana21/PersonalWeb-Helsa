@@ -73,14 +73,21 @@ const OrganisasiEdit = () => {
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+        <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
+          >
+            <FaBars size={24} />
+        </button>
           {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
-          <div className="bg-gray-200 h-screen box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4 pt-0">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Edit Organisasi</b>
               </h1>
             </div>
-            <div className="flex justify-center items-center p-2 mt-5">
+            <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <form onSubmit={OrganisasiEditHandler}>
                   <div className="mb-4 flex items-center hide-element">
@@ -138,6 +145,7 @@ const OrganisasiEdit = () => {
                       style={{ width: "10%" }}
                       showYearDropdown // Mengaktifkan pilihan tahun
                       yearDropdownItemNumber={10} // Jumlah tahun yang akan ditampilkan dalam dropdown
+                      popperPlacement="top-start"
                     />
                     <FontAwesomeIcon
                       icon={faCalendarDays}
@@ -162,6 +170,7 @@ const OrganisasiEdit = () => {
                       style={{ width: "50%" }}
                       showYearDropdown
                       yearDropdownItemNumber={10}
+                      popperPlacement="top-start"
                     />
                     <FontAwesomeIcon
                       icon={faCalendarDays}
@@ -172,7 +181,7 @@ const OrganisasiEdit = () => {
                     />
                   </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>

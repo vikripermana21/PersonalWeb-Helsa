@@ -123,18 +123,19 @@ const DataDiriEdit = () => {
       <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
         {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
         <button
-          className="p-2 bg-blue-500 text-white rounded-md mb-4"
-          onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-        >
-          <FaBars size={24} /> {/* Ikon hamburger */}
-        </button> 
-        <div className="bg-gray-200 h-auto box-border p-4">
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
+          >
+            <FaBars size={24} />
+        </button>
+        <div className="bg-gray-200 h-auto box-border p-4 pt-0">
           <div className="flex justify-center items-center">
             <h1>
               <b>Edit Data Diri</b>
             </h1>
           </div>
-          <div className="flex justify-center items-center p-2 mt-5">
+          <div className="flex justify-center items-center p-2">
             <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
               <form onSubmit={personEditHandler}>
                 <div className="mb-4 flex items-center">
@@ -146,7 +147,18 @@ const DataDiriEdit = () => {
                     type="file"
                     placeholder="foto"
                     className="bg-gray-300 input input-bordered input-sm w-1/8"
-                    onChange={(e) => setFoto(e.target.files[0])}
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      if (file) {
+                        const allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+                        if (!allowedExtensions.exec(file.name)) {
+                          alert("File harus berupa gambar dengan ekstensi .png, .jpg, atau .jpeg");
+                        } else {
+                          setFoto(file);
+                        }
+                      }
+                    }}
+                    
                   />
                 </div>
                 <div className="mb-4 flex items-center">

@@ -18,6 +18,7 @@ const SkillCreate = () => {
   const [nama_skill, setNamaSkill] = useState("");
   const [capability, setCapability] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     setIdPerson(localStorage.getItem('id'))
@@ -31,7 +32,7 @@ const SkillCreate = () => {
     e.preventDefault();
 
     if (isNaN(capability) || capability < 0 || capability > 100) {
-      console.log("Capability yang diinputkan tidak sesuai.");
+      setMsg("Capability yang diinputkan tidak sesuai.");
       return;
     }
 
@@ -61,14 +62,21 @@ const SkillCreate = () => {
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+        <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
+          >
+            <FaBars size={24} />
+        </button>
           {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
-          <div className="bg-gray-200 h-screen box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4 pt-0">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Tambah Skill</b>
               </h1>
             </div>
-            <div className="flex justify-center items-center p-2 mt-5">
+            <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <form onSubmit={createSkillHandler}>
                   <div className="mb-4 flex items-center hide-element">
@@ -110,8 +118,9 @@ const SkillCreate = () => {
                       required
                     />
                   </div>
+                  <p className="error-message">{msg}</p>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-danger btn-sm w-1/3" onClick={redirectCancelButton}>
+                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>

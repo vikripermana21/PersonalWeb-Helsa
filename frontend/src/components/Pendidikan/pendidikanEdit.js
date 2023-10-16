@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
+import '../../styles/style.css';
 
 const PendidikanEdit = () => {
   const navigate = useNavigate(); 
@@ -86,16 +87,23 @@ const PendidikanEdit = () => {
   return (
     <div>
       <Navbar2 toggleSidebar={toggleSidebar}/>
-      <div className={`bg-gray-200 flex`}>
-        <Sidebar />
+      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+        {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4`}>
-          <div className="bg-gray-200 h-screen box-border p-4">
-            <div className="flex justify-center items-center mt-5">
+          <button
+            className="p-2 bg-blue-500 text-white rounded-md mb-4"
+            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
+          >
+            <FaBars size={24} />
+          </button>
+          <div className="bg-gray-200 h-screen box-border p-4 pt-0">
+            <div className="flex justify-center items-center">
               <h1>
                 <b>Edit Pendidikan</b>
               </h1>
             </div>
-            <div className="flex justify-center items-center p-2 mt-5">
+            <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4 flex items-center">

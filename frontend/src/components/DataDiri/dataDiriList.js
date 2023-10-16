@@ -80,14 +80,14 @@ const DataDiriList = () => {
       <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <div className="bg-gray-200 h-screen box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4 pt-0">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Data Diri</b>
               </h1>
             </div>
 
-            <div className="flex justify-center items-center p-2 mt-5">
+            <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
                   <button onClick={redirectToAddDataDiri} className="btn btn-success">

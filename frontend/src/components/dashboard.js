@@ -182,38 +182,39 @@ const Dashboard = () => {
       {/* Navbar */}         
       <Navbar2 toggleSidebar={toggleSidebar}/>
       
-      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+      <div className={`bg-gray-200 ${isSidebarVisible ? 'h-screen' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
           <button
             className="p-2 bg-blue-500 text-white rounded-md mb-4"
             onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+            style={{ backgroundColor: '#4D4C7D' }}
           >
             <FaBars size={24} />
           </button>
-          <div className="bg-white p-4 rounded-lg shadow-md">
+          <div className="bg-white p-4 rounded-lg shadow-md ">
             <h1 className="text-3xl font-semibold mb-4">Dashboard</h1>
             <p className="text-lg">Hello, {nama}</p>
-            {cvData ? (
-              <button onClick={generatePDF} className="btn btn-success">
-                Generate CV (PDF)
-              </button>
-            ) : (
-              <p>Loading CV data...</p>
-            )}
           </div>
-          <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5">
-            <p className="text-lg">Generate CV to Web</p>
-            <button onClick={generateToWebHandler} className="btn btn-outline btn-success btn-sm mt-2">Klik di sini</button>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5">
-            <p className="text-lg">Generate CV to Web</p>
-            <button onClick={generateToWebHandler} className="btn btn-outline btn-success btn-sm mt-2">Klik di sini</button>
-          </div>
+
+          {cvData ? (
+            <div className="flex flex-row">
+              <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5 mr-4">
+                <p className="text-lg">Generate CV to Web</p>
+                <button onClick={generateToWebHandler} className="btn btn-outline btn-success btn-sm mt-2">Click</button>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5">
+                <p className="text-lg">Generate CV to PDF</p>
+                <button onClick={generatePDF} className="btn btn-outline btn-success btn-sm mt-2">Click</button>
+              </div>
+            </div>
+          ) : (
+            <p></p>
+          )}
+          
+
         </main>
       </div>
-      <button className="btn btn-primary" style={{ position: 'absolute', bottom: '50px', left: '350px'}}>Generate ke Web</button>
-      <button className="btn btn-secondary" style={{ position: 'absolute', bottom: '50px', left: '510px'}}>Generate ke PDF</button>
     </div>
   );
 };

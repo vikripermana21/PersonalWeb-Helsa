@@ -6,6 +6,7 @@ import Porto from '../models/PortoModels.js';
 import Organisasi from '../models/OrganisasiModels.js';
 import Pendidikan from '../models/PendidikanModels.js';
 import Skill from '../models/SkillModels.js';
+import mime from 'mime';
 
 //define multer for uploads any files
 const storage = multer.diskStorage({
@@ -83,9 +84,6 @@ export const updatePersonal = async (req, res) => {
   const { id_person } = req.params;
 
   try {
-    // Remove enum fields from req.body to prevent conflicts
-    // delete req.body.agama;
-    // delete req.body.jenis_kelamin;
 
     const foto = req.file ? req.file.path : null; //cek apakah file di upload
 
