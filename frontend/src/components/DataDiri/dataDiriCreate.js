@@ -37,6 +37,10 @@ const DataDiriCreate = () => {
     navigate(`/datadiri/${id_akun}`)
   }
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   const createPersonal = async (e) => {
     e.preventDefault();
     try {

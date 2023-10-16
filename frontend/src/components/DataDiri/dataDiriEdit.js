@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import '../../styles/style.css';
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
-import { FaBars } from "react-icons/fa";
 import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriEdit = () => {
@@ -38,6 +37,10 @@ const DataDiriEdit = () => {
   const redirectCancelButton = () => {
     navigate(`/datadiri/${id_person}`)
   }
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   const personEditHandler = async(e) => {
     e.preventDefault();
