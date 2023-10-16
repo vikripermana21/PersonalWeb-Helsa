@@ -94,13 +94,13 @@ const OrganisasiList = () => {
                         <td className="border px-4 py-2 text-center">
                           <div className="flex">
                             <button
-                              className="btn btn-sm btn-primary ml-3"
+                              className="btn btn-sm btn-success ml-3"
                               onClick={() => redirectToEditOrganisasi(organisasi.id_organisasi)}
                             >
                               Edit
                             </button>
                             <button
-                              className="btn btn-sm btn-error ml-3"
+                              className="btn btn-sm btn-danger ml-3"
                               onClick={() => deleteOrganisasiHandler(organisasi.id_organisasi)}
                             >
                               Delete

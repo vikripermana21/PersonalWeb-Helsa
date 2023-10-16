@@ -66,7 +66,7 @@ const PendidikanList = () => {
             </div>
 
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
                   <button onClick={redirectToAddPendidikan} className="btn btn-success">
                     Tambah Pendidikan
@@ -91,13 +91,13 @@ const PendidikanList = () => {
                         <td className="border px-4 py-2">{pendidikanItem.tahun_akhir_ajaran}</td>
                         <td className="border px-4 py-2 text-center">
                           <button
-                            className="btn btn-sm btn-primary ml-3"
+                            className="btn btn-sm btn-success ml-3"
                             onClick={() => redirectToEditPendidikan(pendidikanItem.id_pendidikan)}
                           >
                             Edit
                           </button>
                           <button
-                            className="btn btn-sm btn-error ml-3"
+                            className="btn btn-sm btn-danger ml-3"
                             onClick={() => deletePendidikanHandler(pendidikanItem.id_pendidikan)}
                           >
                             Delete

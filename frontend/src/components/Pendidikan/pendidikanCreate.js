@@ -157,7 +157,7 @@ const PendidikanCreate = () => {
                   <div className="mt-10 flex justify-center items-center">
                     <button
                       type="button"
-                      className="btn btn-error btn-sm mr-2 w-1/3"
+                      className="btn btn-danger btn-sm mr-2 w-1/3"
                       onClick={redirectCancelButton}
                     >
                       Cancel

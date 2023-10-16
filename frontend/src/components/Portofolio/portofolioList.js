@@ -99,13 +99,13 @@ const PortofolioList = () => {
                             Show Details
                           </button>
                           <button
-                            className="btn btn-sm btn-primary ml-3"
+                            className="btn btn-sm btn-success ml-3"
                             onClick={() => redirectToEditPortofolio(portofolio.id_portofolio)}
                           >
                             Edit
                           </button>
                           <button
-                            className="btn btn-sm btn-error ml-3"
+                            className="btn btn-sm btn-danger ml-3"
                             onClick={() => deletePortoHandler(portofolio.id_portofolio)}
                           >
                             Delete

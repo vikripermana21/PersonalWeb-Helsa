@@ -100,7 +100,7 @@ const SkillCreate = () => {
                     />
                   </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                    <button className="btn btn-danger btn-sm w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>
