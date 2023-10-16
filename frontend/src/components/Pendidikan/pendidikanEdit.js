@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
+import Navbar2 from "../Navigation/navbar2";
 
 const PendidikanEdit = () => {
   const navigate = useNavigate(); 
@@ -18,6 +19,8 @@ const PendidikanEdit = () => {
     tahun_mulai_ajaran: "",
     tahun_akhir_ajaran: "",
   });
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const [msg, setMsg] = useState(""); // Feedback message
   const { id_person, id_pendidikan } = useParams();
@@ -76,18 +79,17 @@ const PendidikanEdit = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   return (
     <div>
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 flex`}>
         <Sidebar />
         <main className={`flex-1 p-4`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => navigate(`/pendidikan/${id_person}`)}
-          >
-            <FaBars size={24} />
-          </button>
-          <div className="bg-gray-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4">
             <div className="flex justify-center items-center mt-5">
               <h1>
                 <b>Edit Pendidikan</b>
@@ -151,7 +153,7 @@ const PendidikanEdit = () => {
                     />
                   </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">

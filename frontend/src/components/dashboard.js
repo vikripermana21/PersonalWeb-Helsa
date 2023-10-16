@@ -6,6 +6,7 @@ import { FaBars } from "react-icons/fa";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
 import { useNavigate } from "react-router-dom";
+import Navbar2 from './Navigation/navbar2';
 
 const Dashboard = () => {
   const [nama, setNama] = useState("");
@@ -17,6 +18,10 @@ const Dashboard = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   const generateToWebHandler = async () => {
     try {
@@ -189,36 +194,23 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
+      {/* Navbar */}         
+      <Navbar2 toggleSidebar={toggleSidebar}/>
+      
+      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
-        <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-          >
-            <FaBars size={24} />
-          </button>
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h1 className="text-3xl font-semibold mb-4">Dashboard</h1>
-            <p className="text-lg">Hello, {nama}</p>
-            {cvData ? (
-              <button onClick={generatePDF} className="btn btn-success">
-                Generate CV (PDF)
-              </button>
-            ) : (
-              <p>Loading CV data...</p>
-            )}
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5">
-            <p className="text-lg">Generate CV to Web</p>
-            <button onClick={generateToWebHandler} className="btn btn-outline btn-success btn-sm mt-2">Klik di sini</button>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5">
-            <p className="text-lg">Generate CV to Web</p>
-            <button onClick={generateToWebHandler} className="btn btn-outline btn-success btn-sm mt-2">Klik di sini</button>
+        {/* Main Content */}
+        <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+        
+          {/* Content */}  
+          <div className="bg-white h-screen p-4 rounded shadow-md">
+            <h1 className="text-3xl font-semibold mb-4">Let's Make Your Own CV !</h1>
+            <p className="text-lg">Hallooo {nama} !</p>
           </div>
         </main>
       </div>
+      <button onClick={generateToWebHandler} className="btn btn-primary" style={{ position: 'absolute', bottom: '50px', left: '350px'}}>Generate ke Web</button>
+      <button onClick={generatePDF} className="btn btn-secondary" style={{ position: 'absolute', bottom: '50px', left: '510px'}}>Generate ke PDF</button>
     </div>
   );
 };

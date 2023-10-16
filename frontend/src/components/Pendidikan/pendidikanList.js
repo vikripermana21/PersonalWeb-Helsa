@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
+import Navbar2 from "../Navigation/navbar2";
 
 const PendidikanList = () => {
   const navigate = useNavigate(); 
@@ -51,18 +52,17 @@ const PendidikanList = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   return (
     <div>
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-          >
-            <FaBars size={24} />
-          </button>
-          <div className="bg-gray-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Pendidikan</b>
@@ -95,13 +95,13 @@ const PendidikanList = () => {
                         <td className="border px-4 py-2">{pendidikanItem.tahun_akhir_ajaran}</td>
                         <td className="border px-4 py-2 text-center">
                           <button
-                            className="btn btn-sm btn-primary ml-3"
+                            className="btn btn-sm btn-success ml-3"
                             onClick={() => redirectToEditPendidikan(pendidikanItem.id_pendidikan)}
                           >
                             Edit
                           </button>
                           <button
-                            className="btn btn-sm btn-error ml-3"
+                            className="btn btn-sm btn-danger ml-3"
                             onClick={() => deletePendidikanHandler(pendidikanItem.id_pendidikan)}
                           >
                             Delete

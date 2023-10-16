@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import '../../styles/style.css';
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
+import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriEdit = () => {
   const navigate = useNavigate();   
@@ -42,6 +43,10 @@ const DataDiriEdit = () => {
   const redirectCancelButton = () => {
     navigate(`/datadiri/${id_person}`)
   }
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
 
   const personEditHandler = async(e) => {
     e.preventDefault();
@@ -111,6 +116,7 @@ const DataDiriEdit = () => {
   }
   return (
   <div>
+    <Navbar2 toggleSidebar={toggleSidebar}/>
     <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
       {isSidebarVisible && <Sidebar />}
       {/* Main Content */}
@@ -409,7 +415,7 @@ const DataDiriEdit = () => {
                   </div>
                 </div><p>{msg}</p>
                 <div className="mt-10 flex justify-center items-center">
-                  <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                  <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                     Cancel
                   </button>
                   <button className="btn btn-success btn-sm w-1/3">Save</button>
