@@ -22,6 +22,9 @@ const Login = () => {
 
           const decoded = jwt_decode(response.data.access_token)
           localStorage.setItem('id', decoded.id_akun)
+          localStorage.setItem('access_token', response.data.access_token)
+          localStorage.setItem('username_akun', decoded.username_akun)
+          localStorage.setItem('role_akun', decoded.role_akun)
           
           navigate('/dashboard');
           console.log("berhasil login");

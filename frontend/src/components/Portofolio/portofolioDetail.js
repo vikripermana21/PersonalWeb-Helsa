@@ -6,14 +6,20 @@ import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
 
 const PortofolioDetail = () => {
-    const { id_person, id_portofolio } = useParams();
-    const [nama_portofolio, setNamaPortofolio] = useState("");
-    const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
-    const [file_portofolio, setFilePortofolio] = useState("");
-    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const navigate = useNavigate(); 
+  const token = localStorage.getItem('access_token');
 
-    const navigate = useNavigate();
-    const baseUrl = 'http://localhost:5000/';
+  if (!token){
+    navigate('/login')
+  }
+  
+  const { id_person, id_portofolio } = useParams();
+  const [nama_portofolio, setNamaPortofolio] = useState("");
+  const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
+  const [file_portofolio, setFilePortofolio] = useState("");
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+
+  const baseUrl = 'http://localhost:5000/';
 
     useEffect(() => {
         getDetailPortofolio();
@@ -52,7 +58,7 @@ const PortofolioDetail = () => {
                 </h1>
               </div>
               <div className="flex justify-center items-center p-2 mt-5">
-                <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+                <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                   <table className="table-auto w-full">
                     <tbody>
                       <tr>

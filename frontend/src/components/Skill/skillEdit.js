@@ -7,13 +7,18 @@ import '../../styles/style.css';
 import Navbar2 from "../Navigation/navbar2";
 
 const SkillEdit = () => {
+  const navigate = useNavigate(); 
+  const token = localStorage.getItem('access_token');
+
+  if (!token){
+    navigate('/login')
+  }
+
   const [nama_skill, setNamaSkill] = useState("");
   const [capability, setCapability] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const { id_skill, id_person } = useParams();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     getSkill();
@@ -68,7 +73,7 @@ const SkillEdit = () => {
               </h1>
             </div>
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <form onSubmit={skillEditHandler}>
                   <div className="mb-4 flex items-center hide-element">
                     <label className="w-1/3 mr-2">

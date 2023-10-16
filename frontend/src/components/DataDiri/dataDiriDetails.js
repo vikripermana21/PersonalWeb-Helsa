@@ -5,6 +5,15 @@ import Sidebar from '../Navigation/sidebar.js';
 import { FaBars } from 'react-icons/fa';
 
 const DataDiriDetails = () => {
+  const navigate = useNavigate();   
+  const token = localStorage.getItem('access_token');
+  const id = localStorage.getItem('id');
+  console.log(id)
+
+  if (!token){
+    navigate('/login')
+  }
+
     const { id_akun } = useParams();
     const [foto, setFoto] = useState("");
     const [nama, setNama] = useState("");
@@ -26,8 +35,11 @@ const DataDiriDetails = () => {
     const [notFound, setNotFound] = useState(false);
     const [dataLoaded, setDataLoaded] = useState(false);
 
-  const navigate = useNavigate();
   const baseUrl = "http://localhost:5000/";
+
+  if(id !== id_akun ){
+    navigate('/notfound404')
+  }
 
   useEffect(() => {
     getDetailPerson();
@@ -93,7 +105,7 @@ const DataDiriDetails = () => {
             </div>
             <div className="flex justify-center items-center p-2 mt-5">
               {notFound ? (
-                <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+                <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                     <div className="flex justify-end items-center p-2 mb-4">
                       <button  className="btn btn-success" onClick={redirectToAddDataDiri}>
                         Tambah Data Diri
@@ -173,7 +185,7 @@ const DataDiriDetails = () => {
                 </div>
               ): (
                   dataLoaded ? (
-                    <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+                    <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                       <table className="table-auto w-full">
                         <tbody>
                           <tr>

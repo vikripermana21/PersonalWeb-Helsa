@@ -16,6 +16,7 @@ const Sidebar = () => {
     try {
       localStorage.removeItem('id');
       axios.delete('http://localhost:5000/logout');
+      localStorage.clear()
       navigate('/');
       console.log("berhasil logout")
     } catch (error) {

@@ -6,10 +6,23 @@ import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriList = () => {
+
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem('access_token');
+  const role_akun = localStorage.getItem('role_akun');
+
+  if (!token){
+    navigate('/login')
+  }
+
+  if (role_akun !== 'Admin'){
+    navigate('/notfound404')
+  } 
+
   const [data_diri, setDataDiri] = useState([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
-  const navigate = useNavigate();
   const baseUrl = 'http://localhost:5000/';
 
   useEffect(() => {
@@ -18,11 +31,17 @@ const DataDiriList = () => {
 
   const getDataDiri = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/personal");
-      console.log("Data : ", response.data);
-      setDataDiri(response.data);
+      const response = await axios.get("http://localhost:5000/personal", 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      console.log("Data : ", response.data)
+      setDataDiri(response.data)
     } catch (error) {
-      console.log(error.message);
+        console.log(error);
     }
   }
 
@@ -69,7 +88,7 @@ const DataDiriList = () => {
             </div>
 
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
                   <button onClick={redirectToAddDataDiri} className="btn btn-success">
                     Tambah Data Diri
@@ -78,16 +97,16 @@ const DataDiriList = () => {
                 <table className="table-auto w-full">
                   <thead>
                     <tr>
-                      <th className="border px-4 py-2">Foto Profil</th>
-                      <th className="border px-4 py-2">Nama</th>
-                      <th className="border px-4 py-2">Tanggal Lahir</th>
-                      <th className="border px-4 py-2">Aksi</th>
+                      <th className="px-4 py-2">Foto Profil</th>
+                      <th className="px-4 py-2">Nama</th>
+                      <th className="px-4 py-2">Tanggal Lahir</th>
+                      <th className="px-4 py-2">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data_diri.map((personal) => (
                       <tr key={personal.id_person}>
-                        <td className="border px-4 py-2">
+                        <td className="px-4 py-2">
                           <div className="flex items-center space-x-3">
                             <div className="avatar">
                               <div className="mask mask-squircle w-12 h-12">
@@ -100,9 +119,9 @@ const DataDiriList = () => {
                             </div>
                           </div>
                         </td>
-                        <td className="border px-4 py-2">{personal.nama}</td>
-                        <td className="border px-4 py-2">{personal.tanggal_lahir}</td>
-                        <td className="border px-4 py-2 text-center">
+                        <td className="px-4 py-2">{personal.nama}</td>
+                        <td className="px-4 py-2">{personal.tanggal_lahir}</td>
+                        <td className="px-4 py-2 text-center">
                           <button
                             className="btn btn-sm btn-primary ml-3"
                             onClick={() => redirectToEditDataDiri(personal.id_person)}

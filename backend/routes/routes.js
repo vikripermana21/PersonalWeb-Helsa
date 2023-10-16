@@ -9,6 +9,9 @@ import { upload, getAllPersonal, createPersonal, getPersonalById, updatePersonal
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
 import { createSkill, showAllSkill, getSkillById, updateSkill, deleteSkill } from "../controllers/SkillController.js";
+import { convertToWeb } from "../controllers/CVConverts.js";
+// import { registerAdmin } from "../controllers/RegisterControllers.js";
+// import { loginAdmin } from "../controllers/LoginControllers.js";
 
 const router = express.Router();
 
@@ -63,5 +66,8 @@ router.get('/skill/:id_person', showAllSkill);
 router.get('/skill/:id_person/:id_skill', getSkillById);
 router.patch('/skill/:id_skill', updateSkill);
 router.delete('/skill/:id_skill', deleteSkill);
+
+//CONVERTER
+router.post('/convert-web', convertToWeb);
 
 export default router;

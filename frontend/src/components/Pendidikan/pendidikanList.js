@@ -6,11 +6,15 @@ import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
 
 const PendidikanList = () => {
+  const navigate = useNavigate(); 
+  const token = localStorage.getItem('access_token');
+
+  if (!token){
+    navigate('/login')
+  }
   const { id_person } = useParams();
   const [pendidikan, setPendidikan] = useState([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     getPendidikan();
