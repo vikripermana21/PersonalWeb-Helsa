@@ -84,8 +84,8 @@ export const updatePersonal = async (req, res) => {
 
   try {
     // Remove enum fields from req.body to prevent conflicts
-    delete req.body.agama;
-    delete req.body.jenis_kelamin;
+    // delete req.body.agama;
+    // delete req.body.jenis_kelamin;
 
     const foto = req.file ? req.file.path : null; //cek apakah file di upload
 
