@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../../styles/style.css';
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
+import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriCreate = () => {
   const [id_akun, setIdAkun] = useState("");
@@ -72,6 +73,7 @@ const DataDiriCreate = () => {
 
   return (
     <div>
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}

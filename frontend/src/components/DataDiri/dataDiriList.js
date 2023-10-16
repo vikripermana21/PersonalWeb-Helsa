@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
+import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriList = () => {
   const [data_diri, setDataDiri] = useState([]);
@@ -50,18 +51,17 @@ const DataDiriList = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   return (
     <div>
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-          >
-            <FaBars size={24} />
-          </button>
-          <div className="bg-gray-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Data Diri</b>

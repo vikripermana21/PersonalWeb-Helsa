@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
 import '../../styles/style.css';
+import Navbar2 from "../Navigation/navbar2";
 
 const PortofolioEdit = () => {
   const [nama_portofolio, setNamaPortofolio] = useState("");
@@ -57,20 +58,19 @@ const PortofolioEdit = () => {
     }
   }
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   return (
     <div>
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
           {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-          >
-            <FaBars size={24} /> {/* Ikon hamburger */}
-          </button>
-          <div className="bg-gray-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Edit Portofolio</b>

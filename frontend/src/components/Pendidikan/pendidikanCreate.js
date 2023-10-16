@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
 import '../../styles/style.css';
+import Navbar2 from "../Navigation/navbar2";
 
 const PendidikanCreate = () => {
   const [formData, setFormData] = useState({
@@ -60,16 +61,11 @@ const PendidikanCreate = () => {
 
   return (
     <div>
+      <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={toggleSidebar}
-          >
-            <FaBars size={24} />
-          </button>
-          <div className="bg-gray-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4">
             <div className="flex justify-center items-center mt-5">
               <h1>
                 <b>Tambah Pendidikan</b>

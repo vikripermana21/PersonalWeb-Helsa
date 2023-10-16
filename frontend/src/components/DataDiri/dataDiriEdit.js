@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import '../../styles/style.css';
 import { FaBars } from 'react-icons/fa';
 import Sidebar from "../Navigation/sidebar";
+import { FaBars } from "react-icons/fa";
+import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriEdit = () => {
   const { id_person } = useParams();
@@ -105,6 +107,7 @@ const DataDiriEdit = () => {
   }
   return (
   <div>
+    <Navbar2 toggleSidebar={toggleSidebar}/>
     <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
       {isSidebarVisible && <Sidebar />}
       {/* Main Content */}
