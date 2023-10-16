@@ -82,9 +82,10 @@ const DataDiriCreate = () => {
                 type="file"
                 className="bg-gray-300 input input-bordered input-md w-2/3"
                 onChange={(e) => setFoto(e.target.files[0])}
+                required
               />
             </div>
-            <div className=" flex items-center">
+            <div className=" flex items-center mb-4">
               <label className="w-1/3 mr-2">
                 <span className="label-text"></span>
               </label>
@@ -113,6 +114,7 @@ const DataDiriCreate = () => {
                 placeholder="Nama Lengkap"
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 onChange={(e) => setNama(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4 flex items-center">
@@ -125,6 +127,7 @@ const DataDiriCreate = () => {
                 placeholder="Tempat Lahir"
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 onChange={(e) => setTempatLahir(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -137,6 +140,7 @@ const DataDiriCreate = () => {
                   type="date"
                   className="bg-gray-300 input input-bordered input-sm w-1/2"
                   onChange={(e) => setTanggalLahir(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -150,6 +154,7 @@ const DataDiriCreate = () => {
                 placeholder="Usia"
                 className="bg-gray-300 input input-bordered input-sm w-1/12"
                 onChange={(e) => setUsia(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -158,28 +163,33 @@ const DataDiriCreate = () => {
                   <span className="label-text">Jenis Kelamin</span>
                   <span className="text-red-500">*</span>
                 </label>
-                <div className="flex">
-                  <label className="mr-2">
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Laki-Laki"
-                      className="mr-1"
-                      onChange={(e) => setJenisKelamin(e.target.value)}
-                    />
-                    Laki-laki
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Perempuan"
-                      className="mr-1"
-                      onChange={(e) => setJenisKelamin(e.target.value)}
-                    />
-                    Perempuan
-                  </label>
-                </div>
+                <fieldset>
+                  <div className="flex">
+                    <label className="mr-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="Laki-Laki"
+                        className="mr-1"
+                        onChange={(e) => setJenisKelamin(e.target.value)}
+                        required
+                      />
+                      Laki-laki
+                    </label>
+                    <label>
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="Perempuan"
+                        className="mr-1"
+                        onChange={(e) => setJenisKelamin(e.target.value)}
+                        required
+                      />
+                      Perempuan
+                    </label>
+                  </div>
+                </fieldset>
+
               </div>
             </div>
             <div className="mb-4">
@@ -193,6 +203,7 @@ const DataDiriCreate = () => {
                   placeholder="0"
                   className="bg-gray-300 input input-bordered input-sm w-1/12"
                   onChange={(e) => setTinggiBadan(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -207,6 +218,7 @@ const DataDiriCreate = () => {
                   placeholder="0"
                   className="bg-gray-300 input input-bordered input-sm w-1/12"
                   onChange={(e) => setBeratBadan(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -220,6 +232,7 @@ const DataDiriCreate = () => {
                   placeholder="Alamat lengkap..."
                   className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                   onChange={(e) => setAlamat(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -232,8 +245,9 @@ const DataDiriCreate = () => {
                   className="bg-gray-300 input input-sm input-bordered w-1/2"
                   size="1"
                   onChange={(e) => setAgama(e.target.value)}
+                  required
                 >
-                  <option value="">Pilih Agama...</option>
+                  <option disabled selected value="">Pilih Agama...</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
                   <option value="Katolik">Katolik</option>
@@ -253,6 +267,7 @@ const DataDiriCreate = () => {
                 placeholder="Contoh : Mahasiswa"
                 className="bg-gray-300 input input-bordered input-sm w-2/3"
                 onChange={(e) => setStatus(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -266,6 +281,7 @@ const DataDiriCreate = () => {
                   placeholder="email@contoh.com"
                   className="bg-gray-300 input input-bordered input-sm w-2/3"
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -276,10 +292,11 @@ const DataDiriCreate = () => {
                   <span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="tel"
-                  placeholder="+62..."
+                  type="number"
+                  placeholder="contoh: 0812783817283"
                   className="bg-gray-300 input input-bordered input-sm w-2/3"
                   onChange={(e) => setTelp(e.target.value)}
+                  required
                 />
               </div>
             </div>
