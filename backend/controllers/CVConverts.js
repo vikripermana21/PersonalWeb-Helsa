@@ -10,21 +10,16 @@ export const convertToWeb = async (req, res) => {
     const username = req.body.username;
     const id_akun = req.body.id_akun;
 
-    // Buat URL baru dengan username
-    const newUrl = `http://localhost:5000/${username}`;
     const response = await DataDiri.findOne({
       where: { id_akun: id_akun },
       include: [ Portofolio, Organisasi, Pendidikan, Skill],
     });
 
     // Kirim respon dengan data CV dan URL baru
-    res.status(200).json({
-      newUrl,
-      response,
-    });
+
+    res.status(201).json({ msg: 'berhasil convert', data: response });
   } catch (error) {
-    // Tangani kesalahan jika ada
-    console.error(error);
+    console.log(error.message);
     res.status(500).send('Terjadi kesalahan saat mengkonversi CV ke web');
   }
 };

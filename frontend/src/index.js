@@ -24,6 +24,7 @@ import SkillEdit from "./components/Skill/skillEdit";
 import SkillList from "./components/Skill/skillList";
 import DataDiriEdit from "./components/DataDiri/dataDiriEdit";
 import DataDiriDetails from "./components/DataDiri/dataDiriDetails";
+import ConvertToWeb from "./components/CV/convertToWeb";
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
   {
     path: "/skill/:id_person/edit/:id_skill",
     element: <SkillEdit />,
+  },
+  {
+    path: "/:username",
+    element: <ConvertToWeb />,
   },
 ]);
 root.render(
