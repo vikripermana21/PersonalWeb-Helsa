@@ -9,6 +9,13 @@ const Portofolio = db.define('portofolio', {
         primaryKey: true,
         autoIncrement: true,
     },
+    id_person: { // Define the foreign key field
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'data_diri', // Reference the DataDiri model
+            key: 'id_person', // Reference the id_person field in DataDiri
+        },
+    },
     nama_portofolio: {
         type: DataTypes.STRING,
     },
@@ -17,13 +24,6 @@ const Portofolio = db.define('portofolio', {
     },
     file_portofolio: {
         type: DataTypes.STRING,
-    },
-    id_person: { // Define the foreign key field
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'data_diri', // Reference the DataDiri model
-            key: 'id_person', // Reference the id_person field in DataDiri
-        },
     },
 }, {
     tableName: 'portofolio',

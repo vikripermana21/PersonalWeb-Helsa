@@ -62,10 +62,6 @@ const router = createBrowserRouter([
     element: <DataDiriList />,
   },
   {
-    path: "/datadiri/edit/:id_person",
-    element: <DataDiriEdit />,
-  },
-  {
     path: "/pendidikan/create",
     element: <PendidikanCreate />,
   },

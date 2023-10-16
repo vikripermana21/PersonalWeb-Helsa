@@ -12,6 +12,7 @@ const PortofolioDetail = () => {
     const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
     const navigate = useNavigate();
+    const baseUrl = 'http://localhost:5000/';
 
     useEffect(() => {
         getDetailPortofolio();
@@ -69,7 +70,7 @@ const PortofolioDetail = () => {
                       <tr>
                         <td className="border px-4 py-2 w-1/4">File Portofolio</td>
                         <td colSpan={2} className="border px-4 py-2">
-                          {file_portofolio}
+                          <img src={`${baseUrl}${file_portofolio}`} alt="foto portofolio" className="w-3/4 item-center " />
                         </td>
                       </tr>
                     </tbody>

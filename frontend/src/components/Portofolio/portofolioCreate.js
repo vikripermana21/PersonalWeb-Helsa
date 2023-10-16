@@ -11,6 +11,7 @@ const PortofolioCreate = () => {
   const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
   const [file_portofolio, setFilePortofolio] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -18,21 +19,29 @@ const PortofolioCreate = () => {
     setIdPerson(localStorage.getItem('id'))
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/portofolio/${id_person}`)
+  }
+
   const createPortoHandler = async (e) => {
     e.preventDefault();
+    
     try {
-      const response = await axios.post("http://localhost:5000/portofolio", {
-        id_person,
-        nama_portofolio,
-        deskripsi_portofolio,
-        file_portofolio,
-      })
+      const formData = new FormData();
+      formData.append('id_person', id_person);
+      if (typeof file_portofolio === 'object') {
+        formData.append('file_portofolio', file_portofolio);
+      }
+      formData.append('nama_portofolio', nama_portofolio);
+      formData.append('deskripsi_portofolio', deskripsi_portofolio);
+      const response = await axios.post("http://localhost:5000/portofolio", formData)
 
       navigate(`/portofolio/${id_person}`)
       console.log('Berhasil membuat portofolio baru');
       console.log('Data portofolio : ', response);
     } catch (error) {
       console.log(error.message)
+      setMsg(error.response.data.msg)
     }
   }
 
@@ -80,6 +89,7 @@ const PortofolioCreate = () => {
                       placeholder="Nama Portofolio"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       onChange={(e) => setNamaPortofolio(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4 flex items-center">
@@ -92,6 +102,7 @@ const PortofolioCreate = () => {
                       placeholder="Deskripsi Portofolio"
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       onChange={(e) => setDeskripsiPortofolio(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4">
@@ -101,15 +112,17 @@ const PortofolioCreate = () => {
                         <span className="text-red-500">*</span>
                       </label>
                       <input
-                        type="text"
+                        type="file"
                         placeholder="File"
                         className="bg-gray-300 input input-bordered input-sm w-2/3"
-                        onChange={(e) => setFilePortofolio(e.target.value)}
+                        onChange={(e) => setFilePortofolio(e.target.files[0])}
+                        required
                       />
                     </div>
                   </div>
+                  <p className="error-message">{msg}</p>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3">
+                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>

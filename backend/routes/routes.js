@@ -4,7 +4,7 @@ import express from "express";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshTokenControllers.js";
 import { createUser, login, logout } from "../controllers/AkunControllers.js";
-import { createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
+import { uploadPorto, createPorto, showAllPorto, getPortoById, updatePorto, deletePorto } from "../controllers/PortoController.js";
 import { upload, getAllPersonal, createPersonal, getPersonalById, updatePersonal, deletePersonal } from "../controllers/DataDiriControllers.js";
 import { createPendidikan, showAllPendidikan, getPendidikanById, updatePendidikan, deletePendidikan } from "../controllers/PendidikanControllers.js";
 import { createOrganisasi, showAllOrganisasi, getOrganisasiById, updateOrganisasi, deleteOrganisasi } from "../controllers/OrganisasiControllers.js";
@@ -40,10 +40,10 @@ router.patch("/personal/:id_person", upload.single('foto'), updatePersonal);
 router.delete("/personal/:id_person", deletePersonal);
 
 //PORTOFOLIO
-router.post('/portofolio', createPorto);
+router.post('/portofolio', uploadPorto.single('file_portofolio'),createPorto);
 router.get('/portofolio/:id_person', showAllPorto);
 router.get('/portofolio/:id_person/:id_portofolio', getPortoById);
-router.patch('/portofolio/:id_portofolio', updatePorto);
+router.patch('/portofolio/:id_portofolio', uploadPorto.single('file_portofolio'), updatePorto);
 router.delete('/portofolio/:id_portofolio', deletePorto);
 
 //PENDIDIKAN

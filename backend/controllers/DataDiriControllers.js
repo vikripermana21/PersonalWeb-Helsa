@@ -64,7 +64,7 @@ export const getPersonalById = async (req, res) => {
   const { id_person } = req.params;
   try {
     const response = await DataDiri.findOne({
-      where: { id_person: id_person },
+      where: { id_akun: id_person },
       include: [ Porto, Organisasi, Pendidikan, Skill],
     });
 
@@ -84,10 +84,12 @@ export const updatePersonal = async (req, res) => {
 
   try {
     // Remove enum fields from req.body to prevent conflicts
-    delete req.body.agama;
-    delete req.body.jenis_kelamin;
+    // delete req.body.agama;
+    // delete req.body.jenis_kelamin;
 
     const foto = req.file ? req.file.path : null; //cek apakah file di upload
+
+    console.log("foto: " + foto);
 
     const updateData = { ...req.body };
     if (req.file) {
@@ -97,14 +99,14 @@ export const updatePersonal = async (req, res) => {
     const [updated] = await DataDiri.update(
       updateData,
       {
-        where: { id_person: id_person },
+        where: { id_akun: id_person },
       }
     );
 
 
     if (updated) {
       const updatedPersonal = await DataDiri.findOne({
-        where: { id_person: id_person },
+        where: { id_akun: id_person },
         include: [Porto, Organisasi, Pendidikan, Skill],
       });
       return res.status(200).json({ message: 'Data diri updated', data: updatedPersonal });

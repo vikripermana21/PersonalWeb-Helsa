@@ -24,6 +24,10 @@ const PendidikanCreate = () => {
     setIdPerson(localStorage.getItem('id'))
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/pendidikan/${id_person}`)
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -154,6 +158,7 @@ const PendidikanCreate = () => {
                     <button
                       type="button"
                       className="btn btn-error btn-sm mr-2 w-1/3"
+                      onClick={redirectCancelButton}
                     >
                       Cancel
                     </button>

@@ -8,23 +8,34 @@ import '../../styles/style.css';
 const PortofolioEdit = () => {
   const [nama_portofolio, setNamaPortofolio] = useState("");
   const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
-  const [file_portofolio, setFilePortofolio] = useState("");
+  const [file_portofolio, setFilePortofolio] = useState(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const { id_portofolio, id_person } = useParams();
 
   const navigate = useNavigate();
+  const baseUrl = 'http://localhost:5000/';
 
   useEffect(() => {
     getPortofolio();
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/portofolio/${id_person}`)
+  }
+
   const portoEditHandler = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.patch(`http://localhost:5000/portofolio/${id_portofolio}`, {
-        nama_portofolio, deskripsi_portofolio, file_portofolio
-      });
+      const formData = new FormData();
+      formData.append('id_person', id_person);
+      if (file_portofolio) {
+        formData.append('file_portofolio', file_portofolio);
+      }
+      formData.append('nama_portofolio', nama_portofolio);
+      formData.append('deskripsi_portofolio', deskripsi_portofolio);
+      
+      const response = await axios.patch(`http://localhost:5000/portofolio/${id_portofolio}`, formData);
 
       navigate(`/portofolio/${id_person}`)
       console.log("Portofolio berhasil diubah")
@@ -114,16 +125,27 @@ const PortofolioEdit = () => {
                         <span className="text-red-500">*</span>
                       </label>
                       <input
-                        type="text"
+                        type="file"
                         placeholder="File"
                         className="bg-gray-300 input input-bordered input-sm w-2/3"
-                        value={file_portofolio}
-                        onChange={(e) => setFilePortofolio(e.target.value)}
+                        onChange={(e) => {
+                          if (e.target.files.length > 0) {
+                            setFilePortofolio(e.target.files[0]);
+                          }
+                        }}
+                        required
                       />
                     </div>
                   </div>
+                  <div className="mb-4 flex items-center">
+                    <label className="w-1/3 mr-2">
+                      <span className="label-text">Preview</span>
+                    </label>
+                    {file_portofolio && typeof file_portofolio === 'object' && <img src={URL.createObjectURL(file_portofolio)} alt="Preview" className="w-1/2 item-center" />}
+                    {file_portofolio && typeof file_portofolio === 'string' && <img src={`${baseUrl}${file_portofolio}`} alt="Existing" className="w-1/2 item-center" />}
+                  </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-error btn-sm mr-2 w-1/3">
+                    <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">Save</button>

@@ -23,6 +23,10 @@ const OrganisasiCreate = () => {
     setIdPerson(localStorage.getItem('id'))
   }, [])
 
+  const redirectCancelButton = () => {
+    navigate(`/organisasi/${id_person}`)
+  }
+
   const createOrganisasiHandler = async (e) => {
     e.preventDefault();
     try {
@@ -87,6 +91,7 @@ const OrganisasiCreate = () => {
                 className="bg-gray-300 input input-bordered input-sm"
                 style={{ width: "50%" }}
                 onChange={(e) => setNamaOrganisasi(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4 flex items-center">
@@ -100,6 +105,7 @@ const OrganisasiCreate = () => {
                 className="bg-gray-300 input input-bordered input-sm"
                 style={{ width: "50%" }}
                 onChange={(e) => setPosisi(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4 flex items-center">
@@ -116,6 +122,7 @@ const OrganisasiCreate = () => {
                 style={{ width: "10%" }}
                 showYearDropdown
                 yearDropdownItemNumber={10}
+                required
               />
               <FontAwesomeIcon
                 icon={faCalendarDays}
@@ -140,6 +147,7 @@ const OrganisasiCreate = () => {
                 style={{ width: "50%" }}
                 showYearDropdown
                 yearDropdownItemNumber={10}
+                required
               />
               <FontAwesomeIcon
                 icon={faCalendarDays}
@@ -150,7 +158,7 @@ const OrganisasiCreate = () => {
               />
             </div>
             <div className="mt-10 flex justify-center items-center">
-              <button className="btn btn-error btn-sm mr-2 w-1/3">
+              <button className="btn btn-error btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                 Cancel
               </button>
               <button className="btn btn-success btn-sm w-1/3">Save</button>

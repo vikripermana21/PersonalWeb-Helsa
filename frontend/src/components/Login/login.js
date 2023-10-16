@@ -30,7 +30,7 @@ const Login = () => {
           console.log("Response :", response.data);
           
       } catch (error) {
-          setMsg(error.response.data.error);
+          setMsg(error.response.data.msg);
       }
   }
 
@@ -47,6 +47,7 @@ const Login = () => {
                 placeholder="Username"
                 className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
             <div className="flex items-center">
@@ -56,9 +57,10 @@ const Login = () => {
                 placeholder="Password"
                 className="bg-white input input-ghost w-full max-w-xs"
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
-            <p>{msg}</p>
+            <p className="error-message">{msg}</p>
             <div className="card-actions justify-end">
               <button
                 className="btn btn-outline btn-success btn-sm"
