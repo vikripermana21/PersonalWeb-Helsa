@@ -30,6 +30,12 @@ const SkillEdit = () => {
 
   const skillEditHandler = async(e) => {
     e.preventDefault();
+
+    if (isNaN(capability) || capability < 0 || capability > 100) {
+      console.log("Capability yang diinputkan tidak sesuai.");
+      return;
+    }
+    
     try {
       const response = await axios.patch(`http://localhost:5000/skill/${id_skill}`, {
         nama_skill, capability
