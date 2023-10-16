@@ -5,11 +5,15 @@ import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
 
 const PendidikanList = () => {
+  const navigate = useNavigate(); 
+  const token = localStorage.getItem('access_token');
+
+  if (!token){
+    navigate('/login')
+  }
   const { id_person } = useParams();
   const [pendidikan, setPendidikan] = useState([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     getPendidikan();
@@ -66,7 +70,7 @@ const PendidikanList = () => {
             </div>
 
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
                   <button onClick={redirectToAddPendidikan} className="btn btn-success">
                     Tambah Pendidikan

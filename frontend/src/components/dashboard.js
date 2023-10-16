@@ -5,8 +5,6 @@ import Sidebar from "./Navigation/sidebar";
 import { FaBars } from "react-icons/fa";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
-import Sidebar from './Navigation/sidebar';
-import { FaBars } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -17,8 +15,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-      refreshToken();
-  }, [])
+    fetchData();
+  }, []);
 
   const generateToWebHandler = async () => {
     try {

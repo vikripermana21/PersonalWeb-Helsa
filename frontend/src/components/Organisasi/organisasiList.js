@@ -10,6 +10,11 @@ const OrganisasiList = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const navigate = useNavigate();
+  const token = localStorage.getItem('access_token');
+
+  if (!token){
+    navigate('/login')
+  }
 
   useEffect(() => {
     getOrganisasi();
@@ -60,7 +65,7 @@ const OrganisasiList = () => {
           >
             <FaBars size={24} /> {/* Ikon hamburger */}
           </button>
-          <div className="bg-gray-200 h-auto box-border p-4">
+          <div className="bg-gray-200 h-screen box-border p-4">
             <div className="flex justify-center items-center">
               <h1>
                 <b>Organisasi</b>
@@ -68,7 +73,7 @@ const OrganisasiList = () => {
             </div>
             
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
                   <button onClick={redirectToAddOrganisasi} className="btn btn-success">
                     Tambah Organisasi

@@ -16,6 +16,7 @@ const Sidebar = () => {
     try {
       localStorage.removeItem('id');
       axios.delete('http://localhost:5000/logout');
+      localStorage.clear()
       navigate('/');
       console.log("berhasil logout")
     } catch (error) {
@@ -24,7 +25,7 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className="w-64 bg-blue-500 h-screen text-white p-4 flex flex-col">
+    <aside className="w-64 h-auto bg-blue-500 text-white p-4 flex flex-col">
       <Link to={`/dashboard`}>
         <div className="mb-8 text-2xl font-semibold">CV Maker</div>
       </Link>

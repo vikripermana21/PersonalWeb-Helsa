@@ -6,6 +6,13 @@ import Sidebar from "../Navigation/sidebar";
 import '../../styles/style.css';
 
 const PortofolioEdit = () => {
+  const navigate = useNavigate(); 
+  const token = localStorage.getItem('access_token');
+
+  if (!token){
+    navigate('/login')
+  }
+
   const [nama_portofolio, setNamaPortofolio] = useState("");
   const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
   const [file_portofolio, setFilePortofolio] = useState(null);
@@ -13,7 +20,6 @@ const PortofolioEdit = () => {
 
   const { id_portofolio, id_person } = useParams();
 
-  const navigate = useNavigate();
   const baseUrl = 'http://localhost:5000/';
 
   useEffect(() => {
@@ -77,7 +83,7 @@ const PortofolioEdit = () => {
               </h1>
             </div>
             <div className="flex justify-center items-center p-2 mt-5">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <form onSubmit={portoEditHandler}>
                   <div className="mb-4 flex items-center hide-element">
                     <label className="w-1/3 mr-2">

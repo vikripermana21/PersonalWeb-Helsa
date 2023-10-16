@@ -6,14 +6,18 @@ import Sidebar from "../Navigation/sidebar";
 import '../../styles/style.css';
 
 const PortofolioCreate = () => {
+  const navigate = useNavigate(); 
+  const token = localStorage.getItem('access_token');
+
+  if (!token){
+    navigate('/login')
+  }
   const [id_person, setIdPerson] = useState("");
   const [nama_portofolio, setNamaPortofolio] = useState("");
   const [deskripsi_portofolio, setDeskripsiPortofolio] = useState("");
   const [file_portofolio, setFilePortofolio] = useState("");
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const [msg, setMsg] = useState("");
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setIdPerson(localStorage.getItem('id'))
@@ -65,7 +69,7 @@ const PortofolioCreate = () => {
               </h1>
             </div>
             <div className="flex justify-center items-center p-2">
-              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-8/12 h-auto">
+              <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <form onSubmit={createPortoHandler}>
                   <div className="mb-4 flex items-center hide-element">
                     <label className="w-1/3 mr-2">
