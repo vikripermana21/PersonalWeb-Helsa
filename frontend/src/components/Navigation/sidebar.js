@@ -7,10 +7,19 @@ import jwt_decode from 'jwt-decode';
 const Sidebar = () => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
+  const [role, setRole] = useState("");
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     setId(localStorage.getItem('id'))
-  }, [])
+    setRole(localStorage.getItem('role_akun'));
+
+    if(role === 'Admin'){
+      setAdmin(true)
+    }
+  }, [role])
+
+  
 
   const logoutHandler = async() => {
     try {
@@ -32,8 +41,19 @@ const Sidebar = () => {
           <div className="mt-2 border-b border-white"></div>
         </div>
       </Link>
-      
-      <ul className="space-y-2 flex-1 overflow-y-auto ml-0 pl-0">
+
+      {admin ? (
+        <ul className="space-y-2 flex-1 overflow-y-auto ml-0 pl-0">
+        <li>
+          <Link to={`/datadiri`} className="flex items-center p-2  text-white rounded-md hover:bg-blue-400" style={{ width: '100%' }}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            </svg>
+            Manage User
+          </Link>
+        </li>
+      </ul>
+      ): (
+        <ul className="space-y-2 flex-1 overflow-y-auto ml-0 pl-0">
         <li>
           <Link to={`/datadiri/${id}`} className="flex items-center p-2  text-white rounded-md hover:bg-blue-400" style={{ width: '100%' }}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -70,6 +90,9 @@ const Sidebar = () => {
           </Link>
         </li>
       </ul>
+      )}
+      
+      
       <div>
         <button className="p-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600" onClick={logoutHandler}>
           Logout

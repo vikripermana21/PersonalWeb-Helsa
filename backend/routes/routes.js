@@ -34,7 +34,7 @@ router.delete('/logout', logout)
 
 //DATA DIRI
 router.post('/personal', upload.single('foto'), createPersonal);
-router.get('/personal', verifyToken ,getAllPersonal);
+router.get('/personal', getAllPersonal);
 router.get('/personal/:id_person', getPersonalById);
 router.patch("/personal/:id_person", upload.single('foto'), updatePersonal);
 router.delete("/personal/:id_person", deletePersonal);

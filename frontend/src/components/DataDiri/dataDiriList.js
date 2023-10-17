@@ -11,6 +11,7 @@ const DataDiriList = () => {
 
   const token = localStorage.getItem('access_token');
   const role_akun = localStorage.getItem('role_akun');
+  console.log(role_akun)
 
   if (!token){
     navigate('/login')
@@ -31,13 +32,7 @@ const DataDiriList = () => {
 
   const getDataDiri = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/personal", 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      const response = await axios.get("http://localhost:5000/personal")
       console.log("Data : ", response.data)
       setDataDiri(response.data)
     } catch (error) {
