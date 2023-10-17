@@ -93,17 +93,17 @@ const PortofolioList = () => {
                 <table className="table-auto w-full">
                   <thead>
                     <tr>
-                      <th className="border px-4 py-2">Nama Portofolio</th>
-                      <th className="border px-4 py-2">Deskripsi Portofolio</th>
-                      <th className="border px-4 py-2">Aksi</th>
+                      <th className="border px-4 py-2 w-4/12">Nama Portofolio</th>
+                      <th className="border px-4 py-2 w-4/12" >Deskripsi Portofolio</th>
+                      <th className="border px-4 py-2 w-4/12" >Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     {portofolios.map((portofolio) => (
                       <tr key={portofolio.id_portofolio}>
-                        <td className="border px-4 py-2">{portofolio.nama_portofolio}</td>
-                        <td className="border px-4 py-2">{portofolio.deskripsi_portofolio}</td>
-                        <td className="border px-4 py-2 text-center">
+                        <td className="border px-4 py-2" >{portofolio.nama_portofolio}</td>
+                        <td className="border px-4 py-2" >{portofolio.deskripsi_portofolio}</td>
+                        <td className="border px-4 py-2 text-center" >
                           <button
                             className="btn btn-sm btn-info inline-block" style={{ backgroundColor: '#3876BF', color: '#fff' }}
                             onClick={() => redirectToPortofolioDetails(portofolio.id_portofolio)}

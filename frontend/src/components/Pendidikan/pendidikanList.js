@@ -93,11 +93,11 @@ const PendidikanList = () => {
                 <table className="table-auto w-full">
                   <thead>
                     <tr>
-                      <th className="border px-4 py-2">Instansi Pendidikan</th>
-                      <th className="border px-4 py-2">Jurusan</th>
-                      <th className="border px-4 py-2">Tahun Mulai Ajaran</th>
-                      <th className="border px-4 py-2">Tahun Akhir Ajaran</th>
-                      <th className="border px-4 py-2">Aksi</th>
+                      <th className="border px-4 py-2 w-4/15">Instansi Pendidikan</th>
+                      <th className="border px-4 py-2 w-3/15">Jurusan</th>
+                      <th className="border px-4 py-2 w-2/15">Tahun Mulai Ajaran</th>
+                      <th className="border px-4 py-2 w-2/15">Tahun Akhir Ajaran</th>
+                      <th className="border px-4 py-2 w-4/15">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
