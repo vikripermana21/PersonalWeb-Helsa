@@ -36,6 +36,12 @@ const OrganisasiEdit = () => {
 
   const OrganisasiEditHandler = async(e) => {
     e.preventDefault();
+    if (tanggal_mulai_menjabat >= tanggal_akhir_menjabat) {
+      setError("Tanggal mulai menjabat harus lebih awal dari tanggal akhir menjabat.");
+      return;
+    }
+
+    setError("");
     try {
       const response = await axios.patch(`http://localhost:5000/organisasi/${id_organisasi}`, {
         nama_organisasi, posisi, tanggal_mulai_menjabat, tanggal_akhir_menjabat
