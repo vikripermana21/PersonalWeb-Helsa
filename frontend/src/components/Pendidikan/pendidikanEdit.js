@@ -4,14 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
-import '../../styles/style.css';
+import "../../styles/style.css";
 
 const PendidikanEdit = () => {
-  const navigate = useNavigate(); 
-  const token = localStorage.getItem('access_token');
+  const navigate = useNavigate();
+  const token = localStorage.getItem("access_token");
 
-  if (!token){
-    navigate('/login')
+  if (!token) {
+    navigate("/login");
   }
 
   const [formData, setFormData] = useState({
@@ -31,8 +31,8 @@ const PendidikanEdit = () => {
   }, []);
 
   const redirectCancelButton = () => {
-    navigate(`/pendidikan/${id_person}`)
-  }
+    navigate(`/pendidikan/${id_person}`);
+  };
 
   const getPendidikan = async () => {
     try {
@@ -66,17 +66,28 @@ const PendidikanEdit = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Additional validation to check if tahun_mulai_ajaran is earlier than tahun_akhir_ajaran
+    const startDate = new Date(formData.tahun_mulai_ajaran);
+    const endDate = new Date(formData.tahun_akhir_ajaran);
+
+    if (startDate >= endDate) {
+      setMsg("Tahun mulai ajaran harus lebih awal dari tahun akhir ajaran.");
+      return; // Prevent further execution
+    }
+
     try {
-      const response = await axios.patch(
-        `http://localhost:5000/pendidikan/${id_pendidikan}`,
-        formData
-      );
+      const response = await axios.post("http://localhost:5000/pendidikan", {
+        ...formData,
+        id_person,
+      });
+
       navigate(`/pendidikan/${id_person}`);
-      setMsg("Data pendidikan berhasil diubah"); // Success message
-      console.log("Data setelah diupdate: ", response.data);
+      console.log("Pendidikan record created successfully:");
+      console.log("Response:", response.data);
     } catch (error) {
-      setMsg("Error updating data"); // Error message
-      console.log(error);
+      setMsg(error.response.data.error);
+      console.error("Error creating Pendidikan record:", error);
     }
   };
 
@@ -86,14 +97,14 @@ const PendidikanEdit = () => {
 
   return (
     <div>
-      <Navbar2 toggleSidebar={toggleSidebar}/>
-      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+      <Navbar2 toggleSidebar={toggleSidebar} />
+      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         <main className={`flex-1 p-4`}>
           <button
             className="p-2 bg-blue-500 text-white rounded-md mb-4"
             onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            style={{ backgroundColor: '#4D4C7D' }}
+            style={{ backgroundColor: "#4D4C7D" }}
           >
             <FaBars size={24} />
           </button>
@@ -161,7 +172,10 @@ const PendidikanEdit = () => {
                     />
                   </div>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                    <button
+                      className="btn btn-danger btn-sm mr-2 w-1/3"
+                      onClick={redirectCancelButton}
+                    >
                       Cancel
                     </button>
                     <button className="btn btn-success btn-sm w-1/3">
@@ -170,7 +184,13 @@ const PendidikanEdit = () => {
                   </div>
                 </form>
                 {msg && (
-                  <p className={`text-center mt-4 ${msg.startsWith("Error") ? "text-red-500" : "text-green-500"}`}>
+                  <p
+                    className={`text-center mt-4 ${
+                      msg.startsWith("Error")
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
                     {msg}
                   </p>
                 )}
