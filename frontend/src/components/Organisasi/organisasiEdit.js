@@ -34,6 +34,8 @@ const OrganisasiEdit = () => {
     navigate(`/organisasi/${id_person}`)
   }
 
+  const [error, setError] = useState("");
+
   const OrganisasiEditHandler = async(e) => {
     e.preventDefault();
     if (tanggal_mulai_menjabat >= tanggal_akhir_menjabat) {
