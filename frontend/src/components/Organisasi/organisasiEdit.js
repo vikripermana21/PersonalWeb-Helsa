@@ -122,6 +122,7 @@ const OrganisasiEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={nama_organisasi}
                       onChange={(e) => setNamaOrganisasi(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4 flex items-center">
@@ -136,6 +137,7 @@ const OrganisasiEdit = () => {
                       style={{ width: "50%" }}
                       value={posisi}
                       onChange={(e) => setPosisi(e.target.value)}
+                      required
                     />
                   </div>
                   {/* Tanggal Mulai Menjabat */}
@@ -154,6 +156,7 @@ const OrganisasiEdit = () => {
                       showYearDropdown // Mengaktifkan pilihan tahun
                       yearDropdownItemNumber={10} // Jumlah tahun yang akan ditampilkan dalam dropdown
                       popperPlacement="top-start"
+                      required
                     />
                     <FontAwesomeIcon
                       icon={faCalendarDays}
@@ -179,6 +182,7 @@ const OrganisasiEdit = () => {
                       showYearDropdown
                       yearDropdownItemNumber={10}
                       popperPlacement="top-start"
+                      required
                     />
                     <FontAwesomeIcon
                       icon={faCalendarDays}
@@ -192,7 +196,7 @@ const OrganisasiEdit = () => {
                     <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
                       Cancel
                     </button>
-                    <button className="btn btn-success btn-sm w-1/3">Save</button>
+                    <button className="btn btn-success btn-sm w-1/3" onClick={OrganisasiEditHandler}>Save</button>
                   </div>
                 </form>
               </div>

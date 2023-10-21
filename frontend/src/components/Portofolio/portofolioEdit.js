@@ -116,6 +116,7 @@ const PortofolioEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={nama_portofolio}
                       onChange={(e) => setNamaPortofolio(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4 flex items-center">
@@ -129,6 +130,7 @@ const PortofolioEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-2/3"
                       value={deskripsi_portofolio}
                       onChange={(e) => setDeskripsiPortofolio(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="mb-4">
