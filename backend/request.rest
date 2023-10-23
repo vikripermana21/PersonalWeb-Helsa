@@ -6,9 +6,10 @@ Content-Type: application/json
 
 {
     "nama": "Admin",
-    "username": "admin123",
-    "password": "admin321",
-    "confPassword": "admin321"
+    "username": "admin",
+    "password": "admin123",
+    "confPassword": "admin123",
+    "role" : "Admin"
 }
 
 ### Login
