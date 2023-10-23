@@ -68,6 +68,6 @@ router.patch('/skill/:id_skill', updateSkill);
 router.delete('/skill/:id_skill', deleteSkill);
 
 //CONVERTER
-router.post('/convert-web', convertToWeb);
+router.get('/convert-web/:username', convertToWeb);
 
 export default router;
