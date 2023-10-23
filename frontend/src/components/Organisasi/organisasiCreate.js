@@ -32,14 +32,19 @@ const OrganisasiCreate = () => {
 
   const createOrganisasiHandler = async (e) => {
     e.preventDefault();
-
+  
     if (tanggal_mulai_menjabat >= tanggal_akhir_menjabat) {
       setError("Tanggal mulai menjabat harus lebih awal dari tanggal akhir menjabat.");
       return;
     }
-
+  
+    if (!/[A-Za-z]/.test(posisi)) {
+      setError("Isikan dengan Huruf");
+      return;
+    }
+  
     setError("");
-
+  
     try {
       const response = await axios.post("http://localhost:5000/organisasi", {
         id_person,
@@ -48,14 +53,14 @@ const OrganisasiCreate = () => {
         tanggal_mulai_menjabat,
         tanggal_akhir_menjabat,
       });
-
+  
       navigate(`/organisasi/${id_person}`);
       console.log("Berhasil menambahkan pengalaman organisasi");
       console.log("Data Organisasi : ", response);
     } catch (error) {
       console.log(error.message);
     }
-  };
+  };  
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
