@@ -282,6 +282,7 @@ const DataDiriEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-1/12"
                       value={tinggi_badan}
                       onChange={(e) => setTinggiBadan(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -297,6 +298,7 @@ const DataDiriEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-1/12"
                       value={berat_badan}
                       onChange={(e) => setBeratBadan(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -311,6 +313,7 @@ const DataDiriEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                       value={alamat}
                       onChange={(e) => setAlamat(e.target.value)}
+                      required
                     />
                   </div>
                 </div>

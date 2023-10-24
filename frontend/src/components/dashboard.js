@@ -24,10 +24,7 @@ const Dashboard = () => {
       const username = localStorage.getItem('username_akun');
       const id_akun = localStorage.getItem('id');
 
-      const response = await axios.post('http://localhost:5000/convert-web', {
-        username: username,
-        id_akun: id_akun,
-      });
+      const response = await axios.get(`http://localhost:5000/convert-web/${username}`);
 
       console.log(response);
       navigate(`/${username}`)
@@ -75,6 +72,9 @@ const Dashboard = () => {
       });
     } catch (error) {
       console.log(error.message);
+      if (error.response && error.response.status === 401) {
+        navigate("/login");
+      }
     }
   };
 
