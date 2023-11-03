@@ -17,6 +17,7 @@ const DataDiriCreate = () => {
   const [id_akun, setIdAkun] = useState("");
   const [foto, setFoto] = useState("");
   const [nama, setNama] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
   const [tempat_lahir, setTempatLahir] = useState("");
   const [tanggal_lahir, setTanggalLahir] = useState("");
   const [usia, setUsia] = useState("");
@@ -55,6 +56,7 @@ const DataDiriCreate = () => {
         formData.append('foto', foto);
       }
       formData.append('nama', nama);
+      formData.append('deskripsi', deskripsi);
       formData.append('tempat_lahir', tempat_lahir);
       formData.append('tanggal_lahir', tanggal_lahir);
       formData.append('usia', usia);
@@ -159,6 +161,21 @@ const DataDiriCreate = () => {
                       onChange={(e) => setNama(e.target.value)}
                       required
                     />
+                  </div>
+                  <div className="mb-4">
+                    <div className="flex mb-2">
+                      <label className="w-1/3 mr-1">
+                        <span className="label-text">Deskripsi</span>
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        placeholder="Contoh: Halo, saya Alex, seorang profesional dengan pengalaman 2 tahun di bidang Software Engineer. Saya memiliki latar belakang pendidikan di..."
+                        className="bg-gray-300 input input-bordered input-sm w-2/3 h-20"
+                        onChange={(e) => setDeskripsi(e.target.value)}
+                        style={{ resize: 'none' }}
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="mb-4 flex items-center">
                     <label className="w-1/3 mr-2">
@@ -281,6 +298,7 @@ const DataDiriCreate = () => {
                         placeholder="Alamat lengkap..."
                         className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                         onChange={(e) => setAlamat(e.target.value)}
+                        style={{ resize: 'none' }}
                         required
                       />
                     </div>
