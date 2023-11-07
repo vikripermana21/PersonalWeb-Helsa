@@ -21,6 +21,10 @@ const DataDiri = db.define('data_diri', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    deskripsi: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
     tempat_lahir: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -19,6 +19,7 @@ CREATE TABLE data_diri (
     id_person SERIAL PRIMARY KEY,
     foto TEXT,
     nama VARCHAR(50) NOT NULL,
+    deskripsi TEXT NOT NULL,
     tempat_lahir VARCHAR(50),
     tanggal_lahir DATE,
     usia INT,
