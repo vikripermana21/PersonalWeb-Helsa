@@ -332,6 +332,7 @@ const DataDiriEdit = () => {
                       className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
                       value={alamat}
                       onChange={(e) => setAlamat(e.target.value)}
+                      style={{ resize: 'none' }}
                       required
                     />
                   </div>
