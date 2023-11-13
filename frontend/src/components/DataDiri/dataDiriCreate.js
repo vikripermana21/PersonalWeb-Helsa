@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../../styles/style.css';
-import { FaBars } from 'react-icons/fa';
+import "../../styles/style.css";
+import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriCreate = () => {
-  const navigate = useNavigate();   
-  const token = localStorage.getItem('access_token');
+  const navigate = useNavigate();
+  const token = localStorage.getItem("access_token");
 
-  if (!token){
-    navigate('/login')
+  if (!token) {
+    navigate("/login");
   }
 
   const [id_akun, setIdAkun] = useState("");
@@ -36,12 +36,12 @@ const DataDiriCreate = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   useEffect(() => {
-    setIdAkun(localStorage.getItem('id'))
-  }, [])
+    setIdAkun(localStorage.getItem("id"));
+  }, []);
 
   const redirectCancelButton = () => {
-    navigate(`/datadiri/${id_akun}`)
-  }
+    navigate(`/datadiri/${id_akun}`);
+  };
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -51,49 +51,52 @@ const DataDiriCreate = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('id_akun', id_akun);
-      if (typeof foto === 'object') {
-        formData.append('foto', foto);
+      formData.append("id_akun", id_akun);
+      if (typeof foto === "object") {
+        formData.append("foto", foto);
       }
-      formData.append('nama', nama);
-      formData.append('deskripsi', deskripsi);
-      formData.append('tempat_lahir', tempat_lahir);
-      formData.append('tanggal_lahir', tanggal_lahir);
-      formData.append('usia', usia);
-      formData.append('tinggi_badan', tinggi_badan);
-      formData.append('berat_badan', berat_badan);
-      formData.append('alamat', alamat);
-      formData.append('agama', agama);
-      formData.append('jenis_kelamin', jenis_kelamin);
-      formData.append('telp', telp);
-      formData.append('email', email);
-      formData.append('status', status);
-      formData.append('instagram', instagram);
-      formData.append('github', github);
-      formData.append('linkedin', linkedin);
+      formData.append("nama", nama);
+      formData.append("deskripsi", deskripsi);
+      formData.append("tempat_lahir", tempat_lahir);
+      formData.append("tanggal_lahir", tanggal_lahir);
+      formData.append("usia", usia);
+      formData.append("tinggi_badan", tinggi_badan);
+      formData.append("berat_badan", berat_badan);
+      formData.append("alamat", alamat);
+      formData.append("agama", agama);
+      formData.append("jenis_kelamin", jenis_kelamin);
+      formData.append("telp", telp);
+      formData.append("email", email);
+      formData.append("status", status);
+      formData.append("instagram", instagram);
+      formData.append("github", github);
+      formData.append("linkedin", linkedin);
 
-      const response = await axios.post("http://localhost:5000/personal", formData);
+      const response = await axios.post(
+        "http://localhost:5000/personal",
+        formData
+      );
       console.log(response.data);
       const id_person = response.data.data.id_person;
-      navigate(`/datadiri/${id_akun}`)
+      navigate(`/datadiri/${id_akun}`);
     } catch (error) {
-        setMsg(error.response.data.error);
-        console.log(error);
-      }
-  }
+      setMsg(error.response.data.error);
+      console.log(error);
+    }
+  };
 
   return (
     <div>
-      <Navbar2 toggleSidebar={toggleSidebar}/>
-      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
+      <Navbar2 toggleSidebar={toggleSidebar} />
+      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
-        <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+        <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
           {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
           <button
             className="p-2 bg-blue-500 text-white rounded-md mb-4"
             onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            style={{ backgroundColor: '#4D4C7D' }}
+            style={{ backgroundColor: "#4D4C7D" }}
           >
             <FaBars size={24} />
           </button>
@@ -113,13 +116,15 @@ const DataDiriCreate = () => {
                     </label>
                     <input
                       type="file"
-                      className="bg-gray-300 input input-bordered input-md w-2/3"
+                      className=" input input-bordered input-md w-2/3"
                       onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
                           const allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
                           if (!allowedExtensions.exec(file.name)) {
-                            alert("File harus berupa gambar dengan ekstensi .png, .jpg, atau .jpeg");
+                            alert(
+                              "File harus berupa gambar dengan ekstensi .png, .jpg, atau .jpeg"
+                            );
                           } else {
                             // File sesuai, lanjutkan proses.
                             // setIsValidFile(true);
@@ -134,7 +139,13 @@ const DataDiriCreate = () => {
                     <label className="w-1/3 mr-2">
                       <span className="label-text"></span>
                     </label>
-                    {foto && typeof foto === 'object' && <img src={URL.createObjectURL(foto)} alt="Preview" className="mask mask-squircle w-48 h-49" />}
+                    {foto && typeof foto === "object" && (
+                      <img
+                        src={URL.createObjectURL(foto)}
+                        alt="Preview"
+                        className="mask mask-squircle w-48 h-49"
+                      />
+                    )}
                   </div>
                   <div className=" flex items-center hide-element">
                     <label className="w-1/3 mr-2">
@@ -157,7 +168,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="Nama Lengkap"
-                      className="bg-gray-300 input input-bordered input-sm w-2/3"
+                      className=" input input-bordered input-sm w-2/3"
                       onChange={(e) => setNama(e.target.value)}
                       required
                     />
@@ -170,9 +181,9 @@ const DataDiriCreate = () => {
                       </label>
                       <textarea
                         placeholder="Contoh: Halo, saya Alex, seorang profesional dengan pengalaman 2 tahun di bidang Software Engineer. Saya memiliki latar belakang pendidikan di..."
-                        className="bg-gray-300 input input-bordered input-sm w-2/3 h-20"
+                        className=" input input-bordered input-sm w-2/3 h-20"
                         onChange={(e) => setDeskripsi(e.target.value)}
-                        style={{ resize: 'none' }}
+                        style={{ resize: "none" }}
                         required
                       />
                     </div>
@@ -185,7 +196,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="Tempat Lahir"
-                      className="bg-gray-300 input input-bordered input-sm w-2/3"
+                      className=" input input-bordered input-sm w-2/3"
                       onChange={(e) => setTempatLahir(e.target.value)}
                       required
                     />
@@ -198,7 +209,7 @@ const DataDiriCreate = () => {
                       </label>
                       <input
                         type="date"
-                        className="bg-gray-300 input input-bordered input-sm w-1/2"
+                        className=" input input-bordered input-sm w-1/2"
                         onChange={(e) => setTanggalLahir(e.target.value)}
                         required
                       />
@@ -212,7 +223,7 @@ const DataDiriCreate = () => {
                     <input
                       type="number"
                       placeholder="Usia"
-                      className="bg-gray-300 input input-bordered input-sm w-1/12"
+                      className=" input input-bordered input-sm w-1/12"
                       onChange={(e) => setUsia(e.target.value)}
                       required
                     />
@@ -261,7 +272,7 @@ const DataDiriCreate = () => {
                       <input
                         type="number"
                         placeholder="0"
-                        className="bg-gray-300 input input-bordered input-sm w-1/12"
+                        className=" input input-bordered input-sm w-1/12"
                         onChange={(e) => setTinggiBadan(e.target.value)}
                         required
                       />
@@ -279,7 +290,7 @@ const DataDiriCreate = () => {
                       <input
                         type="number"
                         placeholder="0"
-                        className="bg-gray-300 input input-bordered input-sm w-1/12"
+                        className=" input input-bordered input-sm w-1/12"
                         onChange={(e) => setBeratBadan(e.target.value)}
                         required
                       />
@@ -296,9 +307,9 @@ const DataDiriCreate = () => {
                       </label>
                       <textarea
                         placeholder="Alamat lengkap..."
-                        className="bg-gray-300 input input-bordered input-sm w-1/2 h-20"
+                        className=" input input-bordered input-sm w-1/2 h-20"
                         onChange={(e) => setAlamat(e.target.value)}
-                        style={{ resize: 'none' }}
+                        style={{ resize: "none" }}
                         required
                       />
                     </div>
@@ -310,12 +321,14 @@ const DataDiriCreate = () => {
                         <span className="text-red-500">*</span>
                       </label>
                       <select
-                        className="bg-gray-300 input input-sm input-bordered w-1/2"
+                        className=" input input-sm input-bordered w-1/2"
                         size="1"
                         onChange={(e) => setAgama(e.target.value)}
                         required
                       >
-                        <option disabled selected>Pilih Agama...</option>
+                        <option disabled selected>
+                          Pilih Agama...
+                        </option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Katolik">Katolik</option>
@@ -333,7 +346,7 @@ const DataDiriCreate = () => {
                     <input
                       type="text"
                       placeholder="Contoh : Mahasiswa"
-                      className="bg-gray-300 input input-bordered input-sm w-2/3"
+                      className=" input input-bordered input-sm w-2/3"
                       onChange={(e) => setStatus(e.target.value)}
                       required
                     />
@@ -347,7 +360,7 @@ const DataDiriCreate = () => {
                       <input
                         type="email"
                         placeholder="email@contoh.com"
-                        className="bg-gray-300 input input-bordered input-sm w-2/3"
+                        className=" input input-bordered input-sm w-2/3"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                       />
@@ -362,7 +375,7 @@ const DataDiriCreate = () => {
                       <input
                         type="number"
                         placeholder="contoh: 0812783817283"
-                        className="bg-gray-300 input input-bordered input-sm w-2/3"
+                        className=" input input-bordered input-sm w-2/3"
                         onChange={(e) => setTelp(e.target.value)}
                         required
                       />
@@ -381,7 +394,7 @@ const DataDiriCreate = () => {
                           <input
                             type="text"
                             placeholder="username"
-                            className="bg-gray-300 input input-bordered input-sm w-full"
+                            className=" input input-bordered input-sm w-full"
                             onChange={(e) => setInstagram(e.target.value)}
                           />
                         </div>
@@ -392,7 +405,7 @@ const DataDiriCreate = () => {
                           <input
                             type="text"
                             placeholder="username"
-                            className="bg-gray-300 input input-bordered input-sm w-full"
+                            className=" input input-bordered input-sm w-full"
                             onChange={(e) => setLinkedin(e.target.value)}
                           />
                         </div>
@@ -403,18 +416,24 @@ const DataDiriCreate = () => {
                           <input
                             type="text"
                             placeholder="username"
-                            className="bg-gray-300 input input-bordered input-sm w-full"
+                            className=" input input-bordered input-sm w-full"
                             onChange={(e) => setGithub(e.target.value)}
                           />
                         </div>
                       </div>
                     </div>
-                  </div><p>{msg}</p>
+                  </div>
+                  <p>{msg}</p>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                    <button
+                      className="btn btn-danger btn-sm mr-2 w-1/3"
+                      onClick={redirectCancelButton}
+                    >
                       Cancel
                     </button>
-                    <button className="btn btn-success btn-sm w-1/3">Save</button>
+                    <button className="btn btn-success btn-sm w-1/3">
+                      Save
+                    </button>
                   </div>
                 </form>
               </div>

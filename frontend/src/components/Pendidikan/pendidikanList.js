@@ -63,22 +63,6 @@ const PendidikanList = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
 
-  const styles = {
-    container: {
-      // styles for the container
-    },
-    icon: {
-      cursor: 'pointer',
-      transition: 'color 0.3s ease',
-    },
-    editIconHover: {
-      color: '#007bff',
-    },
-    deleteIconHover: {
-      color: '#dc3545',
-    },
-  };
-
   return (
     <div>
       <Navbar2 toggleSidebar={toggleSidebar}/>
@@ -108,10 +92,10 @@ const PendidikanList = () => {
                 <table className="table-auto w-full" style={{ tableLayout: 'fixed' }}>
                   <thead>
                     <tr>
-                      <th className="border px-4 py-2 w-1/3" style={{fontSize: '15px'}}>Instansi Pendidikan</th>
-                      <th className="border px-4 py-2 w-1/4" style={{fontSize: '15px'}}>Jurusan</th>
-                      <th className="border px-4 py-2 w-1/8" style={{fontSize: '15px'}}>Tahun Mulai Ajaran</th>
-                      <th className="border px-4 py-2 w-1/8" style={{fontSize: '15px'}}>Tahun Akhir Ajaran</th>
+                      <th className="border px-4 py-2 w-1/3">Instansi Pendidikan</th>
+                      <th className="border px-4 py-2 w-1/4">Jurusan</th>
+                      <th className="border px-4 py-2 w-1/8">Tahun Mulai Ajaran</th>
+                      <th className="border px-4 py-2 w-1/8">Tahun Akhir Ajaran</th>
                       <th className="border px-4 py-2">Aksi</th>
                     </tr>
                   </thead>

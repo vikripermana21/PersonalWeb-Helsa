@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import Sidebar from "../Navigation/sidebar";
 import Navbar2 from "../Navigation/navbar2";
 
@@ -86,9 +87,8 @@ const PortofolioList = () => {
             <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
-                  <button onClick={redirectToAddPortofolio} className="btn btn-success">
-                    Tambah Portofolio
-                  </button>
+                  <AiOutlinePlusCircle size={25} onClick={redirectToAddPortofolio} className="mr-2" style={{cursor: 'pointer'}} />
+                  <span onClick={redirectToAddPortofolio} style={{cursor: 'pointer'}}>Tambah Baru</span>
                 </div>
                 <table className="table-auto w-full">
                   <thead>

@@ -85,7 +85,7 @@ const PortofolioCreate = () => {
                     </label>
                     <input
                       type="number"
-                      className="bg-gray-300 input input-bordered input-sm w-2/3"
+                      className="input input-bordered input-sm w-2/3"
                       value={id_person}
                       disabled
                     />
@@ -98,7 +98,7 @@ const PortofolioCreate = () => {
                     <input
                       type="text"
                       placeholder="Nama Portofolio"
-                      className="bg-gray-300 input input-bordered input-sm w-2/3"
+                      className="input input-bordered input-sm w-2/3"
                       onChange={(e) => setNamaPortofolio(e.target.value)}
                       required
                     />
@@ -111,7 +111,7 @@ const PortofolioCreate = () => {
                     <input
                       type="text"
                       placeholder="Deskripsi Portofolio"
-                      className="bg-gray-300 input input-bordered input-sm w-2/3"
+                      className="input input-bordered input-sm w-2/3"
                       onChange={(e) => setDeskripsiPortofolio(e.target.value)}
                       required
                     />
@@ -125,7 +125,7 @@ const PortofolioCreate = () => {
                       <input
                         type="file"
                         placeholder="File"
-                        className="bg-gray-300 input input-bordered input-sm w-2/3"
+                        className="input input-bordered input-sm w-2/3"
                         onChange={(e) => setFilePortofolio(e.target.files[0])}
                         required
                       />
