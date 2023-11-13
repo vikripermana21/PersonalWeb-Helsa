@@ -63,6 +63,22 @@ const PendidikanList = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
 
+  const styles = {
+    container: {
+      // styles for the container
+    },
+    icon: {
+      cursor: 'pointer',
+      transition: 'color 0.3s ease',
+    },
+    editIconHover: {
+      color: '#007bff',
+    },
+    deleteIconHover: {
+      color: '#dc3545',
+    },
+  };
+
   return (
     <div>
       <Navbar2 toggleSidebar={toggleSidebar}/>
@@ -86,37 +102,38 @@ const PendidikanList = () => {
             <div className="flex justify-center items-center p-2">
               <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
                 <div className="flex justify-end items-center p-2 mb-4">
-                  <AiOutlinePlusCircle size={25} onClick={redirectToAddPendidikan} className="mr-2" /> Tambah Baru
+                  <AiOutlinePlusCircle size={25} onClick={redirectToAddPendidikan} className="mr-2" style={{cursor: 'pointer'}} />
+                  <span onClick={redirectToAddPendidikan} style={{cursor: 'pointer'}}>Tambah Baru</span>
                 </div>
-                <table className="table-auto w-full">
+                <table className="table-auto w-full" style={{ tableLayout: 'fixed' }}>
                   <thead>
                     <tr>
-                      <th className="border px-4 py-2 w-4/15">Instansi Pendidikan</th>
-                      <th className="border px-4 py-2 w-3/15">Jurusan</th>
-                      <th className="border px-4 py-2 w-2/15">Tahun Mulai Ajaran</th>
-                      <th className="border px-4 py-2 w-2/15">Tahun Akhir Ajaran</th>
-                      <th className="border px-4 py-2 w-4/15">Aksi</th>
+                      <th className="border px-4 py-2 w-1/3" style={{fontSize: '15px'}}>Instansi Pendidikan</th>
+                      <th className="border px-4 py-2 w-1/4" style={{fontSize: '15px'}}>Jurusan</th>
+                      <th className="border px-4 py-2 w-1/8" style={{fontSize: '15px'}}>Tahun Mulai Ajaran</th>
+                      <th className="border px-4 py-2 w-1/8" style={{fontSize: '15px'}}>Tahun Akhir Ajaran</th>
+                      <th className="border px-4 py-2">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     {pendidikan.map((pendidikanItem) => (
                       <tr key={pendidikanItem.id_pendidikan}>
-                        <td className="border px-4 py-2">
+                        <td className="border px-4 py-2" style={{ whiteSpace: 'pre-line', overflowWrap: 'break-word' }}>
                           {pendidikanItem.instansi_pendidikan}
                         </td>
-                        <td className="border px-4 py-2">
+                        <td className="border px-4 py-2" style={{ whiteSpace: 'pre-line', overflowWrap: 'break-word' }}>
                           {pendidikanItem.jurusan}
                         </td>
-                        <td className="border px-4 py-2">
+                        <td className="border px-4 py-2" style={{ whiteSpace: 'pre-line', overflowWrap: 'break-word' }}>
                           {pendidikanItem.tahun_mulai_ajaran.substring(0, 4)}
                         </td>
-                        <td className="border px-4 py-2">
+                        <td className="border px-4 py-2" style={{ whiteSpace: 'pre-line', overflowWrap: 'break-word' }}>
                           {pendidikanItem.tahun_akhir_ajaran.substring(0, 4)}
                         </td>
                         <td className="border px-4 py-2 text-center">
                           <div className="flex justify-center">
-                            <FiEdit onClick={() => redirectToEditPendidikan(pendidikanItem.id_pendidikan)} className="mr-2"/>
-                            <BsTrash onClick={() => deletePendidikanHandler(pendidikanItem.id_pendidikan)} />
+                            <FiEdit onClick={() => redirectToEditPendidikan(pendidikanItem.id_pendidikan)} className="mr-2" style={{cursor: 'pointer', color: '#6B7280'}} />
+                            <BsTrash onClick={() => deletePendidikanHandler(pendidikanItem.id_pendidikan)} style={{cursor: 'pointer', color: '#EF4444'}} />
                           </div>
                         </td>
                       </tr>

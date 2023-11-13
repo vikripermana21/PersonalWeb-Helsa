@@ -168,8 +168,8 @@ const DataDiriEdit = () => {
                   <label className="w-1/3 mr-2">
                     <span className="label-text">Preview</span>
                   </label>
-                  {foto && typeof foto === 'object' && <img src={URL.createObjectURL(foto)} alt="Preview" className="mask mask-squircle w-48 h-49" />}
-                  {foto && typeof foto === 'string' && <img src={`${baseUrl}${foto}`} alt="Existing" className="mask mask-squircle w-48 h-49" />}
+                  {foto && typeof foto === 'object' && <img src={URL.createObjectURL(foto)} alt="Preview" className="object-cover max-w-48 max-h-48 rounded-md item-center mask mask-squircle" />}
+                  {foto && typeof foto === 'string' && <img src={`${baseUrl}${foto}`} alt="Existing" className="object-cover max-w-48 max-h-48 rounded-md item-center mask mask-squircle" />}
                 </div>
                 <div className="mb-4 flex items-center hide-element">
                   <label className="w-1/3 mr-2">

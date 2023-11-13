@@ -3,13 +3,12 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from '../Navigation/sidebar.js';
 import { FaBars } from 'react-icons/fa';
-import Navbar2 from "../Navigation/navbar2.js";
+import Navbar2 from "../Navigation/navbar2";
 
 const DataDiriDetails = () => {
   const navigate = useNavigate();   
   const token = localStorage.getItem('access_token');
   const id = localStorage.getItem('id');
-  console.log(id)
 
   if (!token){
     navigate('/login')
@@ -46,10 +45,6 @@ const DataDiriDetails = () => {
     getDetailPerson();
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
-
   const getDetailPerson = async () => {
     try {
       const response = await axios.get(
@@ -79,6 +74,10 @@ const DataDiriDetails = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  }
+
   // Function to navigate to the edit page
   const redirectToEditDataDiri = () => {
     navigate(`/datadiri/edit/${id_akun}`);
@@ -91,12 +90,12 @@ const DataDiriDetails = () => {
 
     return (
       <div>
-        {/* Navbar */}         
       <Navbar2 toggleSidebar={toggleSidebar}/>
       <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
         {isSidebarVisible && <Sidebar />}
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
+          {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
           <button
               className="p-2 bg-blue-500 text-white rounded-md mb-4"
               onClick={() => setIsSidebarVisible(!isSidebarVisible)}
@@ -110,85 +109,12 @@ const DataDiriDetails = () => {
                 <b>Data Diri</b>
               </h1>
             </div>
-            <div className="flex justify-center items-center p-2">
+            <div className="flex justify-center items-center p-2 mt-5">
               {notFound ? (
-                <div className="bg-white rounded-lg shadow-lg p-6 m-4 w-10/12 h-auto">
-                    <div className="flex justify-end items-center p-2 mb-4">
-                      <button  className="btn btn-success" onClick={redirectToAddDataDiri}>
+                <div>
+                   <button  className="btn btn-success" onClick={redirectToAddDataDiri}>
                         Tambah Data Diri
                       </button>
-                    </div>                  
-                  <table className="table-auto w-full">
-                    <tbody>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Nama</td>
-                        <td colSpan={5} className="border px-4 py-2"></td>
-                        <td rowSpan={6} className="border px-4 py-2">
-                          <div className="flex items-center justify-center h-full">
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Tempat Lahir</td>
-                        <td colSpan={2} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Tanggal Lahir</td>
-                        <td colSpan={2} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Usia</td>
-                        <td colSpan={2} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
-                        <td colSpan={4} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
-                        <td colSpan={4} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Berat Badan</td>
-                        <td colSpan={7} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Alamat</td>
-                        <td colSpan={7} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Agama</td>
-                        <td colSpan={7} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Status</td>
-                        <td colSpan={7} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Email</td>
-                        <td colSpan={7} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/4">Telepon</td>
-                        <td colSpan={7} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td rowSpan={4} className="border px-4 py-2 w-1/4">Media Sosial</td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/5">Instagram</td>
-                        <td colSpan={4} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/5">LinkedIn</td>
-                        <td colSpan={4} className="border px-4 py-2"></td>
-                      </tr>
-                      <tr>
-                        <td className="border px-4 py-2 w-1/5">Github</td>
-                        <td colSpan={4} className="border px-4 py-2"></td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
               ): (
                   dataLoaded ? (
@@ -197,10 +123,10 @@ const DataDiriDetails = () => {
                         <tbody>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Nama</td>
-                            <td colSpan={5} className="border px-4 py-2">{nama}</td>
+                            <td colSpan={5} className="border px-4 py-2 break-normal whitespace-pre-line">{nama}</td>
                             <td rowSpan={6} className="border px-4 py-2">
                               <div className="flex items-center justify-center h-full">
-                                <img src={`${baseUrl}${foto}`} alt="Foto profil" className="w-48 h-49 rounded-md item-center mask mask-squircle" />
+                                <img src={`${baseUrl}${foto}`} alt="Foto profil" className="object-cover max-w-48 max-h-48 rounded-md item-center mask mask-squircle" />
                               </div>
                             </td>
                           </tr>
@@ -214,7 +140,7 @@ const DataDiriDetails = () => {
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Usia</td>
-                            <td colSpan={2} className="border px-4 py-2">{usia} (tahun)</td>
+                            <td colSpan={2} className="border px-4 py-2">{usia}</td>
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Jenis Kelamin</td>
@@ -222,11 +148,11 @@ const DataDiriDetails = () => {
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Tinggi Badan</td>
-                            <td colSpan={4} className="border px-4 py-2">{tinggi_badan} (cm)</td>
+                            <td colSpan={4} className="border px-4 py-2">{tinggi_badan}</td>
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Berat Badan</td>
-                            <td colSpan={7} className="border px-4 py-2">{berat_badan} (kg)</td>
+                            <td colSpan={7} className="border px-4 py-2">{berat_badan}</td>
                           </tr>
                           <tr>
                             <td className="border px-4 py-2 w-1/4">Alamat</td>
