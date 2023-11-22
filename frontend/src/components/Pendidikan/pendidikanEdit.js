@@ -98,16 +98,8 @@ const PendidikanEdit = () => {
   return (
     <div>
       <Navbar2 toggleSidebar={toggleSidebar} />
-      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
-        {isSidebarVisible && <Sidebar />}
+      <div>
         <main className={`flex-1 p-4`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            style={{ backgroundColor: "#4D4C7D" }}
-          >
-            <FaBars size={24} />
-          </button>
           <div className="bg-gray-200 h-screen box-border p-4 pt-0">
             <div className="flex justify-center items-center">
               <h1>

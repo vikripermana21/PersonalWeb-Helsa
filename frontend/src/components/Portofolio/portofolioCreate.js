@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { FaBars } from 'react-icons/fa';
+import { FaBars } from "react-icons/fa";
 import Sidebar from "../Navigation/sidebar";
-import '../../styles/style.css';
+import "../../styles/style.css";
 import Navbar2 from "../Navigation/navbar2";
 
 const PortofolioCreate = () => {
-  const navigate = useNavigate(); 
-  const token = localStorage.getItem('access_token');
+  const navigate = useNavigate();
+  const token = localStorage.getItem("access_token");
 
-  if (!token){
-    navigate('/login')
+  if (!token) {
+    navigate("/login");
   }
   const [id_person, setIdPerson] = useState("");
   const [nama_portofolio, setNamaPortofolio] = useState("");
@@ -21,34 +21,37 @@ const PortofolioCreate = () => {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    setIdPerson(localStorage.getItem('id'))
-  }, [])
+    setIdPerson(localStorage.getItem("id"));
+  }, []);
 
   const redirectCancelButton = () => {
-    navigate(`/portofolio/${id_person}`)
-  }
+    navigate(`/portofolio/${id_person}`);
+  };
 
   const createPortoHandler = async (e) => {
     e.preventDefault();
-    
+
     try {
       const formData = new FormData();
-      formData.append('id_person', id_person);
-      if (typeof file_portofolio === 'object') {
-        formData.append('file_portofolio', file_portofolio);
+      formData.append("id_person", id_person);
+      if (typeof file_portofolio === "object") {
+        formData.append("file_portofolio", file_portofolio);
       }
-      formData.append('nama_portofolio', nama_portofolio);
-      formData.append('deskripsi_portofolio', deskripsi_portofolio);
-      const response = await axios.post("http://localhost:5000/portofolio", formData)
+      formData.append("nama_portofolio", nama_portofolio);
+      formData.append("deskripsi_portofolio", deskripsi_portofolio);
+      const response = await axios.post(
+        "http://localhost:5000/portofolio",
+        formData
+      );
 
-      navigate(`/portofolio/${id_person}`)
-      console.log('Berhasil membuat portofolio baru');
-      console.log('Data portofolio : ', response);
+      navigate(`/portofolio/${id_person}`);
+      console.log("Berhasil membuat portofolio baru");
+      console.log("Data portofolio : ", response);
     } catch (error) {
-      console.log(error.message)
-      setMsg(error.response.data.msg)
+      console.log(error.message);
+      setMsg(error.response.data.msg);
     }
-  }
+  };
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -56,18 +59,10 @@ const PortofolioCreate = () => {
 
   return (
     <div>
-      <Navbar2 toggleSidebar={toggleSidebar}/>
-      <div className={`bg-gray-200 ${isSidebarVisible ? '' : 'h-screen'} flex`}>
-        {isSidebarVisible && <Sidebar />}
+      <Navbar2 toggleSidebar={toggleSidebar} />
+      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
         {/* Main Content */}
-        <main className={`flex-1 p-4 ${isSidebarVisible ? '' : ''}`}>
-        <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            style={{ backgroundColor: '#4D4C7D' }}
-          >
-            <FaBars size={24} />
-        </button>
+        <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
           {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
           <div className="bg-gray-200 h-screen box-border p-4 pt-0">
             <div className="flex justify-center items-center">
@@ -133,10 +128,15 @@ const PortofolioCreate = () => {
                   </div>
                   <p className="error-message">{msg}</p>
                   <div className="mt-10 flex justify-center items-center">
-                    <button className="btn btn-danger btn-sm mr-2 w-1/3" onClick={redirectCancelButton}>
+                    <button
+                      className="btn btn-danger btn-sm mr-2 w-1/3"
+                      onClick={redirectCancelButton}
+                    >
                       Cancel
                     </button>
-                    <button className="btn btn-success btn-sm w-1/3">Save</button>
+                    <button className="btn btn-success btn-sm w-1/3">
+                      Save
+                    </button>
                   </div>
                 </form>
               </div>

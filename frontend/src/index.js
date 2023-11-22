@@ -26,6 +26,7 @@ import DataDiriEdit from "./components/DataDiri/dataDiriEdit";
 import DataDiriDetails from "./components/DataDiri/dataDiriDetails";
 import ConvertToWeb from "./components/CV/personalWeb";
 import NotFound404 from "./components/notFound404";
+import Sidebar from "./components/Navigation/sidebar";
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -44,75 +45,75 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <Sidebar page={<Dashboard />} />,
   },
   {
     path: "/datadiri/create",
-    element: <DataDiriCreate />,
+    element: <Sidebar page={<DataDiriCreate />} />,
   },
   {
     path: "/datadiri/:id_akun",
-    element: <DataDiriDetails />,
+    element: <Sidebar page={<DataDiriDetails />} />,
   },
   {
     path: "/datadiri/edit/:id_person",
-    element: <DataDiriEdit />,
+    element: <Sidebar page={<DataDiriEdit />} />,
   },
   {
     path: "/datadiri",
-    element: <DataDiriList />,
+    element: <Sidebar page={<DataDiriList />} />,
   },
   {
     path: "/pendidikan/create",
-    element: <PendidikanCreate />,
+    element: <Sidebar page={<PendidikanCreate />} />,
   },
   {
     path: "/pendidikan/:id_person",
-    element: <PendidikanList />,
+    element: <Sidebar page={<PendidikanList />} />,
   },
   {
     path: "/pendidikan/:id_person/edit/:id_pendidikan",
-    element: <PendidikanEdit />,
+    element: <Sidebar page={<PendidikanEdit />} />,
   },
   {
     path: "/portofolio/create",
-    element: <PortofolioCreate />,
+    element: <Sidebar page={<PortofolioCreate />} />,
   },
   {
     path: "/portofolio/:id_person",
-    element: <PortofolioList />,
+    element: <Sidebar page={<PortofolioList />} />,
   },
   {
     path: "/portofolio/:id_person/:id_portofolio",
-    element: <PortofolioDetail />,
+    element: <Sidebar page={<PortofolioDetail />} />,
   },
   {
     path: "/portofolio/:id_person/edit/:id_portofolio",
-    element: <PortofolioEdit />,
+    element: <Sidebar page={<PortofolioEdit />} />,
   },
   {
     path: "/organisasi/create",
-    element: <OrganisasiCreate />,
+    element: <Sidebar page={<OrganisasiCreate />} />,
   },
   {
     path: "/organisasi/:id_person",
-    element: <OrganisasiList />,
+    element: <Sidebar page={<OrganisasiList />} />,
   },
   {
     path: "/organisasi/:id_person/edit/:id_organisasi",
-    element: <OrganisasiEdit />,
+    element: <Sidebar page={<OrganisasiEdit />} />,
   },
   {
     path: "/skill/create",
-    element: <SkillCreate />,
+    element: <Sidebar page={<SkillCreate />} />,
   },
   {
     path: "/skill/:id_person",
-    element: <SkillList />,
+    element: <Sidebar page={<SkillList />} />,
   },
   {
     path: "/skill/:id_person/edit/:id_skill",
-    element: <SkillEdit />,
+    element: <Sidebar page={<SkillEdit />} />,
   },
   {
     path: "/:username",

@@ -4,8 +4,8 @@ import jwt_decode from "jwt-decode";
 import Sidebar from "./Navigation/sidebar";
 import { FaBars } from "react-icons/fa";
 import jsPDF from "jspdf";
-import 'jspdf-autotable';
-import Navbar2 from './Navigation/navbar2';
+import "jspdf-autotable";
+import Navbar2 from "./Navigation/navbar2";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -21,19 +21,19 @@ const Dashboard = () => {
 
   const generateToWebHandler = async () => {
     try {
-      const username = localStorage.getItem('username_akun');
-      const id_akun = localStorage.getItem('id');
+      const username = localStorage.getItem("username_akun");
+      const id_akun = localStorage.getItem("id");
 
-      const response = await axios.get(`http://localhost:5000/convert-web/${username}`);
+      const response = await axios.get(
+        `http://localhost:5000/convert-web/${username}`
+      );
 
       console.log(response);
-      navigate(`/${username}`)
-      
+      navigate(`/${username}`);
     } catch (error) {
       console.error(error);
     }
   };
-
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -83,18 +83,18 @@ const Dashboard = () => {
       alert("CV data is not available. Please wait for the data to load.");
       return;
     }
-  
+
     const doc = new jsPDF();
-  
+
     // Set document properties (optional)
     doc.setProperties({
       title: "My CV",
       author: "Your Name",
     });
-  
+
     // Set the initial y-coordinate
     let startY = 10;
-  
+
     // Define a function to add data and table with a header
     function addDataAndTable(title, data, header) {
       if (startY + 20 > 280) {
@@ -111,7 +111,7 @@ const Dashboard = () => {
       });
       startY = doc.autoTable.previous.finalY + 10;
     }
-  
+
     // Add personal data to the CV
     const personalHeader = ["Attribute", "Value"];
     const personalData = [
@@ -132,7 +132,7 @@ const Dashboard = () => {
       ["GitHub", cvData.personal.github],
     ];
     addDataAndTable("Personal Information", personalData, personalHeader);
-  
+
     // Add education data to the CV
     const educationHeader = ["Institution", "Major", "Start Year", "End Year"];
     const educationData = cvData.education.map((edu) => [
@@ -142,9 +142,14 @@ const Dashboard = () => {
       edu.tahun_akhir_ajaran,
     ]);
     addDataAndTable("Education", educationData, educationHeader);
-  
+
     // Add organization data to the CV
-    const organizationHeader = ["Organization", "Position", "Start Date", "End Date"];
+    const organizationHeader = [
+      "Organization",
+      "Position",
+      "Start Date",
+      "End Date",
+    ];
     const organizationData = cvData.organization.map((org) => [
       org.nama_organisasi,
       org.posisi,
@@ -152,7 +157,7 @@ const Dashboard = () => {
       org.tanggal_akhir_menjabat,
     ]);
     addDataAndTable("Organizations", organizationData, organizationHeader);
-  
+
     // Add skills data to the CV
     const skillsHeader = ["Skill", "Capability"];
     const skillsData = cvData.skills.map((skill) => [
@@ -160,7 +165,7 @@ const Dashboard = () => {
       skill.capability + "%",
     ]);
     addDataAndTable("Skills", skillsData, skillsHeader);
-  
+
     // Add portfolio data to the CV
     const portfolioHeader = ["Portfolio", "Description"];
     const portfolioData = cvData.portfolio.map((portfolio) => [
@@ -168,9 +173,9 @@ const Dashboard = () => {
       portfolio.deskripsi_portofolio,
     ]);
     addDataAndTable("Portfolio", portfolioData, portfolioHeader);
-  
+
     const pdfDataUri = doc.output("datauristring");
-  
+
     const newTab = window.open();
     newTab.document.write(
       '<iframe width="100%" height="100%" src="' + pdfDataUri + '"></iframe'
@@ -179,19 +184,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      {/* Navbar */}         
-      <Navbar2 toggleSidebar={toggleSidebar}/>
-      
-      <div className={`bg-gray-200 ${isSidebarVisible ? 'h-screen' : 'h-screen'} flex`}>
-        {isSidebarVisible && <Sidebar />}
+      {/* Navbar */}
+      <div>
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            style={{ backgroundColor: '#4D4C7D' }}
-          >
-            <FaBars size={24} />
-          </button>
           <div className="bg-white p-4 rounded-lg shadow-md ">
             <h1 className="text-3xl font-semibold mb-4">Dashboard</h1>
             <p className="text-lg">Hello, {nama}</p>
@@ -201,18 +196,26 @@ const Dashboard = () => {
             <div className="flex flex-row">
               <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5 mr-4">
                 <p className="text-lg">Generate CV to Web</p>
-                <button onClick={generateToWebHandler} className="btn btn-outline btn-success btn-sm mt-2">Click</button>
+                <button
+                  onClick={generateToWebHandler}
+                  className="btn btn-outline btn-success btn-sm mt-2"
+                >
+                  Click
+                </button>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-md w-1/4 mt-5">
                 <p className="text-lg">Generate CV to PDF</p>
-                <button onClick={generatePDF} className="btn btn-outline btn-success btn-sm mt-2">Click</button>
+                <button
+                  onClick={generatePDF}
+                  className="btn btn-outline btn-success btn-sm mt-2"
+                >
+                  Click
+                </button>
               </div>
             </div>
           ) : (
             <p></p>
           )}
-          
-
         </main>
       </div>
     </div>

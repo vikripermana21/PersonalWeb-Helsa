@@ -36,7 +36,9 @@ const OrganisasiEdit = () => {
     e.preventDefault();
 
     if (tanggal_mulai_menjabat >= tanggal_akhir_menjabat) {
-      setError("Tanggal mulai menjabat harus lebih awal dari tanggal akhir menjabat.");
+      setError(
+        "Tanggal mulai menjabat harus lebih awal dari tanggal akhir menjabat."
+      );
       return;
     }
 
@@ -48,12 +50,15 @@ const OrganisasiEdit = () => {
     setError(""); // Reset error state
 
     try {
-      const response = await axios.patch(`http://localhost:5000/organisasi/${id_organisasi}`, {
-        nama_organisasi,
-        posisi,
-        tanggal_mulai_menjabat,
-        tanggal_akhir_menjabat,
-      });
+      const response = await axios.patch(
+        `http://localhost:5000/organisasi/${id_organisasi}`,
+        {
+          nama_organisasi,
+          posisi,
+          tanggal_mulai_menjabat,
+          tanggal_akhir_menjabat,
+        }
+      );
 
       navigate(`/organisasi/${id_person}`);
       console.log("Organisasi berhasil diubah");
@@ -62,11 +67,13 @@ const OrganisasiEdit = () => {
       setError("Terjadi kesalahan saat menyimpan data."); // Display error message
       console.log(error);
     }
-  }
+  };
 
   const getOrganisasi = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/organisasi/${id_person}/${id_organisasi}`);
+      const response = await axios.get(
+        `http://localhost:5000/organisasi/${id_person}/${id_organisasi}`
+      );
       console.log("Data : ", response.data);
       setNamaOrganisasi(response.data.nama_organisasi);
       setPosisi(response.data.posisi);
@@ -76,7 +83,7 @@ const OrganisasiEdit = () => {
       setError("Terjadi kesalahan saat mengambil data."); // Display error message
       console.log(error.message);
     }
-  }
+  };
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -85,17 +92,9 @@ const OrganisasiEdit = () => {
   return (
     <div>
       <Navbar2 toggleSidebar={toggleSidebar} />
-      <div className={`bg-gray-200 ${isSidebarVisible ? "" : "h-screen"} flex`}>
-        {isSidebarVisible && <Sidebar />}
+      <div>
         {/* Main Content */}
         <main className={`flex-1 p-4 ${isSidebarVisible ? "" : ""}`}>
-          <button
-            className="p-2 bg-blue-500 text-white rounded-md mb-4"
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            style={{ backgroundColor: "#4D4C7D" }}
-          >
-            <FaBars size={24} />
-          </button>
           {/* Tombol hamburger untuk menampilkan/sembunyikan sidebar */}
           <div className="bg-gray-200 h-screen box-border p-4 pt-0">
             <div className="flex justify-center items-center">
